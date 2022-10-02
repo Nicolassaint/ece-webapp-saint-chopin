@@ -1,7 +1,14 @@
-{
-    "title": "Eleve 1",
-    "content": "Joueur de tennis pro",
-    "author": "thomas",
-    "date": "29/03/2001"
-}
-
+[
+    {
+        "title": "Eleve 1",
+        "content": "Joueur de tennis pro",
+        "author": "thomas",
+        "date": "29/03/2001"
+    },
+    {
+        "title": "Eleve 2",
+        "content": "Skiieur pro",
+        "author": "nicolas",
+        "date": "08/06/2001"
+    }
+]
