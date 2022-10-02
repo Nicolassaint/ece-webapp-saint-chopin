@@ -48,7 +48,7 @@ module.exports = {
       res.write(user[i].title)
       res.write("\n")
       res.write(user[i].content)
-      res.write("\n")
+      res.write("\n") 
       res.write(user[i].author)
       res.write("\n")
       res.write(user[i].date)
