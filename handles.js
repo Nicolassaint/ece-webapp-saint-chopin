@@ -19,24 +19,41 @@ module.exports = {
 
       res.write('Hello ' + params['name'])
 
-      for (i = 0; i < user.length ; i++){
+        for (i = 0; i < user.length; i++) {
 
-      if (params['name'] === user[i].author) {
-        res.write("\n\n\n")
-        res.write(user[i].title)
-        res.write("\n\n")
-        res.write(user[i].content)
-        res.write("\n")
-        res.write(user[i].date)
-        res.write("\n")
-      }}
-       
+          if (params['name'] === user[i].author) {
+            res.write("\n\n\n")
+            res.write(user[i].title)
+            res.write("\n\n")
+            res.write(user[i].content)
+            res.write("\n")
+            res.write(user[i].date)
+            res.write("\n")
+          }
+        }
+      
+
 
     }
     else if (path === '/') {
       res.writeHead(200, { 'Content-Type': 'text/html' });
       res.write("En rentrant dans l'url <a href='/hello?name='>hello?name=votre_nom</a>, vous pourrez voir votre nom affiche,<br> si votre nom est dans notre BDD, alors vos informations s'afficheront")
 
+    }
+
+    else if (path === '/about'){
+      res.writeHead(200, { 'Content-Type': 'text/plain' });
+      for (i = 0; i < user.length; i++) {
+      res.write("\n")
+      res.write(user[i].title)
+      res.write("\n")
+      res.write(user[i].content)
+      res.write("\n")
+      res.write(user[i].author)
+      res.write("\n")
+      res.write(user[i].date)
+      res.write("\n\n\n")
+      }
     }
 
     else {
