@@ -1,29 +1,31 @@
-# Create a basic application with multiple routes + Reading from a JSON file
+# Lab: Web API with Node.js
 ​
-## `/`
+## `GET /articles`
 ​
-> On this path you have explications about the project.
-> You will find some links to access dynamic routes.
-​
----
-​
-## `/hello`
-​
-> - On this path you have access to a dynamic route.
->
-> - If you tape `/hello?name=yourname` you will have a welcome message with yourname.
->
-> - If you tape `/hello?name=nicolas` or `/hello?name=thomas` you will have a page with a little BIO. 
-​
----
-​
-## `/about`
-​
-> - On this path you have access to a dynamic route.
->
-> - If you tape `/about` you will have access to all elements of the JSON file.
->
+> Sur cette route, vous pouvez observer le contenu de tous les articles.
 
+
+## `POST /articles`
+​
+> Sur cette route, rajouter un article, via un moyen adéquat, dans le cadre de ce TP, nous avons utliisés Postman pour check les routes.
+​
+​
+## `GET /articles/:articleId/comments`
+​
+>  Cette route sert à afficher tous les commentaires liés à un article qu'on chosira par son id.
+ 
+​
+---
+​
+## ` POST /articles/:articleId/comments`
+`
+​
+> Avec cette route, on peut rajouter un commentaire, sur un article dont on donnera l'id.
+
+## ` GET /articles/:articleId/comments/:commentId`
+`
+​
+> Enfin, avec cette route, nous pouvons afficher un unique commentaire choisi avec son id sur un article donné, lui également par son id.
 ​
 ---
 ​
