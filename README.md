@@ -1,12 +1,14 @@
-# Lab: Web API with Node.js
+# Lab 3 : Web API with Node.js
 ​
-## `Installation`
+# **`Installation`**
 ​
-> **npm install**
-
-## `Lancer le projet`
-​
-> **npm run develop**
+> ## **npm install**    
+    
+# **`Start the project`**
+​  
+> ## **npm run develop**  
+---
+# API Routes
 
 ## `GET /articles`
 ​
@@ -36,6 +38,6 @@
 ​
 
 ​
-## Credits
+## Crédits
 ​
 > Nicolas SAINT & Thomas CHOPIN
