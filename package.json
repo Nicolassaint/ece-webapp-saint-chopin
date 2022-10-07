@@ -2,11 +2,11 @@
   "name": "mon_projet",
   "version": "1.0.0",
   "description": "",
-  "main": "managingArticles.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node managingArticles.js",
-    "develop": "nodemon managingArticles.js"
+    "start": "node index.js",
+    "develop": "nodemon index.js"
   },
   "keywords": [],
   "author": "",

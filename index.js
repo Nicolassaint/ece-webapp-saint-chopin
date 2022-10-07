@@ -1,21 +1,30 @@
-const content = '<!DOCTYPE html>' +
-'<html>' +
-'    <head>' +
-'        <meta charset="utf-8" />' +
-'        <title>ECE AST</title>' +
-'    </head>' + 
-'    <body>' +
-'       <p>Hello World!</p>' +
-'    </body>' +
-'</html>'
+// Create a new express application instance
+const express = require("express");
+const bodyParser = require("body-parser");
+//const { v4: uuidv4 } = require("uuid");
+const articleRoutes = require("./src/routes/articles");
+const commentRoutes = require("./src/routes/comment");
 
+const port = process.env.PORT || 8080;
+const app = express();
 
+//middleware
+const apiRoot = "/api";
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// ./index.js
-//const http = require('http')
-//const handles = require('./handles')
-//const server = http.createServer(handles.serverHandle);
-//server.listen(8080)
+app.listen(port, () => {
+  console.log("serveur allumé ! au port :",port);
+});
 
+//Routes
+app.use(apiRoot, articleRoutes);
+app.use(apiRoot, commentRoutes);
 
+app.use((req, res, next) => {
+  console.log("Route : ", req.path, req.method);
+  next();
+});
 
+//Generation
+//console.log(uuidv4());
