@@ -1,4 +1,5 @@
 const { db } = require("../content/dbArticles");
+const { v4: uuidv4 } = require("uuid");
 
 const showArticles = async (req, res) => {
   const resultat = [];
@@ -11,7 +12,14 @@ const showArticles = async (req, res) => {
 
 const createArticle = async (req, res) => {
   console.log(req.body);
-  db.articles.push(req.body);
+  const article = {
+    id: uuidv4(),
+    title: req.body.title,
+    content: req.body.content,
+    date: req.body.date,
+    author: req.body.author,
+  };
+  db.articles.push(article);
   res.sendStatus(201);
 };
 

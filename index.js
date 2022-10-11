@@ -1,7 +1,6 @@
 // Create a new express application instance
 const express = require("express");
 const bodyParser = require("body-parser");
-//const { v4: uuidv4 } = require("uuid");
 const articleRoutes = require("./src/routes/articles");
 const commentRoutes = require("./src/routes/comment");
 
@@ -17,14 +16,12 @@ app.listen(port, () => {
   console.log("serveur allumé ! au port :",port);
 });
 
+
+app.use((req, res, next) => {
+    console.log("Route : ", req.path, req.method);
+    next();
+});
+
 //Routes
 app.use(apiRoot, articleRoutes);
 app.use(apiRoot, commentRoutes);
-
-app.use((req, res, next) => {
-  console.log("Route : ", req.path, req.method);
-  next();
-});
-
-//Generation
-//console.log(uuidv4());

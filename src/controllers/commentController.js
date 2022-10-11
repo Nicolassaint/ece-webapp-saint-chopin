@@ -1,4 +1,5 @@
 const {db} = require("../content/dbArticles");
+const { v4: uuidv4 } = require("uuid");
 
 const showComments = async (req, res) => {
   const article = db.articles.find(
@@ -21,7 +22,14 @@ const showComments = async (req, res) => {
 
 const createComment = async (req, res) => {
   console.log(req.body);
-  db.comments.push(req.body);
+  const comment = {
+    id: uuidv4(),
+    timestamp: Date.now(),
+    content: req.body.content,
+    articleId: req.body.articleId,
+    author: req.body.author,
+  };
+  db.comments.push(comment);
   res.sendStatus(201);
 };
 
