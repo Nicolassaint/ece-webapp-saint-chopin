@@ -4,11 +4,6 @@ import { Box } from "@mui/material";
 
 import Social from "../Social";
 
-const path = [
-  { name: "Home", link: "/" },
-  { name: "About", link: "/about" },
-];
-
 const Footer = () => {
   const router = useRouter();
   return (
