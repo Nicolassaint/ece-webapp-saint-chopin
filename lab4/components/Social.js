@@ -15,8 +15,8 @@ const socialMedia = {
 
 const useStyles = makeStyles((theme) => ({
   snsIcon: {
-    width: "30px",
-    height: "30px",
+    width: "40px",
+    height: "40px",
 
     "&:hover": {
       color: theme.palette.info.main,

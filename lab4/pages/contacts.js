@@ -10,7 +10,7 @@ const contacts = () => {
     <Box sx={{
       marginTop: "6.5px",
     }}>
-      <Grid item container justify="center">
+      <Grid item container justifyContent="center">
         <Grid xs={5}>
           <h1>Contact 1</h1>
           <h2>Nicolas Saint</h2>

@@ -1,4 +1,3 @@
-import Link from "../Links";
 import { useRouter } from "next/router";
 import { Grid, Typography } from "@material-ui/core";
 import { Box } from "@mui/material";
@@ -11,7 +10,6 @@ const path = [
 ];
 
 const Footer = () => {
-  //const classes = useStyles();
   const router = useRouter();
   return (
     <Box
@@ -25,31 +23,18 @@ const Footer = () => {
       }}
     >
       <Grid container spacing={3} justify="center">
-        {path.map(({ name, link }) => (
-          <Grid item key={link}>
-            <Link href={link}>
+       
               <Box
                 sx={{
-                  fontSize: "1.25em",
-                  color: "black",
+                  fontSize: "1em",
+                  color: "white",
                   "&:hover": {
                     color: "#3fad5d",
                   },
                 }}
               >
-                <Typography
-                  style={{
-                    fontWeight: router.pathname === link && "bold",
-                    borderBottom:
-                      router.pathname === link && "1px solid #757ce8",
-                  }}
-                >
-                  {name}
-                </Typography>
-              </Box>
-            </Link>
-          </Grid>
-        ))}
+          <h1>Our socials</h1>
+                </Box>
       </Grid>
       <Grid container direction="column" style={{ margin: "1.2em 0" }}>
         <Social />
