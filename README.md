@@ -17,7 +17,7 @@ This application is written on NodeJS and it uses Next.js.
 
 Go to the root directory of the application (where `package.json` file located) and run:
 
-```
+```js
  npm install
 ```
 
@@ -31,7 +31,7 @@ yarn dev
 
 It will start a web server available in your browser at <http://localhost:3000>.
 
-# API Routes
+## API Routes
 
 ## 1. `/`
 
