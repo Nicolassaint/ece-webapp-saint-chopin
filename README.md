@@ -16,9 +16,11 @@ This application is written on NodeJS and it uses Next.js.
 2. Install application
 
 Go to the root directory of the application (where `package.json` file located) and run:
+
 ```
  npm install
 ```
+
 Then, run the development server:
 
 ```bash
@@ -27,12 +29,13 @@ npm run dev
 yarn dev
 ```
 
-It will start a web server available in your browser at http://localhost:3000.
+It will start a web server available in your browser at <http://localhost:3000>.
 
 # API Routes
+
 ## 1. `/`
 
- - HomePage
+- HomePage
 
 ## 2. `/about`
 
@@ -40,15 +43,15 @@ It will start a web server available in your browser at http://localhost:3000.
 
 ## 3. `/contacts`
 
--  Displays our contacts and some information about us
+- Displays our contacts and some information about us
 
 ## 4. `/articles`
 
--  Displays all the names of our articles that are clickable if you want to see their details
+- Displays all the names of our articles that are clickable if you want to see their details
 
 ## 5. `/articles/:articleId`
 
--  The route of the articles details with their id
+- The route of the articles details with their id
 
 ## Crédits
 
