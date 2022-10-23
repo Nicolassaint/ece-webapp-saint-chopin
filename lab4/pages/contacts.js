@@ -7,9 +7,11 @@ import { Grid } from "@mui/material";
 
 const contacts = () => {
   return (
-    <Box sx={{
+    <Box
+    className="mt-6"
+    /*sx={{
       marginTop: "6.5px",
-    }}>
+    }}*/>
       <Grid item container justifyContent="center">
         <Grid xs={5}>
           <h1>Contact 1</h1>
@@ -20,6 +22,7 @@ const contacts = () => {
             width="150px"
             height="150px"
           />
+
           <h3>Téléphone : 06 65 48 62 68</h3>
           <h3>Adresse : nicolas.saint78@gmail.com</h3>
         </Grid>
