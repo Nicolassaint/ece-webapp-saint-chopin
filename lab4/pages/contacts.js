@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import Image from "next/image";
 import mypic1 from "../public/nicolassaint.jpg";
 import mypic2 from "../public/thomaschopin.jpg";
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 
 const contacts = () => {
   return (

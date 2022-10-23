@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography } from "@mui/material";
 import { Box } from "@mui/material";
 
 import Social from "../Social";
@@ -17,11 +17,10 @@ const Footer = () => {
         padding: "2em 0 ",
       }}
     >
-      <Grid container spacing={3} justify="center">
-       
+      <Grid container spacing={1} justifyContent="center">
               <Box
                 sx={{
-                  fontSize: "1em",
+                  fontSize: "0.8em",
                   color: "white",
                   "&:hover": {
                     color: "#3fad5d",
@@ -41,7 +40,7 @@ const Footer = () => {
         target="_blank"
         rel="noreferrer noopener"
         href="https://github.com/Nicolassaint"
-        justify="center"
+        justifyContent="center"
         style={{
           textDecoration: "none",
         }}

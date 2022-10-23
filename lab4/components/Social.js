@@ -1,5 +1,5 @@
-import { makeStyles } from "@material-ui/core/styles";
-import { Box, Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
+import styles from "../styles/Social.module.css";
 
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -13,73 +13,80 @@ const socialMedia = {
   twitter: "https://twitter.com/juniorjeece",
 };
 
-const useStyles = makeStyles((theme) => ({
-  snsIcon: {
-    width: "40px",
-    height: "40px",
-
-    "&:hover": {
-      color: theme.palette.info.main,
-    },
-  },
-}));
-
 const Social = ({ color }) => {
-  const classes = useStyles();
-
   const { instagram, facebook, github, twitter } = socialMedia;
 
   return (
-      <Grid item container spacing={2} justify="center">
-        <Grid
-          item
-          component={"a"}
-          target="_blank"
-          rel="noreferrer noopener"
-          href={twitter}
-        >
-          <TwitterIcon
-            className={classes.snsIcon}
-            color={color ? "primary" : "secondary"}
-          />
-        </Grid>
-        <Grid
-          item
-          component={"a"}
-          target="_blank"
-          rel="noreferrer noopener"
-          href={facebook}
-        >
-          <FacebookIcon
-            className={classes.snsIcon}
-            color={color ? "primary" : "secondary"}
-          />
-        </Grid>
-        <Grid
-          item
-          component={"a"}
-          target="_blank"
-          rel="noreferrer noopener"
-          href={instagram}
-        >
-          <InstagramIcon
-            className={classes.snsIcon}
-            color={color ? "primary" : "secondary"}
-          />
-        </Grid>
-        <Grid
-          item
-          component={"a"}
-          target="_blank"
-          rel="noreferrer noopener"
-          href={github}
-        >
-          <GitHubIcon
-            className={classes.snsIcon}
-            color={color ? "primary" : "secondary"}
-          />
-        </Grid>
+    <Grid item container spacing={2} justifyContent="center">
+      <Grid
+        item
+        component={"a"}
+        target="_blank"
+        rel="noreferrer noopener"
+        href={twitter}
+      >
+        <TwitterIcon
+          className={styles.snsIcon}
+          sx={{
+            color: "#AB47BC",
+            "&:hover": {
+              color: "#1DA1F2",
+            },
+          }}
+        />
       </Grid>
+      <Grid
+        item
+        component={"a"}
+        target="_blank"
+        rel="noreferrer noopener"
+        href={facebook}
+      >
+        <FacebookIcon
+          className={styles.snsIcon}
+          sx={{
+            color: "#AB47BC",
+            "&:hover": {
+              color: "#1877F2",
+            },
+          }}
+        />
+      </Grid>
+      <Grid
+        item
+        component={"a"}
+        target="_blank"
+        rel="noreferrer noopener"
+        href={instagram}
+      >
+        <InstagramIcon
+          className={styles.snsIcon}
+          sx={{
+            color: "#AB47BC",
+            "&:hover": {
+              color: "#E4405F",
+            },
+          }}
+        />
+      </Grid>
+      <Grid
+        item
+        component={"a"}
+        target="_blank"
+        rel="noreferrer noopener"
+        href={github}
+      >
+        <GitHubIcon
+          className={styles.snsIcon}
+          sx={{
+            color: "#AB47BC",
+            "&:hover": {
+              color: "#333",
+            },
+          }}
+        />
+      </Grid>
+    </Grid>
   );
 };
 
