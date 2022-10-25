@@ -44,12 +44,8 @@ const about = () => {
       </h3>
 
       <div class="flex flex-wrap justify-center mt-24 w-10/12 mx-48">
-          <Image src={mypic3} classname=" h-auto shadow-lg " alt="..."  />
+        <Image src={mypic3} classname=" h-auto shadow-lg " alt="..." />
       </div>
-
-
-
-
     </>
   );
 };

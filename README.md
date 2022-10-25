@@ -6,7 +6,7 @@ First Next.js WebSite deployed with Vercel, you can see the result directly [her
 
 1. Static and dynamic routing
 2. Fetching and displaying data
-3. Layout, styling and components
+3. Layout, styling by tailwind and components
 
 ## Installation
 

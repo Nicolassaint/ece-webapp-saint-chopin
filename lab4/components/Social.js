@@ -1,11 +1,3 @@
-import { Grid } from "@mui/material";
-//import styles from "../styles/Social.module.css";
-
-import InstagramIcon from "@mui/icons-material/Instagram";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import TwitterIcon from "@mui/icons-material/Twitter";
-
 const socialMedia = {
   instagram: "https://www.instagram.com/juniorjeece/",
   facebook: "https://www.facebook.com/JEECE.JE",
@@ -17,93 +9,31 @@ const Social = ({ color }) => {
   const { instagram, facebook, github, twitter } = socialMedia;
 
   return (
-    /*<Grid item container spacing={2} justifyContent="center">
-      <Grid
-        item
-        component={"a"}
-        target="_blank"
-        rel="noreferrer noopener"
-        href={twitter}
+    <div class="flex justify-center mb-6">
+      <a
+        href="https://www.facebook.com/JEECE.JE"
+        type="button"
+        class="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-blue-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
       >
-        <TwitterIcon
-          className= "h-10 w-10  bg-purple-600 hover:bg-sky-500"
-          /*sx={{
-            color: "#AB47BC",
-            "&:hover": {
-              color: "#1DA1F2",
-            },
-          }}
-        />
-      </Grid>
-      <Grid
-        item
-        component={"a"}
-        target="_blank"
-        rel="noreferrer noopener"
-        href={facebook}
-      >
-        <FacebookIcon
-          className="h-10 w-10 bg-purple-600 hover:bg-sky-500"
-          sx={{
-            color: "#AB47BC",
-            "&:hover": {
-              color: "#1877F2",
-            },
-          }}
-        />
-      </Grid>
-      <Grid
-        item
-        component={"a"}
-        target="_blank"
-        rel="noreferrer noopener"
-        href={instagram}
-      >
-        <InstagramIcon
-          className="h-10 w-10 bg-purple-600 hover:bg-pink-500"
-          sx={{
-            color: "#AB47BC",
-            "&:hover": {
-              color: "#E4405F",
-            },
-          }}
-        />
-      </Grid>
-      <Grid
-        item
-        component={"a"}
-        target="_blank"
-        rel="noreferrer noopener"
-        href={github}
-      >
-        <GitHubIcon
-          className="h-10 w-10 bg-purple-600 hover:bg-purple-300"
-          sx={{
-            color: "#AB47BC",
-            "&:hover": {
-              color: "#333",
-            },
-          }}
-        />
-      </Grid>
-    </Grid>*/
-
-
-<div class="flex justify-center mb-6">
-      <a href="https://www.facebook.com/JEECE.JE" type="button" class="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-blue-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
-        <svg aria-hidden="true"
-        class="w-2 h-full mx-auto"
-        viewBox="0 0 320 512"
+        <svg
+          aria-hidden="true"
+          class="w-2 h-full mx-auto"
+          viewBox="0 0 320 512"
         >
-        <path
-          fill="currentColor"
-          d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
-        ></path>
+          <path
+            fill="currentColor"
+            d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
+          ></path>
         </svg>
       </a>
 
-      <a href="https://twitter.com/juniorjeece" type="button" class="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-blue-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
-        <svg aria-hidden="true"
+      <a
+        href="https://twitter.com/juniorjeece"
+        type="button"
+        class="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-blue-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+      >
+        <svg
+          aria-hidden="true"
           class="w-3 h-full mx-auto"
           viewBox="0 0 512 512"
         >
@@ -114,8 +44,13 @@ const Social = ({ color }) => {
         </svg>
       </a>
 
-      <a href="https://github.com/Nicolassaint" type="button" class="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-purple-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
-        <svg aria-hidden="true"
+      <a
+        href="https://github.com/Nicolassaint"
+        type="button"
+        class="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-purple-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+      >
+        <svg
+          aria-hidden="true"
           class="w-3 h-full mx-auto"
           viewBox="0 0 488 512"
         >
@@ -126,8 +61,13 @@ const Social = ({ color }) => {
         </svg>
       </a>
 
-      <a href="https://www.instagram.com/juniorjeece/" type="button" class="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-pink-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
-        <svg aria-hidden="true"
+      <a
+        href="https://www.instagram.com/juniorjeece/"
+        type="button"
+        class="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-pink-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+      >
+        <svg
+          aria-hidden="true"
           class="w-3 h-full mx-auto"
           viewBox="0 0 448 512"
         >
@@ -142,7 +82,3 @@ const Social = ({ color }) => {
 };
 
 export default Social;
-
-
-
-
