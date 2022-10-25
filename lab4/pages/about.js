@@ -1,13 +1,9 @@
 import React from "react";
-
+import Image from "next/image";
+import mypic3 from "../public/luke-chesser-JKUTrJ4vK00-unsplash.jpg";
 const about = () => {
   return (
     <>
-      <h1>
-        On this WebSite, you can navigate between pages using simple or dynamic
-        routing
-      </h1>
-
       <h3>
         Minim labore sint in adipisicing velit laborum quis occaecat incididunt
         sint aliqua ullamco consectetur proident. Aliqua mollit velit amet et
@@ -29,22 +25,31 @@ const about = () => {
         qui elit excepteur in consectetur consequat consectetur minim ullamco
         anim nisi. Id voluptate nostrud excepteur ex et sint officia laborum
         incididunt. Pariatur non Lorem nulla ea adipisicing ut eiusmod. Nisi
-        fugiat in id ipsum fugiat quis. Mollit Maximus et culpa ex consequat non aute
-        duis non ea excepteur ea. Veniam proident eu ea ipsum non consectetur
-        veniam nulla irure do ad quis. Sunt ut occaecat magna elit et est culpa.
-        Consequat elit in magna id officia elit ad irure cillum velit. Est
-        labore laborum voluptate labore consequat officia labore. Ipsum fugiat
-        reprehenderit magna labore duis eu nostrud ut amet mollit deserunt minim
-        minim. Velit anim mollit ipsum occaecat ut commodo quis deserunt mollit
-        nulla. Voluptate officia esse incididunt minim dolore enim deserunt
-        veniam in anim cillum. Et eiusmod sit voluptate id id Lorem eu. Minim
-        sint dolore ipsum id cillum occaecat ea eu magna minim reprehenderit
-        sit. Cupidatat amet adipisicing sunt aliqua laboris adipisicing nostrud
-        cupidatat nulla in sint. Mollit magna ut ipsum nostrud officia irure
-        anim officia. Et officia adipisicing tempor qui non proident qui ipsum
-        eiusmod officia. Nisi laborum nostrud laboris ad ut dolor. Magna labore
-        amet commodo eiusmod in. Ad fugiat voluptate amet adipisicing ea dolore.
+        fugiat in id ipsum fugiat quis. Mollit Maximus et culpa ex consequat non
+        aute duis non ea excepteur ea. Veniam proident eu ea ipsum non
+        consectetur veniam nulla irure do ad quis. Sunt ut occaecat magna elit
+        et est culpa. Consequat elit in magna id officia elit ad irure cillum
+        velit. Est labore laborum voluptate labore consequat officia labore.
+        Ipsum fugiat reprehenderit magna labore duis eu nostrud ut amet mollit
+        deserunt minim minim. Velit anim mollit ipsum occaecat ut commodo quis
+        deserunt mollit nulla. Voluptate officia esse incididunt minim dolore
+        enim deserunt veniam in anim cillum. Et eiusmod sit voluptate id id
+        Lorem eu. Minim sint dolore ipsum id cillum occaecat ea eu magna minim
+        reprehenderit sit. Cupidatat amet adipisicing sunt aliqua laboris
+        adipisicing nostrud cupidatat nulla in sint. Mollit magna ut ipsum
+        nostrud officia irure anim officia. Et officia adipisicing tempor qui
+        non proident qui ipsum eiusmod officia. Nisi laborum nostrud laboris ad
+        ut dolor. Magna labore amet commodo eiusmod in. Ad fugiat voluptate amet
+        adipisicing ea dolore.
       </h3>
+
+      <div class="flex flex-wrap justify-center mt-24 w-10/12 mx-48">
+          <Image src={mypic3} classname=" h-auto shadow-lg " alt="..."  />
+      </div>
+
+
+
+
     </>
   );
 };

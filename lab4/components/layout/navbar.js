@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-
+/*
 export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -19,7 +19,7 @@ export default function Navbar() {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}*/
+            sx={{ mr: 2 }}
           >
             <MenuIcon />
           </IconButton>
@@ -42,31 +42,48 @@ export default function Navbar() {
       </AppBar>
     </Box>
   );
-}
-
-/*
+}*/
 
 export default function Navbar() {
   return (
-<div class="bg-gray-800">
-  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-    <div class="relative flex h-16 items-center justify-between">
-      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-        <div class="hidden sm:ml-6 sm:block">
-          <div class="flex space-x-4">
-            <a href="/" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Home</a>
+    <div class="bg-gray-700">
+      <div class="mx-auto max-w-xl px-2 sm:px-6 lg:px-8">
+        <div class="relative flex h-16 items-center justify-between">
+          <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+            <div class="hidden sm:ml-50 sm:block">
+              <div class="flex space-x-10">
+                <a
+                  href="/"
+                  class="hover:bg-gray-700 text-gray-300 hover:text-white  px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Home
+                </a>
 
-            <a href="/about" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                <a
+                  href="/about"
+                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  About
+                </a>
 
-            <a href="/contacts" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contacts</a>
+                <a
+                  href="/contacts"
+                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Contacts
+                </a>
 
-            <a href="/articles" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Articles</a>
+                <a
+                  href="/articles"
+                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Articles
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
     </div>
-  </div>
-</div>
   );
-}*/
+}

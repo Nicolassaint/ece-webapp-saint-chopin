@@ -1,5 +1,6 @@
 import React from "react";
-
+import Image from "next/image";
+import mypic1 from "../public/chef-de-projet-web.jpg";
 function index() {
   return (
     <>
@@ -32,9 +33,12 @@ function index() {
         irure officia ut incididunt dolore et. Ullamco sunt sunt nulla laborum
         proident veniam cillum incididunt non occaecat cupidatat officia. Velit
         amet culpa sunt nisi ea incididunt fugiat proident ullamco nisi occaecat
-        anim. Veniam non enim ex nulla eiusmod nisi esse. Est culpa nisi sint
-        aute est culpa.
+        anim. Veniam non enim ex nulla eiusmod nisi esse.
       </h3>
+
+      <div class="flex flex-wrap justify-center mt-24">
+          <Image src={mypic1} classname="max-w-full h-auto mt-24" alt="..."  />
+      </div>
     </>
   );
 }

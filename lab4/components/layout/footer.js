@@ -8,7 +8,7 @@ const Footer = () => {
   const router = useRouter();
   return (
     <Box
-      className="bg-gray-700 w-full relative overflow-hidden mt-12 px-64"
+      className="bg-gray-700 w-full relative overflow-hidden mt-36 px-64"
       /*sx={{
         backgroundColor: "#32465C",
         width: "100%",
@@ -18,20 +18,19 @@ const Footer = () => {
         padding: "2em 0 ",
       }}*/
     >
-
       <Grid container spacing={1} justifyContent="center">
-              <Box
-              className="text-2xl fond-bold text-white mt-2"
-                /*sx={{
+        <Box
+          className="text-2xl fond-bold text-white mt-2"
+          /*sx={{
                   fontSize: "0.8em",
                   color: "white",
                   "&:hover": {
                     color: "#c",
                   },
                 }}*/
-              >
+        >
           <h1>Our socials</h1>
-                </Box>
+        </Box>
       </Grid>
       <Grid container direction="column" style={{ margin: "1.2em 0" }}>
         <Social />
@@ -49,7 +48,7 @@ const Footer = () => {
         }}
       >
         <Box
-        className="text-white text-lg font-bold"
+          className="text-white text-lg font-bold"
           /*sx={{
             color: "#fff",
             fontSize: "1em",
