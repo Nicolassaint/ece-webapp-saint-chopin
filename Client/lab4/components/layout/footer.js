@@ -18,6 +18,7 @@ const Footer = () => {
       }}
     >
       <Grid container spacing={3} justify="center">
+       
               <Box
                 sx={{
                   fontSize: "1em",
