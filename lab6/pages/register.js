@@ -10,7 +10,7 @@ export default function profile() {
       
       let config = {
         method: 'post',
-        url : `${process.env.NEXT_PUBLIC_API_URL}/api/verifsignin`,
+        url : `${process.env.NEXT_PUBLIC_API_URL}/api/verifsignup`,
         headers : {
           'Content-Type' : 'application/json'
         },
@@ -34,18 +34,18 @@ export default function profile() {
         <form onSubmit={handleSubmit(onSubmitForm)} className="grid grid-cols-1 gap-y-6">
           <div>
             <label for="name" className="sr-only">
-              Full name
+              Username
             </label>
             <input
               type="text"
               name="name"
-              {...register("name", {
+              {...register("username", {
                 required: "You must enter your name",
               })}
               className={`block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2 ${errors.mail ? 'ring-2 ring-red-500':null}`}
-              placeholder="Full name"
+              placeholder="Username"
             />
-            <span className ="text-red-400 text-sm py-2">{errors.name && errors.name.message}</span>
+            <span className ="text-red-400 text-sm py-2">{errors.username && errors.username.message}</span>
             
           </div>
           <div>
@@ -66,6 +66,40 @@ export default function profile() {
               placeholder="Email"
             />
             <span className ="text-red-400 text-sm py-2">{errors.mail && errors.mail.message}</span>
+          </div>
+
+          <div>
+            <label for="name" className="sr-only">
+              Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              {...register("Name", {
+                required: "You must enter your name",
+              })}
+              className={`block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2 ${errors.mail ? 'ring-2 ring-red-500':null}`}
+              placeholder="Name"
+            />
+            <span className ="text-red-400 text-sm py-2">{errors.Name && errors.Name.message}</span>
+            
+          </div>
+
+          <div>
+            <label for="name" className="sr-only">
+              First_name
+            </label>
+            <input
+              type="text"
+              name="name"
+              {...register("First_name", {
+                required: "You must enter your name",
+              })}
+              className={`block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2 ${errors.mail ? 'ring-2 ring-red-500':null}`}
+              placeholder="First_name"
+            />
+            <span className ="text-red-400 text-sm py-2">{errors.First_name && errors.First_name.message}</span>
+            
           </div>
           <div>
             <button

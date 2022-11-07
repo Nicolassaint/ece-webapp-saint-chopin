@@ -41,7 +41,14 @@ export default function Navbar() {
                   href="/profile"
                   class="text-white hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Login
+                  Sign in
+                </Link>
+
+                <Link
+                  href="/register"
+                  class="text-white hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Sign up
                 </Link>
               </div>
             </div>
