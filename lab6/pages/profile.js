@@ -10,12 +10,15 @@ export default function Profile() {
       
       let config = {
         method: 'post',
-        url : `${process.env.NEXT_PUBLIC_API_URL}/api/verifsignin`,
+        url : `http://localhost:3000/api/verifsignin`,
         headers : {
           'Content-Type' : 'application/json'
         },
         data : values,
       };
+
+
+      console.log(config.url)
 
       try
       {

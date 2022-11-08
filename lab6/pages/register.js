@@ -10,7 +10,7 @@ export default function Register() {
       
       let config = {
         method: 'post',
-        url : `${process.env.NEXT_PUBLIC_API_URL}/api/verifsignup`,
+        url : `http://localhost:3000/api/verifsignup`,
         headers : {
           'Content-Type' : 'application/json'
         },

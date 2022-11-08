@@ -1,28 +1,55 @@
 import React from "react";
-import { Box } from "@mui/material";
-import Image from "next/image";
-import mypic1 from "../public/nicolassaint.jpg";
-import mypic2 from "../public/thomaschopin.jpg";
-import { Grid } from "@mui/material";
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { Api } from "@mui/icons-material";
 
 
-const contacts = () => {
+export default function Contacts  ()  {
+
+  const { register, handleSubmit, formState:{errors}, reset } = useForm();
+
+  async function onSubmitForm(values)
+    {
+      let config = {
+        method: 'post',
+        url : `http://localhost:3000/api/email`,
+        headers : {
+          'Content-Type' : 'application/json'
+        },
+        data : values,
+      };
+
+      console.log(config.url)
+
+      try
+      {
+        const reponse = await axios(config);
+        console.log(reponse);
+      }
+      catch(err)
+      {
+        console.error(err);
+      }
+      
+    }
+
   return (
-    <div class="container my-24 px-6 mx-auto">
-      <section class="mb-32 text-gray-800">
-        <div class="flex justify-center">
-          <div class="text-center lg:max-w-3xl md:max-w-xl">
-            <h2 class="text-3xl font-bold mb-12 px-6">Contact us</h2>
+    <div className="container my-24 px-6 mx-auto">
+      <section className="mb-32 text-gray-800">
+        <div className="flex justify-center">
+          <div className="text-center lg:max-w-3xl md:max-w-xl">
+            <h2 className="text-3xl font-bold mb-12 px-6">Contact us</h2>
           </div>
         </div>
 
-        <div class="flex flex-wrap">
-          <div class="grow-0 shrink-0 basis-auto mb-12 lg:mb-0 w-full lg:w-5/12 px-3 lg:px-6">
-            <form>
-              <div class="form-group mb-6">
+        <div className="flex flex-wrap">
+          <div className="grow-0 shrink-0 basis-auto mb-12 lg:mb-0 w-full lg:w-5/12 px-3 lg:px-6">
+            <form onSubmit={handleSubmit(onSubmitForm)} className="grid grid-cols-1 gap-y-6">
+              <div className="form-group mb-6">
                 <input
                   type="text"
-                  class="form-control block
+                  name="name"
+                  className="form-control block
                 w-full
                 px-3
                 py-1.5
@@ -38,12 +65,47 @@ const contacts = () => {
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="exampleInput7"
                   placeholder="Name"
+                  {...register("name", {
+                    required: "You must enter your name",
+                  })}
                 />
+                <span className ="text-red-400 text-sm py-2">{errors.name && errors.name.message}</span>
               </div>
-              <div class="form-group mb-6">
+
+              <div className="form-group mb-6">
                 <input
-                  type="email"
-                  class="form-control block
+                  type="text"
+                  name="problem"
+                  className="form-control block
+                w-full
+                px-3
+                py-1.5
+                text-base
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding
+                border border-solid border-gray-300
+                rounded
+                transition
+                ease-in-out
+                m-0
+                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  id="exampleInput7"
+                  placeholder="Problem"
+
+                  {...register("problem", {
+                    required: "You must enter your problem",
+                  })}
+                />
+                <span className ="text-red-400 text-sm py-2">{errors.problem && errors.problem.message}</span>
+              </div>
+
+
+              <div className="form-group mb-6">
+                <input
+                  type="text"
+                  name="email"
+                  className="form-control block
                 w-full
                 px-3
                 py-1.5
@@ -59,11 +121,21 @@ const contacts = () => {
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="exampleInput8"
                   placeholder="Email address"
+                  
+                  {...register("mail", {
+                    required: "You must enter your mail",
+                    pattern : {value : /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9.]+$/,
+                    message : "invalid email address"
+                  }
+                  })}
+                  
                 />
+                <span className ="text-red-400 text-sm py-2">{errors.mail && errors.mail.message}</span>
               </div>
-              <div class="form-group mb-6">
+              <div className="form-group mb-6">
                 <textarea
-                  class="
+                  name="message"
+                  className="
                 form-control
                 block
                 w-full
@@ -83,11 +155,17 @@ const contacts = () => {
                   id="exampleFormControlTextarea13"
                   rows="3"
                   placeholder="Message"
+
+
+                  {...register("message", {
+                    required: "You must enter your message",
+                  })}
                 ></textarea>
+                <span className ="text-red-400 text-sm py-2">{errors.message && errors.message.message}</span>
               </div>
               <button
                 type="submit"
-                class="
+                className="
               w-full
               px-6
               py-2.5
@@ -232,5 +310,3 @@ const contacts = () => {
     </div>
   );
 };
-
-export default contacts;
