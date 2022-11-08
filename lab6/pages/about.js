@@ -1,6 +1,4 @@
 import React from "react";
-import Image from "next/image";
-import mypic3 from "../public/luke-chesser-JKUTrJ4vK00-unsplash.jpg";
 const about = () => {
   return (
     <>

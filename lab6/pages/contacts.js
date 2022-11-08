@@ -1,37 +1,27 @@
 import React from "react";
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-import { Api } from "@mui/icons-material";
 
+export default function Contacts() {
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-export default function Contacts  ()  {
-
-  const { register, handleSubmit, formState:{errors}, reset } = useForm();
-
-  async function onSubmitForm(values)
-    {
-      let config = {
-        method: 'post',
-        url : `http://localhost:3000/api/email`,
-        headers : {
-          'Content-Type' : 'application/json'
-        },
-        data : values,
-      };
-
-      console.log(config.url)
-
-      try
-      {
-        const reponse = await axios(config);
-        console.log(reponse);
-      }
-      catch(err)
-      {
-        console.error(err);
-      }
-      
+  async function onSubmitForm(values) {
+    let config = {
+      method: 'post',
+      url: `http://localhost:3000/api/email`,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: values,
+    };
+    try {
+      const reponse = await axios(config);
+      console.log(reponse);
     }
+    catch (err) {
+      console.error(err);
+    }
+  }
 
   return (
     <div className="container my-24 px-6 mx-auto">
@@ -69,7 +59,7 @@ export default function Contacts  ()  {
                     required: "You must enter your name",
                   })}
                 />
-                <span className ="text-red-400 text-sm py-2">{errors.name && errors.name.message}</span>
+                <span className="text-red-400 text-sm py-2">{errors.name && errors.name.message}</span>
               </div>
 
               <div className="form-group mb-6">
@@ -97,7 +87,7 @@ export default function Contacts  ()  {
                     required: "You must enter your problem",
                   })}
                 />
-                <span className ="text-red-400 text-sm py-2">{errors.problem && errors.problem.message}</span>
+                <span className="text-red-400 text-sm py-2">{errors.problem && errors.problem.message}</span>
               </div>
 
 
@@ -121,16 +111,17 @@ export default function Contacts  ()  {
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="exampleInput8"
                   placeholder="Email address"
-                  
+
                   {...register("mail", {
                     required: "You must enter your mail",
-                    pattern : {value : /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9.]+$/,
-                    message : "invalid email address"
-                  }
+                    pattern: {
+                      value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9.]+$/,
+                      message: "invalid email address"
+                    }
                   })}
-                  
+
                 />
-                <span className ="text-red-400 text-sm py-2">{errors.mail && errors.mail.message}</span>
+                <span className="text-red-400 text-sm py-2">{errors.mail && errors.mail.message}</span>
               </div>
               <div className="form-group mb-6">
                 <textarea
@@ -161,7 +152,7 @@ export default function Contacts  ()  {
                     required: "You must enter your message",
                   })}
                 ></textarea>
-                <span className ="text-red-400 text-sm py-2">{errors.message && errors.message.message}</span>
+                <span className="text-red-400 text-sm py-2">{errors.message && errors.message.message}</span>
               </div>
               <button
                 type="submit"

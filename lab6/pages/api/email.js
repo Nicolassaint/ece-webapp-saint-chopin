@@ -1,7 +1,5 @@
-const { dbClients } = require("./dbClients");
+export default (req, res) => {
+  const {name,problem,email,message} = req.body;
 
-export default function handler(req, res) {
-    console.log("Bonjour")
-    console.log(req.body);
-    res.status(200).json(req.body);
-  }
+  res.status(200).json(req.body);
+}

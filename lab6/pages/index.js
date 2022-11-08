@@ -1,6 +1,4 @@
 import React from "react";
-import Image from "next/image";
-import mypic1 from "../public/chef-de-projet-web.jpg";
 function index() {
   return (
     <>
