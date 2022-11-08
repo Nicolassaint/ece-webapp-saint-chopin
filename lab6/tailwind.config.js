@@ -5,7 +5,15 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["Montserrat"],
+      },
+      colors: {
+        blueJeece: "#36455A",
+        greenJeece: "#5FAB65",
+    },
+  },
   },
   plugins: [
     require ('@tailwindcss/typography'),

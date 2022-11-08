@@ -36,9 +36,7 @@ function index() {
         anim. Veniam non enim ex nulla eiusmod nisi esse.
       </h3>
 
-      <div class="flex flex-wrap justify-center mt-24">
-        <Image src={mypic1} classname="max-w-full h-auto mt-24" alt="..." />
-      </div>
+
     </>
   );
 }

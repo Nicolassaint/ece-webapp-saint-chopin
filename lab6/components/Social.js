@@ -9,11 +9,11 @@ const Social = ({ color }) => {
   const { instagram, facebook, github, twitter } = socialMedia;
 
   return (
-    <div class="flex justify-center mb-6">
+    <div class="flex justify-center">
       <a
         href="https://www.facebook.com/JEECE.JE"
         type="button"
-        class="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-blue-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+        class="rounded-full border-2 border-black text-black leading-normal uppercase hover:bg-blue-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
       >
         <svg
           aria-hidden="true"
@@ -30,7 +30,7 @@ const Social = ({ color }) => {
       <a
         href="https://twitter.com/juniorjeece"
         type="button"
-        class="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-blue-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+        class="rounded-full border-2  border-black text-black leading-normal uppercase hover:bg-blue-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
       >
         <svg
           aria-hidden="true"
@@ -47,7 +47,7 @@ const Social = ({ color }) => {
       <a
         href="https://github.com/Nicolassaint"
         type="button"
-        class="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-purple-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+        class="rounded-full border-2 border-black text-black leading-normal uppercase hover:bg-purple-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
       >
         <svg
           aria-hidden="true"
@@ -64,7 +64,7 @@ const Social = ({ color }) => {
       <a
         href="https://www.instagram.com/juniorjeece/"
         type="button"
-        class="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-pink-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+        class="rounded-full border-2 border-black text-black leading-normal uppercase hover:bg-pink-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
       >
         <svg
           aria-hidden="true"
