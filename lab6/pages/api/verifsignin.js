@@ -1,5 +1,3 @@
-import NotFound from "../404";
-
 const { dbClients } = require("./dbClients");
 
 export default function handler(req, res) {
@@ -18,7 +16,6 @@ export default function handler(req, res) {
     if(b==0)
     {
         console.log("On te connait pas")
-        NotFound;
     }
 
     res.status(200).json(req.body);

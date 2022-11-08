@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
-export default function profile() {
+export default function Profile() {
   const { register, handleSubmit, formState:{errors}, reset } = useForm();
 
   

@@ -8,5 +8,6 @@ const { dbClients } = require("./dbClients");
       First_name: req.body.First_name,
     };
     dbClients.client.push(client);
+    console.log(dbClients.client.length)
   };
   module.exports = createClients
