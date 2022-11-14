@@ -13,14 +13,18 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 import logovert from "../../public/tailwind_logo.png";
+import Context from "../UserContext";
+import { useContext } from "react";
 
 let Menu = [
   { Name: "Home", link: "/" },
   { Name: "About", link: "/about" },
   { Name: "Contacts", link: "/contacts" },
   { Name: "Articles", link: "/articles" },
-  { Name: "Sign in", link: "/profile" },
-  { Name: "Sign up", link: "/register" },
+  //{ Name: "Sign up", link: "/register" },
+  { Name: "Log in", link: "/login_controlled" },
+  { Name: "Log out", link: "/deconnexion" },
+
 ];
 
 const drawerWidth = 240;
@@ -28,6 +32,9 @@ const drawerWidth = 240;
 export default function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const user = useContext(Context);
+  console.log(user);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -43,7 +50,7 @@ export default function DrawerAppBar(props) {
         {Menu.map((item) => (
           <ListItem key={item.Name} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item.Name} />
+            <Link href={item.link}><ListItemText primary={item.Name} /></Link>
             </ListItemButton>
           </ListItem>
         ))}
@@ -57,38 +64,36 @@ export default function DrawerAppBar(props) {
 
   return (
     <>
-      <nav class="px-2 sm:px-4 py-2.5 flex justify-between">
-        <div class="mt-4 ml-2">
+      <nav className="px-2 sm:px-4 py-2.5 flex justify-between">
+        <div className="mt-4 ml-2">
           <Link href="/">
-            <Image
-              src={logovert}
-              alt="logo JEECE"
-              width="75px"
-              height="75px"
-            />
+            <Image src={logovert} alt="logo JEECE" width="75px" height="75px" />
           </Link>
         </div>
 
-        <div class="flex items-center mt-4 mr-4">
-          <div class="hidden md:block">
+        <div className="flex items-center mt-4 mr-4">
+          <div className="hidden md:block">
             <button
               type="button"
-              class="text-white bg-greenJeece hover:bg-greenJeece rounded-full px-4 py-4 mr-3"
+              className="text-white bg-greenJeece hover:bg-greenJeece rounded-full px-4 py-4 mr-3"
             >
               <SendIcon />
             </button>
           </div>
 
-          <div class="bg-greenJeece shadow-lg rounded-full hidden md:block">
+          <div className="bg-greenJeece shadow-lg rounded-full hidden md:block">
             <div className="container flex p-4  dark:text-gray-300">
               {Menu.map((l) => (
-                <div key={l.Name} className="border-b-2 text-black border-transparent hover:text-blueJeece dark:hover:text-gray-200 hover:border-blueJeece mx-1.5 lg:mx-4">
+                <div
+                  key={l.Name}
+                  className="border-b-2 text-black border-transparent hover:text-blueJeece dark:hover:text-gray-200 hover:border-blueJeece mx-1.5 lg:mx-4"
+                >
                   <Link href={l.link}>{l.Name}</Link>
                 </div>
               ))}
             </div>
           </div>
-          <div class="md:hidden">
+          <div className="md:hidden">
             <IconButton
               color="inherit"
               aria-label="open drawer"

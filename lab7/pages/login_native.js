@@ -1,4 +1,3 @@
-
 export default function MyForm() {
   const onSubmit = function(e) {
     e.preventDefault()
