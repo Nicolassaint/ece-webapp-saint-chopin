@@ -8,6 +8,6 @@ const createClients = async (req, res) => {
     First_name: req.body.First_name,
   };
   dbClients.client.push(client);
-  console.log(dbClients.client.length)
+  res.send("Tu as crée ton compte félicitations : " + client.username + " " + client.mail)
 };
 module.exports = createClients

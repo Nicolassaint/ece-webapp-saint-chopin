@@ -1,6 +1,4 @@
 const { dbClients } = require("./dbClients");
-import React from 'react'
-import { useAlert } from 'react-alert'
 
 export default function handler(req, res) {
     console.log(req.body);
