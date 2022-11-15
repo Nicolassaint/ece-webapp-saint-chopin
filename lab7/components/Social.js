@@ -9,15 +9,15 @@ const Social = ({ color }) => {
   const { instagram, facebook, github, twitter } = socialMedia;
 
   return (
-    <div class="flex justify-center">
+    <div className="flex justify-center">
       <a
         href="https://www.facebook.com/JEECE.JE"
         type="button"
-        class="rounded-full border-2 border-black text-black leading-normal uppercase hover:bg-blue-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+        className="rounded-full border-2 border-black text-black leading-normal uppercase hover:bg-blue-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
       >
         <svg
           aria-hidden="true"
-          class="w-2 h-full mx-auto"
+          className="w-2 h-full mx-auto"
           viewBox="0 0 320 512"
         >
           <path
@@ -30,11 +30,11 @@ const Social = ({ color }) => {
       <a
         href="https://twitter.com/juniorjeece"
         type="button"
-        class="rounded-full border-2  border-black text-black leading-normal uppercase hover:bg-blue-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+        className="rounded-full border-2  border-black text-black leading-normal uppercase hover:bg-blue-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
       >
         <svg
           aria-hidden="true"
-          class="w-3 h-full mx-auto"
+          className="w-3 h-full mx-auto"
           viewBox="0 0 512 512"
         >
           <path
@@ -47,11 +47,11 @@ const Social = ({ color }) => {
       <a
         href="https://github.com/Nicolassaint"
         type="button"
-        class="rounded-full border-2 border-black text-black leading-normal uppercase hover:bg-purple-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+        className="rounded-full border-2 border-black text-black leading-normal uppercase hover:bg-purple-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
       >
         <svg
           aria-hidden="true"
-          class="w-3 h-full mx-auto"
+          className="w-3 h-full mx-auto"
           viewBox="0 0 488 512"
         >
           <path
@@ -64,11 +64,11 @@ const Social = ({ color }) => {
       <a
         href="https://www.instagram.com/juniorjeece/"
         type="button"
-        class="rounded-full border-2 border-black text-black leading-normal uppercase hover:bg-pink-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+        className="rounded-full border-2 border-black text-black leading-normal uppercase hover:bg-pink-500 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
       >
         <svg
           aria-hidden="true"
-          class="w-3 h-full mx-auto"
+          className="w-3 h-full mx-auto"
           viewBox="0 0 448 512"
         >
           <path

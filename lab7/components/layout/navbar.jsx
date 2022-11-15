@@ -24,7 +24,6 @@ let Menu = [
   //{ Name: "Sign up", link: "/register" },
   { Name: "Log in", link: "/login_controlled" },
   { Name: "Log out", link: "/deconnexion" },
-
 ];
 
 const drawerWidth = 240;
@@ -33,8 +32,7 @@ export default function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const user = useContext(Context);
-  console.log(user);
+  const { user } = useContext(Context);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -50,7 +48,9 @@ export default function DrawerAppBar(props) {
         {Menu.map((item) => (
           <ListItem key={item.Name} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
-            <Link href={item.link}><ListItemText primary={item.Name} /></Link>
+              <Link href={item.link}>
+                <ListItemText primary={item.Name} />
+              </Link>
             </ListItemButton>
           </ListItem>
         ))}
@@ -72,6 +72,7 @@ export default function DrawerAppBar(props) {
         </div>
 
         <div className="flex items-center mt-4 mr-4">
+
           <div className="hidden md:block">
             <button
               type="button"
@@ -81,12 +82,20 @@ export default function DrawerAppBar(props) {
             </button>
           </div>
 
+          <div className="bg-greenJeece shadow-lg rounded-full hidden lg:block mr-3">
+          <div className="container flex p-4 dark:text-gray-300">
+            <div className="text-black mx-1.5 lg:mx-4">
+              Utilisateur : {user}
+            </div>
+          </div>
+        </div>
+
           <div className="bg-greenJeece shadow-lg rounded-full hidden md:block">
             <div className="container flex p-4  dark:text-gray-300">
               {Menu.map((l) => (
                 <div
                   key={l.Name}
-                  className="border-b-2 text-black border-transparent hover:text-blueJeece dark:hover:text-gray-200 hover:border-blueJeece mx-1.5 lg:mx-4"
+                  className="border-b-2 text-black transition-all duration-150 border-transparent hover:text-blueJeece dark:hover:text-gray-200 hover:border-blueJeece mx-1.5 lg:mx-4"
                 >
                   <Link href={l.link}>{l.Name}</Link>
                 </div>

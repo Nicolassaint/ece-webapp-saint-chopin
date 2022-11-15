@@ -9,7 +9,7 @@ export default function MyForm() {
       <div className="mx-auto w-full max-w-2xl rounded-xl bg-white p-8 shadow">
         <form onSubmit={onSubmit} className="grid grid-cols-1 gap-y-6">
           <div>
-            <label for="name" className="sr-only">
+            <label htmlFor="name" className="sr-only">
               Full name
             </label>
             <input
@@ -20,7 +20,7 @@ export default function MyForm() {
             />
           </div>
           <div>
-            <label for="email" className="sr-only">
+            <label htmlFor="email" className="sr-only">
               Email
             </label>
             <input

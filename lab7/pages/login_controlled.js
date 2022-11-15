@@ -1,9 +1,9 @@
 import { useState } from "react"
 import LoggedIn from "../components/LoggedIn.js"
-import { LoggedOut } from "../components/LoggedOut.js"
 
 export default function MyForm() {
   const [data, setData] = useState({})
+
 
   const onSubmit = function (e) {
     e.preventDefault()
@@ -15,7 +15,7 @@ export default function MyForm() {
       <div className="mx-auto w-full max-w-2xl rounded-xl bg-white p-8 shadow">
         <form onSubmit={onSubmit} className="grid grid-cols-1 gap-y-6">
           <div>
-            <label for="name" className="sr-only">
+            <label htmlFor="name" className="sr-only">
               Full name
             </label>
             <input
@@ -29,7 +29,7 @@ export default function MyForm() {
           </div>
 
           <div>
-            <label for="email" className="sr-only">
+            <label htmlFor="email" className="sr-only">
               Email
             </label>
             <input
@@ -42,11 +42,6 @@ export default function MyForm() {
             />
           </div>
           <div className="flex justify-center">
-            {/* <button
-              type="submit"
-              className="py-3 px-6 border border-transparent shadow text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-              Login
-            </button> */}
             <LoggedIn username={data.name}/>
           </div>
         </form>

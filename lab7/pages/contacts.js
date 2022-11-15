@@ -180,18 +180,18 @@ export default function Contacts() {
             </form>
           </div>
 
-          <div class="grow-0 shrink-0 basis-auto w-full lg:w-7/12">
-            <div class="flex flex-wrap">
-              <div class="mb-12 grow-0 shrink-0 basis-auto w-full lg:w-6/12 px-3 lg:px-6">
-                <div class="flex items-start">
-                  <div class="shrink-0">
-                    <div class="p-4 bg-blue-600 rounded-md shadow-md w-14 h-14 flex items-center justify-center">
+          <div className="grow-0 shrink-0 basis-auto w-full lg:w-7/12">
+            <div className="flex flex-wrap">
+              <div className="mb-12 grow-0 shrink-0 basis-auto w-full lg:w-6/12 px-3 lg:px-6">
+                <div className="flex items-start">
+                  <div className="shrink-0">
+                    <div className="p-4 bg-blue-600 rounded-md shadow-md w-14 h-14 flex items-center justify-center">
                       <svg
                         aria-hidden="true"
                         focusable="false"
                         data-prefix="fas"
                         data-icon="headset"
-                        class="w-5 text-white"
+                        className="w-5 text-white"
                         role="img"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 512 512"
@@ -203,23 +203,23 @@ export default function Contacts() {
                       </svg>
                     </div>
                   </div>
-                  <div class="grow ml-6">
-                    <p class="font-bold mb-1">Problème technique</p>
-                    <p class="text-gray-500">nicolas.saint@edu.ece.fr</p>
-                    <p class="text-gray-500">+33782658824</p>
+                  <div className="grow ml-6">
+                    <p className="font-bold mb-1">Problème technique</p>
+                    <p className="text-gray-500">nicolas.saint@edu.ece.fr</p>
+                    <p className="text-gray-500">+33782658824</p>
                   </div>
                 </div>
               </div>
-              <div class="mb-12 grow-0 shrink-0 basis-auto w-full lg:w-6/12 px-3 lg:px-6">
-                <div class="flex items-start">
-                  <div class="shrink-0">
-                    <div class="p-4 bg-blue-600 rounded-md shadow-md w-14 h-14 flex items-center justify-center">
+              <div className="mb-12 grow-0 shrink-0 basis-auto w-full lg:w-6/12 px-3 lg:px-6">
+                <div className="flex items-start">
+                  <div className="shrink-0">
+                    <div className="p-4 bg-blue-600 rounded-md shadow-md w-14 h-14 flex items-center justify-center">
                       <svg
                         aria-hidden="true"
                         focusable="false"
                         data-prefix="fas"
                         data-icon="dollar-sign"
-                        class="w-3 text-white"
+                        className="w-3 text-white"
                         role="img"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 288 512"
@@ -231,23 +231,23 @@ export default function Contacts() {
                       </svg>
                     </div>
                   </div>
-                  <div class="grow ml-6">
-                    <p class="font-bold mb-1">Question budgétaire</p>
-                    <p class="text-gray-500">thomas.chopin@edu.ece.fr</p>
-                    <p class="text-gray-500">+33665685875</p>
+                  <div className="grow ml-6">
+                    <p className="font-bold mb-1">Question budgétaire</p>
+                    <p className="text-gray-500">thomas.chopin@edu.ece.fr</p>
+                    <p className="text-gray-500">+33665685875</p>
                   </div>
                 </div>
               </div>
-              <div class="mb-12 grow-0 shrink-0 basis-auto w-full lg:w-6/12 px-3 lg:px-6">
-                <div class="flex align-start">
-                  <div class="shrink-0">
-                    <div class="p-4 bg-blue-600 rounded-md shadow-md w-14 h-14 flex items-center justify-center">
+              <div className="mb-12 grow-0 shrink-0 basis-auto w-full lg:w-6/12 px-3 lg:px-6">
+                <div className="flex align-start">
+                  <div className="shrink-0">
+                    <div className="p-4 bg-blue-600 rounded-md shadow-md w-14 h-14 flex items-center justify-center">
                       <svg
                         aria-hidden="true"
                         focusable="false"
                         data-prefix="fas"
                         data-icon="newspaper"
-                        class="w-5 text-white"
+                        className="w-5 text-white"
                         role="img"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 576 512"
@@ -259,23 +259,23 @@ export default function Contacts() {
                       </svg>
                     </div>
                   </div>
-                  <div class="grow ml-6">
-                    <p class="font-bold mb-1">Presse</p>
-                    <p class="text-gray-500">nicolas.saint@edu.ece.fr</p>
-                    <p class="text-gray-500">+33782658824</p>
+                  <div className="grow ml-6">
+                    <p className="font-bold mb-1">Presse</p>
+                    <p className="text-gray-500">nicolas.saint@edu.ece.fr</p>
+                    <p className="text-gray-500">+33782658824</p>
                   </div>
                 </div>
               </div>
-              <div class="mb-12 grow-0 shrink-0 basis-auto w-full lg:w-6/12 px-3 lg:px-6">
-                <div class="flex align-start">
-                  <div class="shrink-0">
-                    <div class="p-4 bg-blue-600 rounded-md shadow-md w-14 h-14 flex items-center justify-center">
+              <div className="mb-12 grow-0 shrink-0 basis-auto w-full lg:w-6/12 px-3 lg:px-6">
+                <div className="flex align-start">
+                  <div className="shrink-0">
+                    <div className="p-4 bg-blue-600 rounded-md shadow-md w-14 h-14 flex items-center justify-center">
                       <svg
                         aria-hidden="true"
                         focusable="false"
                         data-prefix="fas"
                         data-icon="bug"
-                        class="w-5 text-white"
+                        className="w-5 text-white"
                         role="img"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 512 512"
@@ -287,10 +287,10 @@ export default function Contacts() {
                       </svg>
                     </div>
                   </div>
-                  <div class="grow ml-6">
-                    <p class="font-bold mb-1">Service Client</p>
-                    <p class="text-gray-500">thomas.chopin@edu.ece.fr</p>
-                    <p class="text-gray-500">+33665685875</p>
+                  <div className="grow ml-6">
+                    <p className="font-bold mb-1">Service Client</p>
+                    <p className="text-gray-500">thomas.chopin@edu.ece.fr</p>
+                    <p className="text-gray-500">+33665685875</p>
                   </div>
                 </div>
               </div>
