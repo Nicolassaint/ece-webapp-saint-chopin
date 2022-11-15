@@ -7,6 +7,7 @@ First Next.js WebSite deployed with Vercel, you can see the result directly [her
 1. Static and dynamic routing
 2. Fetching and displaying data
 3. Layout, styling by tailwind and components
+4. UseState, UseData, UseContext
 
 ## Installation
 
@@ -51,13 +52,13 @@ This application is deploy on this link <https://ece-webapp-saint-chopin-ndqc10v
 
 - Displays all the names of our articles that are clickable if you want to see their details
 
-## 5. `/profile`
+## 5. `/login_controlled`
 
-- You can sign in on our website
+- You can sign in on our website and your username while be write on the screen. You are connected
 
-## 6. `/register`
+## 6. `/deconnexion`
 
-- You can sign up on our website
+- You can log out on our website
 
 ## Crédits
 
