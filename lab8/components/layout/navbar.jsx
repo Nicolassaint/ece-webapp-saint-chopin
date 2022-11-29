@@ -22,8 +22,8 @@ let Menu = [
   { Name: "Contacts", link: "/contacts" },
   { Name: "Articles", link: "/articles" },
   //{ Name: "Sign up", link: "/register" },
-  { Name: "Log in", link: "/login_controlled" },
-  { Name: "Log out", link: "/deconnexion" },
+  { Name: "Account", link: "/your_account" },
+  // { Name: "Log out", link: "/deconnexion" },
 ];
 
 const drawerWidth = 240;
@@ -82,13 +82,13 @@ export default function DrawerAppBar(props) {
             </button>
           </div>
 
-          <div className="bg-greenJeece shadow-lg rounded-full hidden lg:block mr-3">
+          {/* <div className="bg-greenJeece shadow-lg rounded-full hidden lg:block mr-3">
           <div className="container flex p-4 dark:text-gray-300">
             <div className="text-black mx-1.5 lg:mx-4">
               Utilisateur : {user}
             </div>
           </div>
-        </div>
+        </div> */}
 
           <div className="bg-greenJeece shadow-lg rounded-full hidden md:block">
             <div className="container flex p-4  dark:text-gray-300">
