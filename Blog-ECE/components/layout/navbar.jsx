@@ -13,15 +13,20 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 import logovert from "../../public/tailwind_logo.png";
-import Context from "../UserContext";
-import { useContext } from "react";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useState, useEffect } from "react";
+import {
+  useUser,
+  useSupabaseClient,
+  useSession,
+} from "@supabase/auth-helpers-react";
 
 let Menu = [
   { Name: "Home", link: "/" },
   { Name: "About", link: "/about" },
   { Name: "Contacts", link: "/contacts" },
   { Name: "Articles", link: "/test" },
-  //{ Name: "Sign up", link: "/register" },
+  { Name: "Write", link: "/write" },
   { Name: "Account", link: "/your_account" },
   // { Name: "Log out", link: "/deconnexion" },
 ];
@@ -32,7 +37,39 @@ export default function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  // const { user } = useContext(Context);
+  const supabase = useSupabaseClient();
+  const session = useSession();
+  const user = useUser();
+  const [username, setUsername] = useState("invité");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getProfile();
+  }, [session]);
+
+  async function getProfile() {
+    try {
+      setLoading(true);
+
+      let { data, error, status } = await supabase
+        .from("profiles")
+        .select("username")
+        .eq("id", user.id)
+        .single();
+
+      if (error && status !== 406) {
+        throw error;
+      }
+
+      if (data) {
+        setUsername(data.username);
+      }
+    } catch (error) {
+      setUsername("invité");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -72,23 +109,14 @@ export default function DrawerAppBar(props) {
         </div>
 
         <div className="flex items-center mt-4 mr-4">
-
-          <div className="hidden md:block">
-            <button
-              type="button"
-              className="text-white bg-greenJeece hover:bg-greenJeece rounded-full px-4 py-4 mr-3"
-            >
-              <SendIcon />
-            </button>
-          </div>
-
-          {/* <div className="bg-greenJeece shadow-lg rounded-full hidden lg:block mr-3">
-          <div className="container flex p-4 dark:text-gray-300">
-            <div className="text-black mx-1.5 lg:mx-4">
-              Utilisateur : {user}
+          <div className="bg-greenJeece shadow-lg rounded-full mr-3">
+            <div className=" flex p-4 dark:text-gray-300">
+              <div className="  ">
+                <AccountCircleIcon />{" "}
+                <span className="text-black">{username}</span>
+              </div>
             </div>
           </div>
-        </div> */}
 
           <div className="bg-greenJeece shadow-lg rounded-full hidden md:block">
             <div className="container flex p-4  dark:text-gray-300">

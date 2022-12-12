@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Gravatar from './Gravatar';
+import Avatar from './Avatar';
 
 
 export default function Account({ session }) {
@@ -69,8 +70,16 @@ export default function Account({ session }) {
 
     <div className="form-widget">
       <div className="flex items-center justify-center">
-      <Gravatar email={session.user.email} size={100} />
-    </div>
+        <Avatar
+          uid={user.id}
+          url={avatar_url}
+          size={150}
+          onUpload={(url) => {
+            setAvatarUrl(url)
+            updateProfile({ username, website, avatar_url: url })
+          }}
+        />
+      </div>
       <div>
         <label htmlFor="email">Email</label>
         <input id="email" type="text" value={session.user.email} disabled />
