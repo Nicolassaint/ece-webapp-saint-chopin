@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Article_cards = () => {
+const Article_cards = (title, content) => {
   return (
   <article class="flex bg-white transition hover:shadow-xl w-2/5">
     <div class="rotate-180 p-2 [writing-mode:_vertical-lr]">
@@ -26,16 +26,12 @@ const Article_cards = () => {
       <div class="border-l border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
         <a href="#">
           <h3 class="font-bold uppercase text-gray-900">
-            Finding the right guitar for your style - 5 tips
+            {title}
           </h3>
         </a>
 
         <p class="mt-2 text-sm leading-relaxed text-gray-700 line-clamp-3">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
-          dolores, possimus pariatur animi temporibus nesciunt praesentium dolore
-          sed nulla ipsum eveniet corporis quidem, mollitia itaque minus soluta,
-          voluptates neque explicabo tempora nisi culpa eius atque dignissimos.
-          Molestias explicabo corporis voluptatem?
+          {content}
         </p>
       </div>
 

@@ -25,10 +25,9 @@ let Menu = [
   { Name: "Home", link: "/" },
   { Name: "About", link: "/about" },
   { Name: "Contacts", link: "/contacts" },
-  { Name: "Articles", link: "/test" },
+  { Name: "Articles", link: "/articles" },
   { Name: "Write", link: "/write" },
   { Name: "Account", link: "/your_account" },
-  // { Name: "Log out", link: "/deconnexion" },
 ];
 
 const drawerWidth = 240;

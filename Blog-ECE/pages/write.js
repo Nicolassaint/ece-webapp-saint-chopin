@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Details from "../components/editor/Details";
+import Avatar from "../components/Avatar";
 import { Tiptap } from "../components/editor/Tiptap";
 import { useUser, useSupabaseClient, useSession } from '@supabase/auth-helpers-react'
 import { v4 as uuidv4 } from 'uuid';
@@ -16,7 +17,7 @@ const write = () => {
   const [content, setContent] = useState(null)
   const [image, setImage] = useState(null)
 
-  async function createArticle({ title, content, image }) {
+  async function createArticle({ title, description, image }) {
     try {
 
       setLoading(true)
@@ -26,7 +27,7 @@ const write = () => {
         created_at: new Date().toISOString(),
         image,
         title,
-        content,
+        content: description,
         id_user: user.id,
       }
 
@@ -43,15 +44,46 @@ const write = () => {
     }
   }
 
-
   return (
-     <>
-    <div className="App">
-      <Tiptap setDescription={setDescription} />
-      <Details description={description} />
-    </div>
+    <>
+      <div className="mx-auto w-full max-w-2xl rounded-xl bg-white p-8 shadow">
+      <div className="flex items-center justify-center">
+        <Avatar
+          uid={uuidv4()}
+          url={image}
+          size={150}
+          onUpload={(url) => {
+            setImage(url)
+          }}
+        />
+      </div>
+        <div>
+          <input
+            type="text"
+            name="titre"
+            placeholder="Titre de l'article"
+            className={`block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2`}
+            value={title || ''}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+      </div>
 
-    {/* <div className="b py-16 px-4 sm:px-6  w-screen flex justify-center items-center">
+      <div className="App">
+        <Tiptap setDescription={setDescription} />
+        {/* <Details description={description} /> */}
+      </div>
+
+      <div className="flex pb-20 justify-center">
+        <button
+          className="inline-flex justify-center py-3 px-6 border border-transparent shadow text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          onClick={() => createArticle({ title, description, image })}
+        >
+          Post
+        </button>
+      </div>
+
+      {/* <div className="b py-16 px-4 sm:px-6  w-screen flex justify-center items-center">
       <div className="mx-auto w-full max-w-2xl rounded-xl bg-white p-8 shadow">
         <div className="grid grid-cols-1 gap-y-6">
           <div>
