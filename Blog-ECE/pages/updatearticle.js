@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
-
+import Avatar from "../components/Avatar";
+import { Tiptap } from "../components/editor/Tiptap";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Account({ session }) {
   const supabase = useSupabaseClient()
@@ -8,7 +10,7 @@ export default function Account({ session }) {
   const [loading, setLoading] = useState(true)
   const [title, setTitle] = useState(null)
   const [image, setImage] = useState(null)
-  const [content, setContent] = useState(null)
+  const [content, setDescription] = useState("");
 
 useEffect(() => {
     getArticle()
@@ -21,7 +23,7 @@ useEffect(() => {
 
       let { data, error, status } = await supabase
         .from('articles')
-        .select(`title`)
+        .select(`title,content,image`)
         .eq('id_user', user.id)
 
         console.log(user.id)
@@ -31,7 +33,15 @@ useEffect(() => {
 
       if (data) {
         setTitle(data[0].title)
+        setDescription(data[0].content)
+        setImage(data[0].image)
       }
+      console.log(data)
+      console.log(data[0].title)
+      console.log(data[0].content)
+      console.log(data[0].image)
+
+
     } catch (error) {
       alert('Error no articles!')
       console.log(error)
@@ -40,7 +50,7 @@ useEffect(() => {
     }
   }
 
-  async function updateArticle({content,image }) {
+  async function updateArticle({title,content,image }) {
     try {
       setLoading(true)
     
@@ -64,44 +74,39 @@ useEffect(() => {
     }
   }
 
+
   return (
-
-    <div className="form-widget">
-      <div>
-        <h1>{title}</h1>
+    <>
+      <div className="mx-auto w-full max-w-2xl rounded-xl bg-white p-8 shadow">
+      <div className="flex items-center justify-center text-10xl font-bold">
+          <label>{title}</label>
       </div>
-      
-      <div>
-        <label htmlFor="image">image</label>
-        <input
-          id="image"
-          type="content"
-          className="border-solid w-60"
-          value={image || ''}
-          onChange={(e) => setImage(e.target.value)}
+
+      <div className="flex items-center justify-center">
+        <Avatar
+          uid={uuidv4()}
+          url={image}
+          size={150}
+          onUpload={(url) => {
+            setImage(url)
+          }}
         />
       </div>
-
-      <div>
-        <label htmlFor="content">content</label>
-        <input
-          id="content"
-          type="content"
-          className="border-solid w-60"
-          value={content || ''}
-          onChange={(e) => setContent(e.target.value)}
-        />
       </div>
 
-      <div className='pt-4'>
+      <div className="App">
+        <Tiptap setDescription={setDescription} />
+      </div>
+
+      <div className="flex pb-20 justify-center">
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded block"
-          onClick={() => updateArticle({content,image,})}
-          disabled={loading}
+          className="inline-flex justify-center py-3 px-6 border border-transparent shadow text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          onClick={() => updateArticle({ title, content, image })}
         >
-          {loading ? 'Loading ...' : 'Update'}
+          Update
         </button>
       </div>
-    </div>
-  )
+    </>
+
+  );
 }

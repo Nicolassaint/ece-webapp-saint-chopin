@@ -23,7 +23,7 @@ const write = () => {
       setLoading(true)
 
       const insert = {
-        id_article: 4,
+        id_article: 11,
         created_at: new Date().toISOString(),
         image,
         title,
@@ -123,7 +123,7 @@ const write = () => {
           </div>
         </div>
       </div>
-    </div> }
+        </div> */}
 
     </>
 
