@@ -93,7 +93,7 @@ export default function Account({ session }) {
           className="border-solid border-2 border-black w-60 rounded-md"
           onChange={(e) => setUsername(e.target.value)}
         />
-      </div>    
+      </div>
 
       <div>
         <label htmlFor="website">Website</label>

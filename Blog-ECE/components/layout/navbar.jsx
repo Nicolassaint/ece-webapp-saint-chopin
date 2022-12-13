@@ -1,6 +1,5 @@
 import * as React from "react";
 import Link from "next/link";
-import SendIcon from "@mui/icons-material/Send";
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import Image from "next/image";
@@ -85,7 +84,7 @@ export default function DrawerAppBar(props) {
           <ListItem key={item.Name} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
               <Link href={item.link}>
-                <ListItemText primary={item.Name} />
+                <ListItemText primary={(username==='invité' && item.Name==="Write") ? "" : item.Name} />
               </Link>
             </ListItemButton>
           </ListItem>
@@ -124,7 +123,7 @@ export default function DrawerAppBar(props) {
                   key={l.Name}
                   className="border-b-2 text-black transition-all duration-150 border-transparent hover:text-blueJeece dark:hover:text-gray-200 hover:border-blueJeece mx-1.5 lg:mx-4"
                 >
-                  <Link href={l.link}>{l.Name}</Link>
+                  <Link href={l.link}>{(username==='invité' && l.Name==="Write") ? "" : l.Name}</Link>
                 </div>
               ))}
             </div>
