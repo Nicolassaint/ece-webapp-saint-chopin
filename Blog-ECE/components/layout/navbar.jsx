@@ -19,6 +19,9 @@ import {
   useSupabaseClient,
   useSession,
 } from "@supabase/auth-helpers-react";
+import {useTheme} from "next-themes";
+import{SunIcon ,MoonIcon} from "@heroicons/react/solid";
+
 
 let Menu = [
   { Name: "Home", link: "/" },
@@ -40,6 +43,26 @@ export default function DrawerAppBar(props) {
   const user = useUser();
   const [username, setUsername] = useState("invité");
   const [loading, setLoading] = useState(true);
+
+
+  const {systemTheme , theme, setTheme} = useTheme ();
+
+      const renderThemeChanger= () => {
+
+          const currentTheme = theme === "system" ? systemTheme : theme ;
+
+          if(currentTheme ==="dark"){
+            return (
+              <SunIcon className="w-10 h-10 items-center justify-center mt-10 text-yellow-500 " role="button" onClick={() => setTheme('light')} />
+            )
+          }
+
+          else {
+            return (
+              <MoonIcon className="w-10 h-10 items-center justify-center mt-10 text-gray-900 " role="button" onClick={() => setTheme('dark')} />
+            )
+          }
+        }
 
   useEffect(() => {
     getProfile();
@@ -105,7 +128,7 @@ export default function DrawerAppBar(props) {
             <Image src={logovert} alt="logo JEECE" width="75px" height="75px" />
           </Link>
         </div>
-
+        {renderThemeChanger()}
         <div className="flex items-center mt-4 mr-4">
           <div className="bg-greenJeece shadow-lg rounded-full mr-3">
             <div className=" flex p-4 dark:text-gray-300">
