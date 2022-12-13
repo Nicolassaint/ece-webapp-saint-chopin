@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
-import Gravatar from './Gravatar';
-import Avatar from './Avatar';
+import Avatar from './Avatar'
+import Link from "next/link"
 
 
 export default function Account({ session }) {
@@ -93,7 +93,8 @@ export default function Account({ session }) {
           className="border-solid border-2 border-black w-60 rounded-md"
           onChange={(e) => setUsername(e.target.value)}
         />
-      </div>
+      </div>    
+
       <div>
         <label htmlFor="website">Website</label>
         <input
@@ -113,6 +114,23 @@ export default function Account({ session }) {
         >
           {loading ? 'Loading ...' : 'Update'}
         </button>
+      </div>
+
+
+      <div className='pt-4'>
+        <Link href="/deletearticle">
+          <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded block">
+            Delete
+          </button>
+        </Link>
+      </div>
+
+      <div className='pt-4'>
+        <Link href="/updatearticle">
+          <button className="bg-green-300 hover:bg-green-700 text-white font-bold py-2 px-4 rounded block">
+            Update
+          </button>
+        </Link>
       </div>
 
       <div className='pt-4'>
