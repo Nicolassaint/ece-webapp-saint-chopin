@@ -22,7 +22,7 @@ const write = () => {
       setLoading(true)
 
       const insert = {
-        id_article: uuidv4(),
+        id_article: 4,
         created_at: new Date().toISOString(),
         image,
         title,
@@ -46,12 +46,12 @@ const write = () => {
 
   return (
      <>
-    <div className="App">
+    {/* <div className="App">
       <Tiptap setDescription={setDescription} />
       <Details description={description} />
-    </div>
+    </div> */}
 
-    {/* <div className="b py-16 px-4 sm:px-6  w-screen flex justify-center items-center">
+    { <div className="b py-16 px-4 sm:px-6  w-screen flex justify-center items-center">
       <div className="mx-auto w-full max-w-2xl rounded-xl bg-white p-8 shadow">
         <div className="grid grid-cols-1 gap-y-6">
           <div>
@@ -91,7 +91,7 @@ const write = () => {
           </div>
         </div>
       </div>
-    </div> */}
+    </div> }
 
     </>
 
