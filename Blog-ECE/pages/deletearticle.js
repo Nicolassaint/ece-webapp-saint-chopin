@@ -6,7 +6,7 @@ export default function Account({ session }) {
   const supabase = useSupabaseClient()
   const user = useUser()
   const [loading, setLoading] = useState(true)
-  const [title, setTitle] = useState(null)
+  const [title, setTitle] = useState([])
   const [tittle, setTittle] = useState(null)
 
 useEffect(() => {
@@ -18,7 +18,7 @@ useEffect(() => {
       setLoading(true)
       let { data, error, status } = await supabase
         .from('articles')
-        .select(`title`)
+        .select()
         .eq('id_user', user.id)
 
       if (error && status !== 406) {
@@ -28,8 +28,6 @@ useEffect(() => {
       if (data) {
         setTitle(data)
       }
-      console.log(data)
-      console.log(title[0].title)
     } catch (error) {
       alert('Error no articles!')
       console.log(error)
@@ -55,15 +53,15 @@ useEffect(() => {
 
   return (
      <div classname="mr-5 ml-5">
-         {title.map((titre) => (
-                   <div key={titre.title}>
-                             <label className='text-center'>{titre.title}</label>
-                   </div> 
+         {title.map((article) => (
+                   <div key={article.id_article}>
+                             <label className='text-center'>{article.title}</label>
+                   </div>
                 ))}
 
        <div className='pt-4 text-center'>
        <label >Tittle</label>
-        <input type="text" className="border-solid border-2 border-black w-60 rounded-md" onChange={(e) => setTittle(e.target.value)}/>
+        <input type="text" className="border-solid border-2 border-black w-60 rounded-md dark:bg-slate-800" onChange={(e) => setTittle(e.target.value)}/>
       </div>
 
 
