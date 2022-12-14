@@ -69,7 +69,7 @@ const write = () => {
       </div>
 
       <div className="App">
-        <Tiptap setDescription={setDescription} />
+        <Tiptap setDescription={setDescription} setContent=""/>
         {/* <Details description={description} /> */}
       </div>
 
