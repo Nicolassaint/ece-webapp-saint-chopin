@@ -1,47 +1,158 @@
-import React from "react";
-function index() {
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
+import parse from "html-react-parser";
+
+
+export default function Home() {
+
+  const supabase = useSupabaseClient()
+  const [posts, setPosts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [avatarUrl, setAvatarUrl] = useState([])
+
+
+  useEffect(() => {
+    fetchPosts()
+  }, [])
+
+
+  function getYear(timestamp) {
+    var date = new Date(timestamp);
+    return date.getFullYear()
+  }
+
+  function getMonth(timestamp) {
+    var date = new Date(timestamp);
+    let month = date.getMonth() + 1;
+    if (month === 1) { month = "Jan" }
+    else if (month === 2) { month = "Feb" }
+    else if (month === 3) { month = "Mar" }
+    else if (month === 4) { month = "Apr" }
+    else if (month === 5) { month = "May" }
+    else if (month === 6) { month = "Jun" }
+    else if (month === 7) { month = "Jul" }
+    else if (month === 8) { month = "Aug" }
+    else if (month === 9) { month = "Sep" }
+    else if (month === 10) { month = "Oct" }
+    else if (month === 11) { month = "Nov" }
+    else if (month === 12) { month = "Dec" }
+
+    return month;
+  }
+
+  function getDay(timestamp) {
+    var date = new Date(timestamp);
+    return date.getDate()
+  }
+
+  async function downloadImage(path, i) {
+    try {
+      console.log(path)
+      const { data, error } = await supabase.storage.from('avatars').download(path)
+      console.log(data)
+      if (error) {
+        throw error
+      }
+      const url = URL.createObjectURL(data)
+      console.log("chemin : ", url)
+      // setAvatarUrl(url)
+      // setPosts(posts.map((post, index) =>
+      //   index === i ? post.map((item, index) => index === 4 ? url : item) : post
+      // ));
+      setAvatarUrl(avatarUrl => [...avatarUrl, url]);
+      // console.log("nouveau posts", posts)
+
+    } catch (error) {
+      console.log('Error downloading image: ', error)
+    }
+  }
+
+  async function fetchPosts() {
+    const { data, error } = await supabase
+      .from('articles')
+      .select()
+      .order('created_at', {ascending : false})
+      .limit(3)
+    setPosts(data)
+    setLoading(false)
+
+    for (var i = 0; i < data.length; i++) {
+      downloadImage(data[i].image, i)
+      // console.log("test : ", data[i].image)
+      console.log("anciens posts: ",data)
+    }
+  }
+  if (loading) return <p className="text-2xl">Loading ...</p>
+  if (!posts.length) return <p className="text-2xl">No posts.</p>
+
+
   return (
-    <>
-      <h1>Home Page of Lab4 </h1>
-      <h3>
-        Ullamco laboris cillum nulla eu ut eiusmod dolore occaecat nisi irure
-        aliquip. Irure esse labore dolor aliqua dolore laborum irure amet
-        exercitation esse elit. Ad sint minim non ullamco in. Ad excepteur
-        aliqua nisi nisi. Deserunt commodo esse Lorem adipisicing ex eiusmod
-        est. Id quis aute amet tempor enim amet cupidatat enim ipsum
-        reprehenderit non amet laboris. Est qui ea sit deserunt pariatur do
-        incididunt pariatur officia cillum. Sit magna laborum nulla labore ea
-        est non magna pariatur nulla in ut. Occaecat amet esse eu ipsum.
-        Cupidatat dolor laboris commodo est dolor adipisicing fugiat enim
-        laborum dolor. Amet consequat ex aliquip duis tempor officia culpa. Nisi
-        officia aliquip duis qui do nisi amet minim veniam ea elit culpa sit et.
-        Excepteur nostrud ullamco velit ex incididunt dolor id sit. Consectetur
-        dolore fugiat eiusmod exercitation cupidatat est. Fugiat mollit qui elit
-        ullamco adipisicing consectetur ex. Minim magna proident laborum dolore
-        deserunt minim. Aliqua pariatur proident labore minim ad aliqua proident
-        fugiat nulla cillum laboris in. Aliquip culpa eiusmod ea velit tempor
-        reprehenderit deserunt cillum culpa ad reprehenderit. Velit et sit enim
-        est ut eiusmod nisi eu aute ipsum amet exercitation. Eu sint anim fugiat
-        veniam sunt aute duis. Esse eu do irure aute labore est mollit qui. Elit
-        in laborum esse Lorem labore nostrud quis ipsum dolore laboris mollit
-        laboris veniam. Mollit aute et fugiat consequat Lorem ut est. Qui
-        pariatur pariatur reprehenderit adipisicing mollit pariatur ex amet
-        commodo. Nisi elit labore elit sunt exercitation et officia enim
-        proident aute minim incididunt ex. Esse eiusmod veniam veniam ut id
-        irure officia ut incididunt dolore et. Ullamco sunt sunt nulla laborum
-        proident veniam cillum incididunt non occaecat cupidatat officia. Velit
-        amet culpa sunt nisi ea incididunt fugiat proident ullamco nisi occaecat
-        anim. Veniam non enim ex nulla eiusmod nisi esse.Home Page of Lab4
-Ullamco laboris cillum nulla eu ut eiusmod dolore occaecat nisi irure aliquip. Irure esse labore dolor aliqua dolore laborum irure amet exercitation esse elit. Ad sint minim non ullamco in. Ad excepteur aliqua nisi nisi. Deserunt commodo esse Lorem adipisicing ex eiusmod est. Id quis aute amet tempor enim amet cupidatat enim ipsum reprehenderit non amet laboris. Est qui ea sit deserunt pariatur do incididunt pariatur officia cillum. Sit magna laborum nulla labore ea est non magna pariatur nulla in ut. Occaecat amet esse eu ipsum. Cupidatat dolor laboris commodo est dolor adipisicing fugiat enim laborum dolor. Amet consequat ex aliquip duis tempor officia culpa. Nisi officia aliquip duis qui do nisi amet minim veniam ea elit culpa sit et. Excepteur nostrud ullamco velit ex incididunt dolor id sit. Consectetur dolore fugiat eiusmod exercitation cupidatat est. Fugiat mollit qui elit ullamco adipisicing consectetur ex. Minim magna proident laborum dolore deserunt minim. Aliqua pariatur proident labore minim ad aliqua proident fugiat nulla cillum laboris in. Aliquip culpa eiusmod ea velit tempor reprehenderit deserunt cillum culpa ad reprehenderit. Velit et sit enim est ut eiusmod nisi eu aute ipsum amet exercitation. Eu sint anim fugiat veniam sunt aute duis. Esse eu do irure aute labore est mollit qui. Elit in laborum esse Lorem labore nostrud quis ipsum dolore laboris mollit laboris veniam. Mollit aute et fugiat consequat Lorem ut est. Qui pariatur pariatur reprehenderit adipisicing mollit pariatur ex amet commodo. Nisi elit labore elit sunt exercitation et officia enim proident aute minim incididunt ex. Esse eiusmod veniam veniam ut id irure officia ut incididunt dolore et. Ullamco sunt sunt nulla laborum proident veniam cillum incididunt non occaecat cupidatat officia. Velit amet culpa sunt nisi ea incididunt fugiat proident ullamco nisi occaecat anim. Veniam non enim ex nulla eiusmod nisi esse.
-Home Page of Lab4
-Ullamco laboris cillum nulla eu ut eiusmod dolore occaecat nisi irure aliquip. Irure esse labore dolor aliqua dolore laborum irure amet exercitation esse elit. Ad sint minim non ullamco in. Ad excepteur aliqua nisi nisi. Deserunt commodo esse Lorem adipisicing ex eiusmod est. Id quis aute amet tempor enim amet cupidatat enim ipsum reprehenderit non amet laboris. Est qui ea sit deserunt pariatur do incididunt pariatur officia cillum. Sit magna laborum nulla labore ea est non magna pariatur nulla in ut. Occaecat amet esse eu ipsum. Cupidatat dolor laboris commodo est dolor adipisicing fugiat enim laborum dolor. Amet consequat ex aliquip duis tempor officia culpa. Nisi officia aliquip duis qui do nisi amet minim veniam ea elit culpa sit et. Excepteur nostrud ullamco velit ex incididunt dolor id sit. Consectetur dolore fugiat eiusmod exercitation cupidatat est. Fugiat mollit qui elit ullamco adipisicing consectetur ex. Minim magna proident laborum dolore deserunt minim. Aliqua pariatur proident labore minim ad aliqua proident fugiat nulla cillum laboris in. Aliquip culpa eiusmod ea velit tempor reprehenderit deserunt cillum culpa ad reprehenderit. Velit et sit enim est ut eiusmod nisi eu aute ipsum amet exercitation. Eu sint anim fugiat veniam sunt aute duis. Esse eu do irure aute labore est mollit qui. Elit in laborum esse Lorem labore nostrud quis ipsum dolore laboris mollit laboris veniam. Mollit aute et fugiat consequat Lorem ut est. Qui pariatur pariatur reprehenderit adipisicing mollit pariatur ex amet commodo. Nisi elit labore elit sunt exercitation et officia enim proident aute minim incididunt ex. Esse eiusmod veniam veniam ut id irure officia ut incididunt dolore et. Ullamco sunt sunt nulla laborum proident veniam cillum incididunt non occaecat cupidatat officia. Velit amet culpa sunt nisi ea incididunt fugiat proident ullamco nisi occaecat anim. Veniam non enim ex nulla eiusmod nisi esse.
-Home Page of Lab4
-Ullamco laboris cillum nulla eu ut eiusmod dolore occaecat nisi irure aliquip. Irure esse labore dolor aliqua dolore laborum irure amet exercitation esse elit. Ad sint minim non ullamco in. Ad excepteur aliqua nisi nisi. Deserunt commodo esse Lorem adipisicing ex eiusmod est. Id quis aute amet tempor enim amet cupidatat enim ipsum reprehenderit non amet laboris. Est qui ea sit deserunt pariatur do incididunt pariatur officia cillum. Sit magna laborum nulla labore ea est non magna pariatur nulla in ut. Occaecat amet esse eu ipsum. Cupidatat dolor laboris commodo est dolor adipisicing fugiat enim laborum dolor. Amet consequat ex aliquip duis tempor officia culpa. Nisi officia aliquip duis qui do nisi amet minim veniam ea elit culpa sit et. Excepteur nostrud ullamco velit ex incididunt dolor id sit. Consectetur dolore fugiat eiusmod exercitation cupidatat est. Fugiat mollit qui elit ullamco adipisicing consectetur ex. Minim magna proident laborum dolore deserunt minim. Aliqua pariatur proident labore minim ad aliqua proident fugiat nulla cillum laboris in. Aliquip culpa eiusmod ea velit tempor reprehenderit deserunt cillum culpa ad reprehenderit. Velit et sit enim est ut eiusmod nisi eu aute ipsum amet exercitation. Eu sint anim fugiat veniam sunt aute duis. Esse eu do irure aute labore est mollit qui. Elit in laborum esse Lorem labore nostrud quis ipsum dolore laboris mollit laboris veniam. Mollit aute et fugiat consequat Lorem ut est. Qui pariatur pariatur reprehenderit adipisicing mollit pariatur ex amet commodo. Nisi elit labore elit sunt exercitation et officia enim proident aute minim incididunt ex. Esse eiusmod veniam veniam ut id irure officia ut incididunt dolore et. Ullamco sunt sunt nulla laborum proident veniam cillum incididunt non occaecat cupidatat officia. Velit amet culpa sunt nisi ea incididunt fugiat proident ullamco nisi occaecat anim. Veniam non enim ex nulla eiusmod nisi esse.
-      </h3>
+    <div className='grid-cols-2'>
+      <div class="relative z-20 flex items-center bg-white dark:bg-gray-800">
+        <div class="container relative flex flex-col items-center justify-between px-6 py-8 mx-auto">
+            <div class="flex flex-col">
+                <h1 class="w-full text-4xl font-light text-center text-gray-800 uppercase sm:text-5xl dark:text-white">
+                    The saint's blog for learning web
+                </h1>
+                <h2 class="w-full max-w-2xl py-8 mx-auto text-xl font-light text-center text-gray-500 dark:text-white">
+                This blog will allow you to read our articles created by our users. These articles are about the languages used to develop websites. Each article is commented and liked. Enjoy this documentation.
+                </h2>
+            </div>
+        </div>
+    </div>
+      <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2 text-center">The most recent articles</h1>
+      {
+        posts.map(post => (
+          <div key={post.id_article} className='my-5 mx-5 flex justify-center '>
+            <article className="flex bg-white transition hover:shadow-xl w-2/5">
+              <div className="rotate-180 p-2 [writing-mode:_vertical-lr]">
+                <time
+                  datetime="2022-10-10"
+                  className="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900"
+                >
+                  <span>{getYear(post.created_at)}</span>
+                  <span className="w-px flex-1 bg-gray-900/10"></span>
+                  <span>{getMonth(post.created_at)} {getDay(post.created_at)}</span>
+                </time>
+              </div>
+              <div className="hidden sm:block sm:basis-56">
+                <img
+                  alt="image_article"
+                  // src={downloadImage(post.image) ? avatarUrl[0] : ""}
+                  // src={post.image}
+                  src='/react.svg'
+                  className="aspect-square h-full w-full object-cover"
+                />
+              </div>
 
+              <div className="flex flex-1 flex-col justify-between">
+                <div className="border-l border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
+                  <a href={`/articles/${post.id_article}`}>
+                    <h3 className="font-bold uppercase text-gray-900">
+                      {post.title}
+                    </h3>
+                  </a>
 
-    </>
-  );
+                  <p className="mt-2 text-sm leading-relaxed text-gray-700 line-clamp-3">
+                    {parse(post.content)}
+                  </p>
+                </div>
+
+                <div className="sm:flex sm:items-end sm:justify-end">
+                  <a
+                    href={`/articles/${post.id_article}`}
+                    className="block bg-yellow-300 px-5 py-3 text-center text-xs font-bold uppercase text-gray-900 transition hover:bg-yellow-400"
+                  >
+                    Read Article
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        )
+        )
+      }
+    </div>
+  )
 }
-
-export default index;

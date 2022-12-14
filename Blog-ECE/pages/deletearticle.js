@@ -7,6 +7,7 @@ export default function Account({ session }) {
   const user = useUser()
   const [loading, setLoading] = useState(true)
   const [title, setTitle] = useState(null)
+  const [tittle, setTittle] = useState(null)
 
 useEffect(() => {
     getArticle()
@@ -15,7 +16,6 @@ useEffect(() => {
   async function getArticle() {
     try {
       setLoading(true)
-
       let { data, error, status } = await supabase
         .from('articles')
         .select(`title`)
@@ -38,11 +38,11 @@ useEffect(() => {
     }
   }
 
-  async function deleteArticle({ title }) {
+  async function deleteArticle({ tittle }) {
     try {
       setLoading(true)
-      let { error } = await supabase.from('articles').delete().eq('title',title)
-      console.log(title)
+      let { error } = await supabase.from('articles').delete().eq('title',tittle)
+      console.log(tittle)
       if (error) throw error
       alert('Article deleted')
     } catch (error) {
@@ -54,32 +54,23 @@ useEffect(() => {
   }
 
   return (
-
-    <div className="form-widget">
-        {title.map((titre) => (
-                  <div
-                    key={titre.title}
-                  >
-                  <label>{titre.title}</label>
-                  </div>
-                  
+     <div classname="mr-5 ml-5">
+         {title.map((titre) => (
+                   <div key={titre.title}>
+                             <label className='text-center'>{titre.title}</label>
+                   </div> 
                 ))}
-      
-      <div>
-      <label htmlFor="titre">Title</label>
-        <input
-          id="titre"
-          type="text"
-          value={title || ''}
-          className="border-solid border-2 border-black w-60 rounded-md"
-          onChange={(e) => setTitle(e.target.value)}
-        />
+
+       <div className='pt-4 text-center'>
+       <label >Tittle</label>
+        <input type="text" className="border-solid border-2 border-black w-60 rounded-md" onChange={(e) => setTittle(e.target.value)}/>
       </div>
+
 
       <div className='pt-4'>
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded block"
-          onClick={() => deleteArticle({title})}
+          onClick={() => deleteArticle({tittle})}
           disabled={loading}
         >
           {loading ? 'Loading ...' : 'Delete'}
