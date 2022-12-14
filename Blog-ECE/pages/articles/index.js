@@ -91,9 +91,9 @@ export default function Home() {
       <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2 text-center">All our articles</h1>
       {
         posts.map(post => (
-          <div key={post.id_article} className='my-5 mx-5 flex justify-center '>
+           <div key={post.id_article} className='my-5 mx-5 flex justify-center '>
             <article className="flex bg-white transition hover:shadow-xl w-2/5">
-              <div className="rotate-180 p-2 [writing-mode:_vertical-lr]">
+               <div className="rotate-180 p-2 [writing-mode:_vertical-lr]">
                 <time
                   datetime="2022-10-10"
                   className="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900"
@@ -136,7 +136,8 @@ export default function Home() {
                 </div>
               </div>
             </article>
-          </div>
+          {/* <Article_cards article={post}/> */}
+           </div>
         )
         )
       }
