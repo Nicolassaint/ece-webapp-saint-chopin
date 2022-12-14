@@ -84,53 +84,53 @@ export default function Account({ session }) {
         <label htmlFor="email">Email</label>
         <input id="email" type="text" value={session.user.email} disabled className='dark:border-solid dark:border-2 border-black w-80 rounded-md dark:bg-slate-800'/>
       </div>
+      
       <div>
         <label htmlFor="username">Username</label>
-        <input
+      </div>
+
+      <div className='flex items-stretch'>
+      <input
           id="username"
           type="text"
           value={username || ''}
           className="border-solid border-2 border-black w-60 rounded-md dark:bg-slate-800"
           onChange={(e) => setUsername(e.target.value)}
         />
+        <Link href="/deletearticle">
+          <button className="border-solid border-2 border-black w-50 rounded-md bg-green-500 hover:bg-green-700 text-white">
+            Delete Article
+          </button>
+        </Link>
       </div>
 
-      <div>
-        <label htmlFor="website">Website</label>
-        <input
+      <label htmlFor="website">Website</label>
+    
+      <div className='items-stretch'>
+      <input
           id="website"
           type="website"
           className="border-solid border-2 border-black w-60 rounded-md dark:bg-slate-800"
           value={website || ''}
           onChange={(e) => setWebsite(e.target.value)}
         />
+
+        <Link href="/updatearticles/updatearticle">
+          <button className="border-solid border-2 border-black w-50 rounded-md bg-green-500 hover:bg-green-700 text-white">
+            Update Article
+          </button>
+        </Link>
+       
       </div>
 
       <div className='pt-4'>
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded block"
-          onClick={() => updateProfile({ username, website, avatar_url })}
-          disabled={loading}
-        >
-          {loading ? 'Loading ...' : 'Update'}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded block"
+            onClick={() => updateProfile({ username, website, avatar_url })}
+            disabled={loading}
+          >
+            {loading ? 'Loading ...' : 'Update'}
         </button>
-      </div>
-
-
-      <div className='pt-4'>
-        <Link href="/deletearticle">
-          <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded block">
-            Delete
-          </button>
-        </Link>
-      </div>
-
-      <div className='pt-4'>
-        <Link href="/updatearticles/updatearticle">
-          <button className="bg-green-300 hover:bg-green-700 text-white font-bold py-2 px-4 rounded block">
-            Update
-          </button>
-        </Link>
       </div>
 
       <div className='pt-4'>

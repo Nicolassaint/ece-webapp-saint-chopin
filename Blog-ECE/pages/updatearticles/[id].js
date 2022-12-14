@@ -56,19 +56,16 @@ export default function Post({ article }) {
           onChange={(e) => setTitle(e.target.value)}
         />
       </div>
-      <div className="mt-8 prose m-auto">
+      <div className="mt-8 prose m-auto App">
         <label>Content</label>
-      </div>
-
-      <div className="App">
         <Tiptap setDescription={setDescription} setContent={article.content} />
       </div>
 
     </div>
-    <div className='pt-4'>
+    <div className=' text-center'>
         
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded block"
+          className="border-solid border-2 border-black w-60 rounded-md bg-blue-500 hover:bg-blue-700 text-white"
           onClick={() => updateArticle({title,description})}
         >
           Update
