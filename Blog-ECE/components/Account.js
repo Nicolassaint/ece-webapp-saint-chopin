@@ -82,7 +82,7 @@ export default function Account({ session }) {
       </div>
       <div>
         <label htmlFor="email">Email</label>
-        <input id="email" type="text" value={session.user.email} disabled />
+        <input id="email" type="text" value={session.user.email} disabled className='dark:border-solid dark:border-2 border-black w-80 rounded-md dark:bg-slate-800'/>
       </div>
       <div>
         <label htmlFor="username">Username</label>
@@ -90,7 +90,7 @@ export default function Account({ session }) {
           id="username"
           type="text"
           value={username || ''}
-          className="border-solid border-2 border-black w-60 rounded-md"
+          className="border-solid border-2 border-black w-60 rounded-md dark:bg-slate-800"
           onChange={(e) => setUsername(e.target.value)}
         />
       </div>
@@ -100,7 +100,7 @@ export default function Account({ session }) {
         <input
           id="website"
           type="website"
-          className="border-solid w-60"
+          className="border-solid border-2 border-black w-60 rounded-md dark:bg-slate-800"
           value={website || ''}
           onChange={(e) => setWebsite(e.target.value)}
         />

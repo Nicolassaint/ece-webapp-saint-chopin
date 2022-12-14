@@ -422,9 +422,19 @@ button.primary,
   border-radius: 0 0 5px 5px;
   min-height: 100px;
 }
+@media (prefers-color-scheme: dark) {
+  .ProseMirror {
+    background: #121212;
+  }
+  .ProseMirror:focus {
+    border: none;
+    outline: 1px solid grey;
+  }
+  }
+
 .ProseMirror:focus {
   border: none;
-  outline: 1px solid burlywood;
+  outline: 1px solid grey;
 }
 
 .ProseMirror > * + * {
