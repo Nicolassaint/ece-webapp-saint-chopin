@@ -82,15 +82,15 @@ export default function Account({ session }) {
       </div>
       <div>
         <label htmlFor="email">Email</label>
-        <input id="email" type="text" value={session.user.email} disabled className='dark:border-solid dark:border-2 border-black w-80 rounded-md dark:bg-slate-800'/>
+        <input id="email" type="text" value={session.user.email} disabled className='dark:border-solid dark:border-2 border-black w-80 rounded-md dark:bg-slate-800' />
       </div>
-      
+
       <div>
         <label htmlFor="username">Username</label>
       </div>
 
       <div className='flex justify-between'>
-      <input
+        <input
           id="username"
           type="text"
           value={username || ''}
@@ -105,9 +105,9 @@ export default function Account({ session }) {
       </div>
 
       <label htmlFor="website">Website</label>
-    
+
       <div className='flex justify-between'>
-      <input
+        <input
           id="website"
           type="website"
           className="border-solid border-2 border-black w-60 rounded-md dark:bg-slate-800"
@@ -120,16 +120,16 @@ export default function Account({ session }) {
             Update Article
           </button>
         </Link>
-       
+
       </div>
 
       <div className='pt-4'>
         <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded block"
-            onClick={() => updateProfile({ username, website, avatar_url })}
-            disabled={loading}
-          >
-            {loading ? 'Loading ...' : 'Update'}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded block"
+          onClick={() => updateProfile({ username, website, avatar_url })}
+          disabled={loading}
+        >
+          {loading ? 'Loading ...' : 'Update'}
         </button>
       </div>
 
