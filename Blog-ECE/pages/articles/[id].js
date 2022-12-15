@@ -20,16 +20,16 @@ export default function Post({ article }) {
   }, [article])
 
 
-
   const [description, setDescription] = useState("")
   const [idArticle, setidArticle] = useState(null)
-  const [idComment, setidComment] = useState(null)
   const [username, setUsername] = useState("Anonyme")
   const [titre, setTitre] = useState(null)
   const [comments, setComments] = useState([])
   const [commentator, setCommentator] = useState("Anonyme")
   const [supprimer, setDelete] = useState(null)
-  const [update, setUpdate] = useState(null)
+  const [update, setUpdate] = useState(false)
+  const [nouveauCom, setnouveauCom] = useState("")
+  const [nouveauID, setnouveauID] = useState("")
   const supabase = useSupabaseClient()
   const user = useUser()
   const [loading, setLoading] = useState(true)
@@ -42,11 +42,11 @@ export default function Post({ article }) {
     }
   }, [supprimer])
 
-  useEffect(() => {
-    if (update) {
-      updateComment(update)
-    }
-  }, [update,supprimer])
+  // useEffect(() => {
+  //   if (update) {
+  //     setnouveauID(!nouveauID)
+  //   }
+  // }, [update])
 
   if (router.isFallback) {
     return (
@@ -75,6 +75,18 @@ export default function Post({ article }) {
     setComments(data)
     setTitre(article.title)
 
+  }
+
+
+  async function getIDcomment() {
+
+    const { data } = await supabase
+      .from('comments')
+      .select('id_comment')
+      .filter('id', 'eq', user.id)
+      .single()
+
+    if (data) { setnouveauID(data.username) }
   }
 
   async function getCommentator() {
@@ -138,16 +150,16 @@ export default function Post({ article }) {
     }
   }
 
-  async function updateComment(content) {
+  async function updateComment() {
     try {
       setLoading(true)
 
       const updates = {
-        content : "salut" ,
+        content: nouveauCom
       }
       console.log(updates.content)
 
-      let { error } = await supabase.from('comments').update(updates).eq('id_comment',"5327793e-bfd6-4629-b42a-6f14345492fc")
+      let { error } = await supabase.from('comments').update(updates).eq('id_comment', nouveauID)
       alert('Article update')
     } catch (error) {
       alert('Error update article!')
@@ -159,7 +171,7 @@ export default function Post({ article }) {
 
 
   return (
-    <div className=''>
+    <div>
       <h1 className="text-5xl mt-4 font-semibold tracking-wide text-center">{titre}</h1>
       <p className="text-sm font-light my-4 text-center">written by {username}</p>
       <div className="mt-8 mb-10 prose m-auto">
@@ -174,8 +186,8 @@ export default function Post({ article }) {
               <div class="flex flex-col w-full">
                 <div class="flex flex-row justify-between">
                   <p class="relative text-xl whitespace-nowrap truncate overflow-hidden dark:text-black">{comment.name}</p>
-                  {commentator===comment.name ? <div>
-                    <buton className="ml-2 dark:text-black" onClick={() => setUpdate(comment.content)}><EditIcon /></buton>
+                  {commentator === comment.name ? <div>
+                    <buton className="ml-2 dark:text-black" onClick={() => { setUpdate(!update); setnouveauID(comment.id_comment); }}><EditIcon /></buton>
                     <buton onClick={() => setDelete(comment.id_comment)}><DeleteIcon sx={{ color: "red" }} /></buton>
                   </div> : ""}
                   <a class="text-gray-500 text-xl" href="#"><i class="fa-solid fa-trash"></i></a>
@@ -185,13 +197,19 @@ export default function Post({ article }) {
             </div>
             <p class="-mt-4 text-gray-500">{parse(comment.content)}</p>
           </div>
+          {(update && comment.id_comment === nouveauID) ? <div className="ml-10">
+            <Tiptap setDescription={setnouveauCom} setContent={comment.content} />
+            <buton onClick={() => updateComment()} className=' mt-2 inline-flex justify-center py-3 px-6 border border-transparent shadow text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'>
+              Modify
+            </buton>
+          </div> : ""}
         </div>
         ))
       }
       <div className='App'>
         <label>{update}</label>
         {user ? <h2 className='m-auto prose mb-4'>Post a comment here...</h2> : ""}
-        {user ? <Tiptap setDescription={update} setContent={update} /> : <div className='prose'>You can't post comment if you're not logged in...</div>}
+        {user ? <Tiptap setDescription={setDescription} setContent={""} /> : <div className='prose'>You can't post comment if you're not logged in...</div>}
       </div>
       {user ? <div className="flex pb-20 justify-center">
         <button
