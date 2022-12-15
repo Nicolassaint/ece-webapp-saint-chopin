@@ -16,9 +16,7 @@ export default function Post({ article }) {
 
 
   useEffect(() => {
-    if (article) {
-      setTitle(article.title)
-    }
+    setTitle(article.title)
   }, [article])
 
   async function updateArticle({ title, description }) {

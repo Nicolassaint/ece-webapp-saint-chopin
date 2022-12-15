@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import {
-    useUser,
-    useSupabaseClient,
-    useSession,
-  } from "@supabase/auth-helpers-react";
+  useUser,
+  useSupabaseClient,
+  useSession,
+} from "@supabase/auth-helpers-react";
 import Gravatar from './Gravatar'
 
 export default function Avatar({ uid, url, size, onUpload }) {
@@ -73,7 +73,7 @@ export default function Avatar({ uid, url, size, onUpload }) {
         />
       ) : (
         <div className='ml-6'>
-        <Gravatar email={session.user.email} size={100}/>
+          <Gravatar email={session.user.email} size={100} />
         </div>
       )}
       <div style={{ width: size }}>

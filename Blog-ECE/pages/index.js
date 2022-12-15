@@ -56,12 +56,7 @@ export default function Home() {
       }
       const url = URL.createObjectURL(data)
       console.log("chemin : ", url)
-      // setAvatarUrl(url)
-      // setPosts(posts.map((post, index) =>
-      //   index === i ? post.map((item, index) => index === 4 ? url : item) : post
-      // ));
       setAvatarUrl(avatarUrl => [...avatarUrl, url]);
-      // console.log("nouveau posts", posts)
 
     } catch (error) {
       console.log('Error downloading image: ', error)
@@ -72,15 +67,14 @@ export default function Home() {
     const { data, error } = await supabase
       .from('articles')
       .select()
-      .order('created_at', {ascending : false})
+      .order('created_at', { ascending: false })
       .limit(3)
     setPosts(data)
     setLoading(false)
 
     for (var i = 0; i < data.length; i++) {
       downloadImage(data[i].image, i)
-      // console.log("test : ", data[i].image)
-      console.log("anciens posts: ",data)
+      console.log("anciens posts: ", data)
     }
   }
   if (loading) return <p className="text-2xl">Loading ...</p>
@@ -91,16 +85,16 @@ export default function Home() {
     <div className='grid-cols-2'>
       <div class="relative z-20 flex items-center bg-white dark:bg-gray-800">
         <div class="container relative flex flex-col items-center justify-between px-6 py-8 mx-auto">
-            <div class="flex flex-col">
-                <h1 class="w-full text-4xl font-light text-center text-gray-800 uppercase sm:text-5xl dark:text-white">
-                    The saint's blog for learning web
-                </h1>
-                <h2 class="w-full max-w-2xl py-8 mx-auto text-xl font-light text-center text-gray-500 dark:text-white">
-                This blog will allow you to read our articles created by our users. These articles are about the languages used to develop websites. Each article is commented and liked. Enjoy this documentation.
-                </h2>
-            </div>
+          <div class="flex flex-col">
+            <h1 class="w-full text-4xl font-light text-center text-gray-800 uppercase sm:text-5xl dark:text-white">
+              The saint&apos;s blog for learning web
+            </h1>
+            <h2 class="w-full max-w-2xl py-8 mx-auto text-xl font-light text-center text-gray-500 dark:text-white">
+              This blog will allow you to read our articles created by our users. These articles are about the languages used to develop websites. Each article is commented and liked. Enjoy this documentation.
+            </h2>
+          </div>
         </div>
-    </div> 
+      </div>
       <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2 text-center">The most recent articles</h1>
       {
         posts.map(post => (
@@ -119,8 +113,6 @@ export default function Home() {
               <div className="hidden sm:block sm:basis-56">
                 <img
                   alt="image_article"
-                  // src={downloadImage(post.image) ? avatarUrl[0] : ""}
-                  // src={post.image}
                   src='/react.svg'
                   className="aspect-square h-full w-full object-cover"
                 />

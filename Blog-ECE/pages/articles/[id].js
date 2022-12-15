@@ -15,7 +15,7 @@ export default function Post({ article }) {
     if (article) {
       getComment(article);
       getUser(article)
-      getCommentator();
+      if (user) { getCommentator(); }
     }
   }, [article])
 
@@ -178,7 +178,7 @@ export default function Post({ article }) {
         {parse(article.content)}
       </div>
       {
-        comments.map(comment => (<div class="flex justify-center relative top-1/3">
+        comments.map(comment => (<div key={comment.id_comment} class="flex justify-center relative top-1/3">
 
           <div class="relative grid grid-cols-1 gap-4 p-4 mb-8 border rounded-lg bg-white shadow-lg">
             <div class="relative flex gap-4">
@@ -209,7 +209,7 @@ export default function Post({ article }) {
       <div className='App'>
         <label>{update}</label>
         {user ? <h2 className='m-auto prose mb-4'>Post a comment here...</h2> : ""}
-        {user ? <Tiptap setDescription={setDescription} setContent={""} /> : <div className='prose'>You can't post comment if you're not logged in...</div>}
+        {user ? <Tiptap setDescription={setDescription} setContent={""} /> : <div className='prose'>You can&apos;t post comment if you&apos;re not logged in...</div>}
       </div>
       {user ? <div className="flex pb-20 justify-center">
         <button

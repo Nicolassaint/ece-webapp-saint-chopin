@@ -19,9 +19,8 @@ import {
   useSupabaseClient,
   useSession,
 } from "@supabase/auth-helpers-react";
-import {useTheme} from "next-themes";
-import{SunIcon ,MoonIcon} from "@heroicons/react/solid";
-
+import { useTheme } from "next-themes";
+import { SunIcon, MoonIcon } from "@heroicons/react/solid";
 
 let Menu = [
   { Name: "Home", link: "/" },
@@ -44,25 +43,29 @@ export default function DrawerAppBar(props) {
   const [username, setUsername] = useState("invité");
   const [loading, setLoading] = useState(true);
 
+  const { systemTheme, theme, setTheme } = useTheme();
 
-  const {systemTheme , theme, setTheme} = useTheme ();
+  const renderThemeChanger = () => {
+    const currentTheme = theme === "system" ? systemTheme : theme;
 
-      const renderThemeChanger= () => {
-
-          const currentTheme = theme === "system" ? systemTheme : theme ;
-
-          if(currentTheme ==="dark"){
-            return (
-              <SunIcon className="w-10 h-10 items-center justify-center mt-9 text-yellow-500 " role="button" onClick={() => setTheme('light')} />
-            )
-          }
-
-          else {
-            return (
-              <MoonIcon className="w-10 h-10 items-center justify-center mt-9 text-gray-900 " role="button" onClick={() => setTheme('dark')} />
-            )
-          }
-        }
+    if (currentTheme === "dark") {
+      return (
+        <SunIcon
+          className="w-10 h-10 items-center justify-center mt-9 text-yellow-500 "
+          role="button"
+          onClick={() => setTheme("light")}
+        />
+      );
+    } else {
+      return (
+        <MoonIcon
+          className="w-10 h-10 items-center justify-center mt-9 text-gray-900 "
+          role="button"
+          onClick={() => setTheme("dark")}
+        />
+      );
+    }
+  };
 
   useEffect(() => {
     getProfile();
@@ -107,7 +110,13 @@ export default function DrawerAppBar(props) {
           <ListItem key={item.Name} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
               <Link href={item.link}>
-                <ListItemText primary={(username==='invité' && item.Name==="Write") ? "" : item.Name} />
+                <ListItemText
+                  primary={
+                    username === "invité" && item.Name === "Write"
+                      ? ""
+                      : item.Name
+                  }
+                />
               </Link>
             </ListItemButton>
           </ListItem>
@@ -146,7 +155,9 @@ export default function DrawerAppBar(props) {
                   key={l.Name}
                   className="border-b-2 text-black transition-all duration-150 border-transparent hover:text-blueJeece dark:hover:text-gray-200 hover:border-blueJeece mx-1.5 lg:mx-4"
                 >
-                  <Link href={l.link}>{(username==='invité' && l.Name==="Write") ? "" : l.Name}</Link>
+                  <Link href={l.link}>
+                    {username === "invité" && l.Name === "Write" ? "" : l.Name}
+                  </Link>
                 </div>
               ))}
             </div>

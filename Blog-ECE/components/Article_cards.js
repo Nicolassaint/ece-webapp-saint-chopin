@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 
 const Article_cards = (article) => {
 
-  console.log("article import : ",article)
+  console.log("article import : ", article)
   const supabase = useSupabaseClient()
   const [post, setPost] = useState([])
   const [avatarUrl, setAvatarUrl] = useState(null)
@@ -61,50 +61,50 @@ const Article_cards = (article) => {
     }
   }
   return (
-  <article class="flex bg-white transition hover:shadow-xl w-2/5">
-    <div class="rotate-180 p-2 [writing-mode:_vertical-lr]">
-      <time
-        datetime="2022-10-10"
-        class="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900"
-      >
-        <span>{getYear(post.article.created_at)}</span>
-        <span class="w-px flex-1 bg-gray-900/10"></span>
-        <span>{getMonth(post.article.created_at)} {getDay(post.article.created_at)}</span>
-      </time>
-    </div>
-
-    <div class="hidden sm:block sm:basis-56">
-      <img
-        alt="Guitar"
-        src={downloadImage(post.article.image) ? avatarUrl : ""}
-
-        class="aspect-square h-full w-full object-cover"
-      />
-    </div>
-
-    <div class="flex flex-1 flex-col justify-between">
-      <div class="border-l border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
-      <a href={`/articles/${post.article.id_article}`}>
-          <h3 class="font-bold uppercase text-gray-900">
-            {post.article.title}
-          </h3>
-        </a>
-
-        <p class="mt-2 text-sm leading-relaxed text-gray-700 line-clamp-3">
-          {post.article.content}
-        </p>
-      </div>
-
-      <div class="sm:flex sm:items-end sm:justify-end">
-        <a
-          href={`/articles/${post.article.id_article}`}
-          class="block bg-yellow-300 px-5 py-3 text-center text-xs font-bold uppercase text-gray-900 transition hover:bg-yellow-400"
+    <article class="flex bg-white transition hover:shadow-xl w-2/5">
+      <div class="rotate-180 p-2 [writing-mode:_vertical-lr]">
+        <time
+          datetime="2022-10-10"
+          class="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900"
         >
-          Read Article
-        </a>
+          <span>{getYear(post.article.created_at)}</span>
+          <span class="w-px flex-1 bg-gray-900/10"></span>
+          <span>{getMonth(post.article.created_at)} {getDay(post.article.created_at)}</span>
+        </time>
       </div>
-    </div>
-  </article>
+
+      <div class="hidden sm:block sm:basis-56">
+        <img
+          alt="Guitar"
+          src={downloadImage(post.article.image) ? avatarUrl : ""}
+
+          class="aspect-square h-full w-full object-cover"
+        />
+      </div>
+
+      <div class="flex flex-1 flex-col justify-between">
+        <div class="border-l border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
+          <a href={`/articles/${post.article.id_article}`}>
+            <h3 class="font-bold uppercase text-gray-900">
+              {post.article.title}
+            </h3>
+          </a>
+
+          <p class="mt-2 text-sm leading-relaxed text-gray-700 line-clamp-3">
+            {post.article.content}
+          </p>
+        </div>
+
+        <div class="sm:flex sm:items-end sm:justify-end">
+          <a
+            href={`/articles/${post.article.id_article}`}
+            class="block bg-yellow-300 px-5 py-3 text-center text-xs font-bold uppercase text-gray-900 transition hover:bg-yellow-400"
+          >
+            Read Article
+          </a>
+        </div>
+      </div>
+    </article>
 
 
   )

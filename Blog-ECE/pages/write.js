@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Details from "../components/editor/Details";
 import Avatar from "../components/Avatar";
 import { Tiptap } from "../components/editor/Tiptap";
 import {
@@ -9,7 +8,7 @@ import {
 } from "@supabase/auth-helpers-react";
 import { v4 as uuidv4 } from "uuid";
 
-const write = () => {
+export default function Write() {
   const [description, setDescription] = useState("");
 
   const supabase = useSupabaseClient();
@@ -71,7 +70,6 @@ const write = () => {
 
       <div className="App">
         <Tiptap setDescription={setDescription} setContent="" />
-        {/* <Details description={description} /> */}
       </div>
 
       <div className="flex pb-20 justify-center">
@@ -86,4 +84,3 @@ const write = () => {
   );
 };
 
-export default write;

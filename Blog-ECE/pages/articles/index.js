@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
-import Article_cards from '../../components/Article_cards'
 import parse from "html-react-parser";
 import Loading from '../../components/Loading';
 
@@ -58,12 +56,7 @@ export default function Home() {
       }
       const url = URL.createObjectURL(data)
       console.log("chemin : ", url)
-      // setAvatarUrl(url)
-      // setPosts(posts.map((post, index) =>
-      //   index === i ? post.map((item, index) => index === 4 ? url : item) : post
-      // ));
       setAvatarUrl(avatarUrl => [...avatarUrl, url]);
-      // console.log("nouveau posts", posts)
 
     } catch (error) {
       console.log('Error downloading image: ', error)
@@ -79,11 +72,10 @@ export default function Home() {
 
     for (var i = 0; i < data.length; i++) {
       downloadImage(data[i].image, i)
-      // console.log("test : ", data[i].image)
-      console.log("anciens posts: ",data)
+      console.log("anciens posts: ", data)
     }
   }
-  if (loading) return <Loading/>
+  if (loading) return <Loading />
   if (!posts.length) return <p className="text-2xl">No posts.</p>
 
 
@@ -92,9 +84,9 @@ export default function Home() {
       <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2 text-center">All our articles</h1>
       {
         posts.map(post => (
-           <div key={post.id_article} className='my-5 mx-5 flex justify-center '>
+          <div key={post.id_article} className='my-5 mx-5 flex justify-center '>
             <article className="flex bg-white transition hover:shadow-xl w-2/5">
-               <div className="rotate-180 p-2 [writing-mode:_vertical-lr]">
+              <div className="rotate-180 p-2 [writing-mode:_vertical-lr]">
                 <time
                   datetime="2022-10-10"
                   className="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900"
@@ -108,7 +100,6 @@ export default function Home() {
                 <img
                   alt="image_article"
                   // src={downloadImage(post.image) ? avatarUrl[0] : ""}
-                  // src={post.image}
                   src='/react.svg'
                   className="aspect-square h-full w-full object-cover"
                 />
@@ -137,8 +128,8 @@ export default function Home() {
                 </div>
               </div>
             </article>
-          {/* <Article_cards article={post}/> */}
-           </div>
+            {/* <Article_cards article={post}/> */}
+          </div>
         )
         )
       }
