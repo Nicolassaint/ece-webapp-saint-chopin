@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react'
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
-import Link from "next/link";
 
 export default function Account({ session }) {
   const supabase = useSupabaseClient()
   const user = useUser()
   const [loading, setLoading] = useState(true)
   const [title, setTitle] = useState([])
-  const [titre, setTitre] = useState(null)
+  const [titre, setTitre] = useState([])
 
 useEffect(() => {
     getArticle()
@@ -52,25 +51,19 @@ useEffect(() => {
   }
 
   return (
-    //  <div classname="mr-5 ml-5">
-    //      {title.map((article) => (
-    //                <div key={article.id_article}>
-    //                          <label className='text-center'>{article.title}</label>
-    //                </div>
-    //             ))}
-    //   </div>
       <div>
         <div className="mx-auto w-full max-w-2xl rounded-xl bg-white p-8 shadow dark:bg-neutral-800 border-solid border-2 border-black w-100 rounded-md">
                 <div className="text-center items-center justify-center text-10xl font-bold">
-                <label>All the articles you have written {user.id}</label>
+                <label>All article that you have written</label>
                 {title.map((article) => (
                             <div key={article.title}>
-                                      <button onClick={() => setTitre(article.title)}>{article.title}</button>
+                                      <button onClick={() => /*setTitre(titre => [...titre, article.title])*/setTitre(article.title)}>{article.title}</button>
                             </div> 
                           ))}
                   </div>
         </div>
         <div className='pt-2 text-center'>
+          <label>Titre supprimé si vous appuyez sur delete : {titre}</label>
           <button
             className="border-solid border-2 border-black w-60 rounded-md bg-blue-500 hover:bg-blue-700 text-white"
             onClick={() => deleteArticle({titre})}
