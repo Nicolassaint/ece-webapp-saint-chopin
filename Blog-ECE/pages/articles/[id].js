@@ -6,6 +6,8 @@ import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 import { Tiptap } from '../../components/editor/Tiptap';
 import { v4 as uuidv4 } from 'uuid';
 import Loading from '../../components/Loading';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function Post({ article }) {
 
@@ -36,11 +38,11 @@ export default function Post({ article }) {
 
   function getDate(timestamp) {
     var dateFormat = new Date(timestamp);
-    var newDate =  dateFormat.getDate()+
-    "/"+(dateFormat.getMonth()+1)+
-    "/"+dateFormat.getFullYear()+
-    " "+dateFormat.getHours()+
-    ":"+dateFormat.getMinutes();
+    var newDate = dateFormat.getDate() +
+      "/" + (dateFormat.getMonth() + 1) +
+      "/" + dateFormat.getFullYear() +
+      " " + dateFormat.getHours() +
+      ":" + dateFormat.getMinutes();
 
     return newDate
   }
@@ -65,7 +67,7 @@ export default function Post({ article }) {
       .filter('id', 'eq', user.id)
       .single()
 
-    if(data) {setCommentator(data.username)}
+    if (data) { setCommentator(data.username) }
   }
 
   async function getUser(article) {
@@ -109,7 +111,7 @@ export default function Post({ article }) {
     <div className=''>
       <h1 className="text-5xl mt-4 font-semibold tracking-wide text-center">{titre}</h1>
       <p className="text-sm font-light my-4 text-center">written by {username}</p>
-      <div className="mt-8 mb-4 prose m-auto">
+      <div className="mt-8 mb-10 prose m-auto">
         {parse(article.content)}
       </div>
       {
@@ -121,6 +123,11 @@ export default function Post({ article }) {
               <div class="flex flex-col w-full">
                 <div class="flex flex-row justify-between">
                   <p class="relative text-xl whitespace-nowrap truncate overflow-hidden dark:text-black">{comment.name}</p>
+                  {commentator===comment.name ? <div>
+                    <buton className="ml-2 dark:text-black"><EditIcon /></buton>
+                    <buton><DeleteIcon sx={{ color: "red" }} />
+                    </buton>
+                  </div> : ""}
                   <a class="text-gray-500 text-xl" href="#"><i class="fa-solid fa-trash"></i></a>
                 </div>
                 <p class="text-gray-400 text-sm">{getDate(comment.created_at)}</p>
