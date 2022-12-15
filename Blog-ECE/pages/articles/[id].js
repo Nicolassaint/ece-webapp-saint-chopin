@@ -19,16 +19,34 @@ export default function Post({ article }) {
     }
   }, [article])
 
+
+
   const [description, setDescription] = useState("")
   const [idArticle, setidArticle] = useState(null)
+  const [idComment, setidComment] = useState(null)
   const [username, setUsername] = useState("Anonyme")
   const [titre, setTitre] = useState(null)
   const [comments, setComments] = useState([])
   const [commentator, setCommentator] = useState("Anonyme")
+  const [supprimer, setDelete] = useState(null)
+  const [update, setUpdate] = useState(null)
   const supabase = useSupabaseClient()
   const user = useUser()
   const [loading, setLoading] = useState(true)
   const router = useRouter()
+
+
+  useEffect(() => {
+    if (supprimer) {
+      deleteComment()
+    }
+  }, [supprimer])
+
+  useEffect(() => {
+    if (update) {
+      updateComment(update)
+    }
+  }, [update,supprimer])
 
   if (router.isFallback) {
     return (
@@ -106,6 +124,39 @@ export default function Post({ article }) {
     }
   }
 
+  async function deleteComment() {
+    try {
+      setLoading(true)
+      let { error } = await supabase.from('comments').delete().eq('id_comment', supprimer)
+      if (error) throw error
+      alert('Article deleted')
+    } catch (error) {
+      alert('Error delete article!')
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  async function updateComment(content) {
+    try {
+      setLoading(true)
+
+      const updates = {
+        content : "salut" ,
+      }
+      console.log(updates.content)
+
+      let { error } = await supabase.from('comments').update(updates).eq('id_comment',"5327793e-bfd6-4629-b42a-6f14345492fc")
+      alert('Article update')
+    } catch (error) {
+      alert('Error update article!')
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
 
   return (
     <div className=''>
@@ -124,9 +175,8 @@ export default function Post({ article }) {
                 <div class="flex flex-row justify-between">
                   <p class="relative text-xl whitespace-nowrap truncate overflow-hidden dark:text-black">{comment.name}</p>
                   {commentator===comment.name ? <div>
-                    <buton className="ml-2 dark:text-black"><EditIcon /></buton>
-                    <buton><DeleteIcon sx={{ color: "red" }} />
-                    </buton>
+                    <buton className="ml-2 dark:text-black" onClick={() => setUpdate(comment.content)}><EditIcon /></buton>
+                    <buton onClick={() => setDelete(comment.id_comment)}><DeleteIcon sx={{ color: "red" }} /></buton>
                   </div> : ""}
                   <a class="text-gray-500 text-xl" href="#"><i class="fa-solid fa-trash"></i></a>
                 </div>
@@ -139,8 +189,9 @@ export default function Post({ article }) {
         ))
       }
       <div className='App'>
+        <label>{update}</label>
         {user ? <h2 className='m-auto prose mb-4'>Post a comment here...</h2> : ""}
-        {user ? <Tiptap setDescription={setDescription} setContent="" /> : <div className='prose'>You can't post comment if you're not logged in...</div>}
+        {user ? <Tiptap setDescription={update} setContent={update} /> : <div className='prose'>You can't post comment if you're not logged in...</div>}
       </div>
       {user ? <div className="flex pb-20 justify-center">
         <button

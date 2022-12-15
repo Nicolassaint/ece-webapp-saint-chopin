@@ -100,7 +100,7 @@ export default function Home() {
                 </h2>
             </div>
         </div>
-    </div>
+    </div> 
       <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2 text-center">The most recent articles</h1>
       {
         posts.map(post => (

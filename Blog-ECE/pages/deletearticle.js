@@ -57,7 +57,7 @@ export default function Account({ session }) {
           <label>All article that you have written</label>
           {title.map((article) => (
             <div key={article.title}>
-              <button onClick={() => /*setTitre(titre => [...titre, article.title])*/setTitre(article.title)}>{article.title}</button>
+              <button onClick={() => setTitre(article.title)}>{article.title}</button>
             </div>
           ))}
         </div>

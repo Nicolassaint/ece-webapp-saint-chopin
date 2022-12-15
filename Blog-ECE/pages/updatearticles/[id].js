@@ -1,41 +1,25 @@
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { supabase } from '../api/api'
 import { Tiptap } from "../../components/editor/Tiptap";
-import Loading from '../../components/Loading';
 
 export default function Post({ article }) {
+
 
   const [title, setTitle] = useState([])
   const [loading, setLoading] = useState(true)
   const [description, setDescription] = useState([])
-  const [idArticle, setidArticle] = useState([])
-  const [username, setUsername] = useState([])
   const router = useRouter()
   if (router.isFallback) {
-    return <Loading/>
+    return <div>Loading...</div>
   }
 
 
-  async function getUser(article) {
-
-    console.log(article.content)
-    console.log(article.id_article)
-    console.log(article.id_user)
-    console.log(article.title)
-
-    const { data } = await supabase
-      .from('profiles')
-      .select('username')
-      .filter('id', 'eq', article.id_user)
-      .single()
-
-    console.log(data)
-
-    setTitle(article.title)
-    setUsername(data.username)
-    setidArticle(article.id_article)
-  }
+  useEffect(() => {
+    if (article) {
+      setTitle(article.title)
+    }
+  }, [article])
 
   async function updateArticle({ title, description }) {
     try {
@@ -61,26 +45,23 @@ export default function Post({ article }) {
   return (
     <div>
       <div className='text-center'>
-        <p className="text-sm font-light my-4 text-center">This article was written by {getUser(article) ? username : "Anonyme"}</p>
-
         <div classname='text-center'>
           <label>Title</label>
           <input
             id="title"
             type="text"
-            placeholder={title}
+            value={title || ''}
             className="border-solid border-2 border-black w-80 rounded-md dark:bg-slate-800"
-
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
-        <div className="mt-8 prose m-auto App">
+        <div className=" prose m-auto App">
           <label>Content</label>
           <Tiptap setDescription={setDescription} setContent={article.content} />
         </div>
 
       </div>
-      <div className='text-center mb-6'>
+      <div className='text-center  mb-6'>
 
         <button
           className="border-solid border-2 border-black w-60 rounded-md bg-blue-500 hover:bg-blue-700 text-white"
