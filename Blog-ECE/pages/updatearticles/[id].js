@@ -32,6 +32,7 @@ export default function Post({ article }) {
 
     console.log(data)
 
+    setTitle(article.title)
     setUsername(data.username)
     setidArticle(article.id_article)
   }
@@ -67,7 +68,7 @@ export default function Post({ article }) {
           <input
             id="title"
             type="text"
-            value={article.title || ''}
+            placeholder={title}
             className="border-solid border-2 border-black w-80 rounded-md dark:bg-slate-800"
 
             onChange={(e) => setTitle(e.target.value)}
