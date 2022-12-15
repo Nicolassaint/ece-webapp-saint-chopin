@@ -7,10 +7,12 @@ export default function Account({ session }) {
   const user = useUser()
   const [loading, setLoading] = useState(true)
   const [title, setTitle] = useState([])
+  const [username,setUsername] = useState(null)
 
 useEffect(() => {
     getArticle()
   }, [session])
+
 
   async function getArticle() {
     try {
@@ -40,17 +42,10 @@ useEffect(() => {
 
   return (
     <>
-        {/* <div className="text-center items-center justify-center text-10xl font-bold">
-         {title.map((titre) => (
-                   <div key={titre.title}>
-                             <Link href={`${titre.id_article}`}>{titre.title}</Link>
-                   </div> 
-                ))}
-        </div> */}
 
       <div className="mx-auto w-full max-w-2xl rounded-xl bg-white p-8 shadow dark:bg-neutral-800 border-solid border-2 border-black w-100 rounded-md">
         <div className="text-center items-center justify-center text-10xl font-bold">
-        <label>All the articles you have written {user.id}</label>
+        <label>All articles that you have written</label>
         {title.map((titre) => (
                     <div key={titre.title}>
                               <Link href={`${titre.id_article}`}>{titre.title}</Link>

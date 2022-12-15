@@ -15,11 +15,12 @@ export default function Post({ article }) {
   const user = useUser()
   const [loading, setLoading] = useState(true)
   const router = useRouter()
+  
+  
   if (router.isFallback) {
     return <div>Loading...</div>
   }
-
-  async function getUser(article){
+    async function getUser(article){
 
     const { data } = await supabase
     .from('profiles')
@@ -64,7 +65,7 @@ export default function Post({ article }) {
       <div className="mt-8 mb-4 prose m-auto">
         {parse(article.content) }
       </div>
-      <div className='App'>
+      <div className='App prose'>
       {user ? <h2 className='m-auto prose mb-4'>Post a comment here...</h2> : ""}
       {user ? <Tiptap setDescription={setDescription} setContent=""/> : <div className='prose'>You can't post comment if you're not logged in...</div>}
       </div>

@@ -28,7 +28,7 @@ export default function Contacts() {
       <section className="mb-32 text-gray-800">
         <div className="flex justify-center">
           <div className="text-center lg:max-w-3xl md:max-w-xl">
-            <h2 className="text-3xl font-bold mb-12 px-6">Contact us</h2>
+            <h2 className="text-3xl font-bold mb-12 px-6 dark:text-white">Contact us</h2>
           </div>
         </div>
 
@@ -204,7 +204,7 @@ export default function Contacts() {
                     </div>
                   </div>
                   <div className="grow ml-6">
-                    <p className="font-bold mb-1">Problème technique</p>
+                    <p className="font-bold mb-1 dark:text-white">Problème technique</p>
                     <p className="text-gray-500">nicolas.saint@edu.ece.fr</p>
                     <p className="text-gray-500">+33782658824</p>
                   </div>
@@ -232,7 +232,7 @@ export default function Contacts() {
                     </div>
                   </div>
                   <div className="grow ml-6">
-                    <p className="font-bold mb-1">Question budgétaire</p>
+                    <p className="font-bold mb-1 dark:text-white">Question budgétaire</p>
                     <p className="text-gray-500">thomas.chopin@edu.ece.fr</p>
                     <p className="text-gray-500">+33665685875</p>
                   </div>
@@ -260,7 +260,7 @@ export default function Contacts() {
                     </div>
                   </div>
                   <div className="grow ml-6">
-                    <p className="font-bold mb-1">Presse</p>
+                    <p className="font-bold mb-1 dark:text-white">Presse</p>
                     <p className="text-gray-500">nicolas.saint@edu.ece.fr</p>
                     <p className="text-gray-500">+33782658824</p>
                   </div>
@@ -288,7 +288,7 @@ export default function Contacts() {
                     </div>
                   </div>
                   <div className="grow ml-6">
-                    <p className="font-bold mb-1">Service Client</p>
+                    <p className="font-bold mb-1 dark:text-white">Service Client</p>
                     <p className="text-gray-500">thomas.chopin@edu.ece.fr</p>
                     <p className="text-gray-500">+33665685875</p>
                   </div>

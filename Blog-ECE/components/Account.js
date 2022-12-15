@@ -89,7 +89,7 @@ export default function Account({ session }) {
         <label htmlFor="username">Username</label>
       </div>
 
-      <div className='flex items-stretch'>
+      <div className='flex justify-between'>
       <input
           id="username"
           type="text"
@@ -106,7 +106,7 @@ export default function Account({ session }) {
 
       <label htmlFor="website">Website</label>
     
-      <div className='items-stretch'>
+      <div className='flex justify-between'>
       <input
           id="website"
           type="website"

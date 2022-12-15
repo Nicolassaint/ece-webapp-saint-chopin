@@ -1,7 +1,5 @@
 import { useRouter } from 'next/router'
 import { useState} from 'react'
-import ReactMarkdown from 'react-markdown'
-import parse from "html-react-parser";
 import { supabase } from '../api/api'
 import { Tiptap } from "../../components/editor/Tiptap";
 
@@ -15,9 +13,31 @@ export default function Post({ article }) {
   const [title, setTitle] = useState([])
   const [loading, setLoading] = useState(true)
   const [description, setDescription] = useState([])
+  const [idArticle,setidArticle] = useState([])
+  const [username,setUsername] = useState([])
   const router = useRouter()
   if (router.isFallback) {
     return <div>Loading...</div>
+  }
+
+  
+  async function getUser(article){
+
+    console.log(article.content)
+    console.log(article.id_article)
+    console.log(article.id_user)
+    console.log(article.title)
+
+    const { data } = await supabase
+    .from('profiles')
+    .select('username')
+    .filter('id','eq',article.id_user)
+    .single()
+
+    console.log(data)
+
+    setUsername(data.username)
+    setidArticle(article.id_article)
   }
 
   async function updateArticle({title,description }) {
@@ -44,7 +64,7 @@ export default function Post({ article }) {
   return (
     <div>
     <div className='text-center'>
-    <p className="text-sm font-light my-4 text-center">This article was written by {article.id_user}</p>
+    <p className="text-sm font-light my-4 text-center">This article was written by {getUser(article) ? username : "Anonyme"}</p>
 
       <div classname='text-center'>
         <label>Title</label>
