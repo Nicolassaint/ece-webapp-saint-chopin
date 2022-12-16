@@ -3,12 +3,40 @@ html,
 
 
 
+
 html,
 body,
 #__next {
   height: 100vh;
   width: 100vw;
   overflow-x: hidden;
+}
+
+:root {
+  --light-color: #fff;
+  --dark-color: #222;
+}
+
+@media (prefers-color-scheme: dark) {
+  .ProseMirror {
+   background: var(--dark-color);
+ }
+ .ProseMirror:focus {
+   border: none;
+   outline: 1px solid black;
+
+ }
+}
+
+@media (prefers-color-scheme: light) {
+  .ProseMirror {
+   background: var(--light-color);
+ }
+ .ProseMirror:focus {
+   border: none;
+   outline: 1px solid black;
+
+ }
 }
 
 /* Grid */
@@ -475,20 +503,12 @@ button.primary,
   min-height: 100px;
 }
 
-@media (prefers-color-scheme: dark) {
-   /* .ProseMirror {
-    background: #262626;
-  } */
-  .ProseMirror:focus {
-    border: none;
-    outline: 1px solid grey;
-
-  }
-}
-
  .ProseMirror {
     background: grey;
+    cursor: pointer;
+    color: black;
   }
+
 .ProseMirror:focus {
   border: none;
   outline: 1px solid grey;

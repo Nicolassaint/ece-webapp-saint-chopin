@@ -99,7 +99,7 @@ export default function Account({ session }) {
         />
         <Link href="/deletearticle">
           <button className="border-solid border-2 border-black w-50 rounded-md bg-green-500 hover:bg-green-700 text-white">
-            Delete Article
+            Delete Articles
           </button>
         </Link>
       </div>
@@ -117,7 +117,7 @@ export default function Account({ session }) {
 
         <Link href="/updatearticles/updatearticle">
           <button className="border-solid border-2 border-black w-50 rounded-md bg-green-500 hover:bg-green-700 text-white">
-            Update Article
+            Update Articles
           </button>
         </Link>
 

@@ -7,6 +7,11 @@ export default function Post({ article }) {
 
 
   const [title, setTitle] = useState([])
+
+  useEffect(() => {
+    setTitle(article.title)
+  }, [article])
+
   const [loading, setLoading] = useState(true)
   const [description, setDescription] = useState([])
   const router = useRouter()
@@ -15,9 +20,6 @@ export default function Post({ article }) {
   }
 
 
-  useEffect(() => {
-    setTitle(article.title)
-  }, [article])
 
   async function updateArticle({ title, description }) {
     try {
