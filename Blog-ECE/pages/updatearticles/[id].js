@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { supabase } from '../api/api'
 import { Tiptap } from "../../components/editor/Tiptap";
+import Loading from '../../components/Loading';
 
 export default function Post({ article }) {
 
@@ -16,7 +17,7 @@ export default function Post({ article }) {
   const [description, setDescription] = useState([])
   const router = useRouter()
   if (router.isFallback) {
-    return <div>Loading...</div>
+    return <Loading/>
   }
 
 

@@ -42,12 +42,6 @@ export default function Post({ article }) {
     }
   }, [supprimer])
 
-  // useEffect(() => {
-  //   if (update) {
-  //     setnouveauID(!nouveauID)
-  //   }
-  // }, [update])
-
   if (router.isFallback) {
     return (
       <Loading />
@@ -128,6 +122,7 @@ export default function Post({ article }) {
       let { error } = await supabase.from('comments').insert(insert)
       if (error) throw error
       alert('Comment created!')
+      window.location.reload();
     } catch (error) {
       alert('Error inserting the data!')
       console.log(error)
@@ -141,7 +136,8 @@ export default function Post({ article }) {
       setLoading(true)
       let { error } = await supabase.from('comments').delete().eq('id_comment', supprimer)
       if (error) throw error
-      alert('Article deleted')
+      alert('Comment deleted!')
+      window.location.reload();
     } catch (error) {
       alert('Error delete article!')
       console.log(error)
@@ -160,7 +156,8 @@ export default function Post({ article }) {
       console.log(updates.content)
 
       let { error } = await supabase.from('comments').update(updates).eq('id_comment', nouveauID)
-      alert('Article update')
+      alert('Comment updated!')
+      window.location.reload();
     } catch (error) {
       alert('Error update article!')
       console.log(error)

@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Avatar from './Avatar'
 import Link from "next/link"
+import { useTranslation } from 'next-i18next';
+
 
 
 export default function Account({ session }) {
@@ -11,6 +13,12 @@ export default function Account({ session }) {
   const [username, setUsername] = useState(null)
   const [website, setWebsite] = useState(null)
   const [avatar_url, setAvatarUrl] = useState(null)
+
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   useEffect(() => {
     getProfile()
@@ -120,6 +128,11 @@ export default function Account({ session }) {
             Update Articles
           </button>
         </Link>
+
+          {/* <button onClick={() => changeLanguage('fr')}>Francais</button>
+          <button onClick={() => changeLanguage('en')}>English</button>
+          <p>{t('welcome')}</p> */}
+
 
       </div>
 

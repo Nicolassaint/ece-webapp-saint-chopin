@@ -5,6 +5,8 @@ import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { SessionContextProvider } from '@supabase/auth-helpers-react'
 import { useState } from "react";
 import { ThemeProvider } from "next-themes";
+// import { appWithTranslation } from 'next-i18next'
+
 
 function MyApp({ Component, pageProps }) {
   // Create a new supabase browser client on every first render.

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import parse from "html-react-parser";
-
+import Loading from '../components/Loading';
 
 export default function Home() {
 
@@ -77,7 +77,7 @@ export default function Home() {
       console.log("anciens posts: ", data)
     }
   }
-  if (loading) return <p className="text-2xl">Loading ...</p>
+  if (loading) return <Loading/>
   if (!posts.length) return <p className="text-2xl">No posts.</p>
 
 
