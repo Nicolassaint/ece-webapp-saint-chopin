@@ -12,10 +12,6 @@ body,
   overflow-x: hidden;
 }
 
-:root {
-  --light-color: #fff;
-  --dark-color: #222;
-}
 
 @media (prefers-color-scheme: dark) {
   .ProseMirror {
