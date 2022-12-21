@@ -25,7 +25,6 @@ import { SunIcon, MoonIcon } from "@heroicons/react/solid";
 let Menu = [
   { Name: "Home", link: "/" },
   { Name: "About", link: "/about" },
-  { Name: "Contacts", link: "/contacts" },
   { Name: "Articles", link: "/articles" },
   { Name: "Write", link: "/write" },
   { Name: "Account", link: "/your_account" },
@@ -41,6 +40,7 @@ export default function DrawerAppBar(props) {
   const session = useSession();
   const user = useUser();
   const [username, setUsername] = useState("invité");
+  const [color, setColor] = useState("white");
   const [loading, setLoading] = useState(true);
 
   const { systemTheme, theme, setTheme } = useTheme();
@@ -77,7 +77,7 @@ export default function DrawerAppBar(props) {
 
       let { data, error, status } = await supabase
         .from("profiles")
-        .select("username")
+        .select("username,color")
         .eq("id", user.id)
         .single();
 
@@ -87,6 +87,7 @@ export default function DrawerAppBar(props) {
 
       if (data) {
         setUsername(data.username);
+        setColor(data.color)
       }
     } catch (error) {
       setUsername("invité");
@@ -94,7 +95,7 @@ export default function DrawerAppBar(props) {
       setLoading(false);
     }
   }
-
+  
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -131,13 +132,24 @@ export default function DrawerAppBar(props) {
 
   return (
     <>
-      <nav className="px-2 sm:px-4 py-2.5 flex justify-between">
+      <nav className="px-2 sm:px-4 py-2.5 flex justify-between bg-primary dark:bg-black-800">
         <div className="mt-4 ml-2">
           <Link href="/">
             <Image src={logovert} alt="logo JEECE" width="75px" height="75px" />
           </Link>
         </div>
         {renderThemeChanger()}
+        <div className="flex items-center mt-4 mr-4 dark:bg-white">
+        <button
+          className="border-solid border-2 border-black w-60 rounded-md text-black"
+          onClick={() => document.documentElement.style.setProperty('--primary-color', color)}
+        >
+          Click here if you want to have your webiste in {color}
+        </button>
+        
+        
+        </div>
+
         <div className="flex items-center mt-4 mr-4">
           <div className="bg-greenJeece shadow-lg rounded-full mr-3">
             <div className=" flex p-4 dark:text-gray-300">
@@ -147,7 +159,7 @@ export default function DrawerAppBar(props) {
               </div>
             </div>
           </div>
-
+          
           <div className="bg-greenJeece shadow-lg rounded-full hidden md:block">
             <div className="container flex p-4  dark:text-gray-300">
               {Menu.map((l) => (

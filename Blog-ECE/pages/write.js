@@ -45,7 +45,8 @@ export default function Write() {
 
   return (
     <>
-      <div className="mx-auto w-full max-w-2xl rounded-xl bg-white p-8 shadow dark:bg-neutral-800">
+    <div className="bg-primary">
+      <div className="mx-auto w-full max-w-2xl rounded-xl bg-primary p-8 shadow dark:bg-black-800">
         <div className="flex items-center justify-center">
           <Avatar
             uid={uuidv4()}
@@ -79,6 +80,7 @@ export default function Write() {
         >
           Post
         </button>
+      </div>
       </div>
     </>
   );

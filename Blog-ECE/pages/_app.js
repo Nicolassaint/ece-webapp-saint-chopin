@@ -19,7 +19,9 @@ function MyApp({ Component, pageProps }) {
     >
       <ThemeProvider enableSystem={true} attribute="class">
         <Layout>
-          <Component {...pageProps} />
+        {/* <div style={{ backgroundColor: '#FF0000' }}> */}
+        <Component {...pageProps} />
+        {/* </div> */}
         </Layout>
       </ThemeProvider>
     </SessionContextProvider>

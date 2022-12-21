@@ -80,7 +80,7 @@ export default function Home() {
 
 
   return (
-    <div className='grid-cols-2'>
+    <div className='grid-cols-2 bg-primary'>
       <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2 text-center">All our articles</h1>
       {
         posts.map(post => (

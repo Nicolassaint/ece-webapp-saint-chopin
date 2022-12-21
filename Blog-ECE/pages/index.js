@@ -78,12 +78,12 @@ export default function Home() {
     }
   }
   if (loading) return <Loading/>
-  if (!posts.length) return <p className="text-2xl">No posts.</p>
+  // if (!posts.length) return <p className="text-2xl">No posts.</p>
 
 
   return (
-    <div className='grid-cols-2'>
-      <div class="relative z-20 flex items-center bg-white dark:bg-gray-800">
+    <div className='grid-cols-2 bg-primary'>
+      <div class="relative z-20 flex items-center dark:bg-black-800">
         <div class="container relative flex flex-col items-center justify-between px-6 py-8 mx-auto">
           <div class="flex flex-col">
             <h1 class="w-full text-4xl font-light text-center text-gray-800 uppercase sm:text-5xl dark:text-white">

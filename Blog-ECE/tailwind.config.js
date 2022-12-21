@@ -11,9 +11,11 @@ module.exports = {
         sans: ["Montserrat"],
       },
       colors: {
+        primary: 'var(--primary-color)',
         blueJeece: "#36455A",
         greenJeece: "#5FAB65",
     },
+
   },
   },
   plugins: [

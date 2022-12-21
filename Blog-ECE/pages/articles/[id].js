@@ -101,7 +101,8 @@ export default function Post({ article }) {
       .select('username')
       .filter('id', 'eq', article.id_user)
       .single()
-
+    console.log(article)
+    console.log("aa")
     setUsername(data.username)
     setidArticle(article.id_article)
 
@@ -168,7 +169,7 @@ export default function Post({ article }) {
 
 
   return (
-    <div>
+    <div className='bg-primary'>
       <h1 className="text-5xl mt-4 font-semibold tracking-wide text-center">{titre}</h1>
       <p className="text-sm font-light my-4 text-center">written by {username}</p>
       <div className="mt-8 mb-10 prose m-auto">

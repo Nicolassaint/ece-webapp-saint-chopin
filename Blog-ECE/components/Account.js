@@ -13,7 +13,12 @@ export default function Account({ session }) {
   const [username, setUsername] = useState(null)
   const [website, setWebsite] = useState(null)
   const [avatar_url, setAvatarUrl] = useState(null)
+  const [color, setColor] = useState(null)
+  const [selectedValue, setSelectedValue] = useState(null);
 
+  function handleChange(event) {
+    setSelectedValue(event.target.value);
+  }
   const { t, i18n } = useTranslation();
 
   const changeLanguage = (lng) => {
@@ -30,7 +35,7 @@ export default function Account({ session }) {
 
       let { data, error, status } = await supabase
         .from('profiles')
-        .select(`username, website, avatar_url`)
+        .select(`username, website, avatar_url,color`)
         .eq('id', user.id)
         .single()
 
@@ -42,6 +47,7 @@ export default function Account({ session }) {
         setUsername(data.username)
         setWebsite(data.website)
         setAvatarUrl(data.avatar_url)
+        setColor(data.color)
       }
     } catch (error) {
       alert('Error loading user data!')
@@ -51,18 +57,19 @@ export default function Account({ session }) {
     }
   }
 
-  async function updateProfile({ username, website, avatar_url }) {
+  async function updateProfile({ username, website, avatar_url, selectedValue }) {
     try {
       setLoading(true)
-
+      console.log(selectedValue)
       const updates = {
         id: user.id,
         username,
         website,
         avatar_url,
         updated_at: new Date().toISOString(),
+        color : selectedValue,
       }
-
+      console.log(updates)
       let { error } = await supabase.from('profiles').upsert(updates)
       if (error) throw error
       alert('Profile updated!')
@@ -76,7 +83,7 @@ export default function Account({ session }) {
 
   return (
 
-    <div className="form-widget">
+    <div className="bg-primary">
       <div className="flex items-center justify-center">
         <Avatar
           uid={user.id}
@@ -136,10 +143,64 @@ export default function Account({ session }) {
 
       </div>
 
+      <div classname='dark:text-white '>
+      <input
+        type="radio"
+        name="group"
+        value="red"
+        checked={selectedValue === 'red'}
+        onChange={handleChange}
+        className="text-red-500"
+      />
+      Red
+      <br />
+      <input
+        type="radio"
+        name="group"
+        value="blue"
+        checked={selectedValue === 'blue'}
+        onChange={handleChange}
+        className="text-blue-500"
+      />
+      Blue
+      <br />
+      <input
+        type="radio"
+        name="group"
+        value="pink"
+        checked={selectedValue === 'pink'}
+        onChange={handleChange}
+        className="text-pink-500"
+      />
+      Pink
+      <br />
+      <input
+        type="radio"
+        name="group"
+        value="purple"
+        checked={selectedValue === 'purple'}
+        onChange={handleChange}
+        className="text-purple-500"
+      />
+      Purple
+      <br />
+      <input
+        type="radio"
+        name="group"
+        value="green"
+        checked={selectedValue === 'green'}
+        onChange={handleChange}
+        className="text-green-500"
+      />
+      Green
+      <br />
+      <p>Selected value: {selectedValue}</p>
+    </div>
+
       <div className='pt-4'>
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded block"
-          onClick={() => updateProfile({ username, website, avatar_url })}
+          onClick={() => updateProfile({ username, website, avatar_url,selectedValue })}
           disabled={loading}
         >
           {loading ? 'Loading ...' : 'Update'}
