@@ -18,6 +18,7 @@ export default function Write() {
   const [image, setImage] = useState(null);
 
   async function createArticle({ title, description, image }) {
+
     try {
       setLoading(true);
 
@@ -35,12 +36,14 @@ export default function Write() {
       let { error } = await supabase.from("articles").insert(insert);
       if (error) throw error;
       alert("Article created!");
+
     } catch (error) {
       alert("Error inserting the data!");
       console.log(error);
     } finally {
       setLoading(false);
     }
+
   }
 
   return (

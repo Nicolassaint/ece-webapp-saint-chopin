@@ -9,19 +9,21 @@ import Loading from '../../components/Loading';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Like from '@mui/icons-material/ThumbUpAlt';
+import NotLike from '@mui/icons-material/ThumbUpOffAlt';
+import { UserRemoveIcon } from '@heroicons/react/solid';
 
 export default function Post({ article }) {
 
-
   const session = useSession()
+  const [uuid, setUuid] = useState([])
 
   useEffect(() => {
-    if (article && user) {
+    if (article) {
       getComment(article);
       getUser(article);
-      if (user) { 
+      // Likers(article)
+      if (user) {
         getCommentator();
-        AlreadyLike();
       }
     }
   }, [article])
@@ -39,11 +41,6 @@ export default function Post({ article }) {
   const [nouveauID, setnouveauID] = useState("")
   const [idUser, setIdUser] = useState("")
   const [like, setLike] = useState(false)
-  const [uuid, setUuid] = useState([
-    "0ce62ac9-1504-4310-b165-9f73c90b2306",
-    "c1a805c0-1abf-48b1-b633-af35553c4cf8",
-    "d6d2a9da-8e9c-478e-843f-c8d9d468a31d",
-  ])
   const supabase = useSupabaseClient()
   const user = useUser()
   const [loading, setLoading] = useState(true)
@@ -56,11 +53,17 @@ export default function Post({ article }) {
     }
   }, [supprimer])
 
+  // useEffect(() => {
+  //   if (uuid) {
+  //     AlreadyLike()
+  //   }
+  // }, [uuid])
+
   if (router.isFallback) {
     return (
       <Loading />
     )
-  } 
+  }
 
   function getDate(timestamp) {
     var dateFormat = new Date(timestamp);
@@ -115,6 +118,7 @@ export default function Post({ article }) {
       .select('id,username')
       .filter('id', 'eq', article.id_user)
       .single()
+
     setUsername(data.username)
     setIdUser(data.id)
     setidArticle(article.id_article)
@@ -136,7 +140,7 @@ export default function Post({ article }) {
       let { error } = await supabase.from('comments').insert(insert)
       if (error) throw error
       alert('Comment created!')
-      window.location.reload();
+      getComment(article);
     } catch (error) {
       alert('Error inserting the data!')
       console.log(error)
@@ -151,7 +155,7 @@ export default function Post({ article }) {
       let { error } = await supabase.from('comments').delete().eq('id_comment', supprimer)
       if (error) throw error
       alert('Comment deleted!')
-      window.location.reload();
+      getComment(article);
     } catch (error) {
       alert('Error delete article!')
       console.log(error)
@@ -171,7 +175,7 @@ export default function Post({ article }) {
 
       let { error } = await supabase.from('comments').update(updates).eq('id_comment', nouveauID)
       alert('Comment updated!')
-      window.location.reload();
+      getComment(article);
     } catch (error) {
       alert('Error update article!')
       console.log(error)
@@ -180,70 +184,92 @@ export default function Post({ article }) {
     }
   }
 
-  async function InsertLike(user) {
+  async function InsertLike() {
     try {
       let tab_liker = []
       tab_liker = uuid
-      tab_liker.push(user)
+      console.log("avant : ", tab_liker)
+      tab_liker.push(user.id)
+      console.log("après : ", tab_liker)
       setUuid(tab_liker)
 
       const updates = {
         like: uuid
       }
 
-      let { error } = await supabase.from('articles').update(updates).eq('id_article',idArticle)
+      let { error } = await supabase.from('articles').update(updates).eq('id_article', idArticle)
+      alert('Like insert!')
+    } catch (error) {
+      alert('Error update article!')
+      console.log(error)
+    }
+  }
+
+  async function DeleteLike() {
+    try {
+      let tab_liker = []
+      tab_liker = uuid
+      tab_liker = tab_liker.filter(function (element) {
+        return element !== user.id;
+      });
+      setUuid(tab_liker)
+
+      const updates = {
+        like: uuid
+      }
+
+      let { error } = await supabase.from('articles').update(updates).eq('id_article', idArticle)
       alert('Like insert!')
       window.location.reload();
     } catch (error) {
       alert('Error update article!')
       console.log(error)
-    } 
-  }
-
-  async function Likers(user) {
-    try {
-      console.log("Salut "+ user)
-      let { data } = await supabase.from('articles').select('like').eq('id_user',user)
-      console.log(data[0].like)
-      setUuid(uuid => [...uuid, data[0].like])
-      console.log(uuid)
-      alert('There is likers!')
-      window.location.reload();
-    } catch (error) {
-      alert('Error update article!')
-      console.log(error)
-    } 
-  }
-
-  async function AlreadyLike() {
-    console.log("Salut " + idUser)
-    var i;
-    for(i=0; i < uuid.length; i++){
-      console.log("Salut " + idUser + " et "+ uuid[i])
-      if(idUser===uuid[i])
-        setLike(true)
-      else
-      setLike(false)
     }
   }
 
+  async function Likers(article) {
+    try {
+      let { data } = await supabase
+      .from('articles')
+      .select('like')
+      .eq('id_article', article.id_article)
+      .single()
+
+      console.log("nos likes : ", data)
+      if (data) {
+        setUuid(data)
+        alert('There is likers!')
+      }
+    } catch (error) {
+      alert('Error getting data!')
+      console.log(error)
+    }
+  }
+
+  async function AlreadyLike() {
+
+    for (var i = 0; i < uuid.length; i++) {
+      if (user.id === uuid[i]) {
+        console.log("oui")
+        setLike(true)
+      }
+      else {
+        console.log("non")
+        setLike(false)
+      }
+    }
+  }
 
   return (
     <div className='bg-primary'>
       <h1 className="text-5xl mt-4 font-semibold tracking-wide text-center">{titre}</h1>
       <p className="text-sm font-light my-4 text-center">written by {username}</p>
-      <label className="text-lg font-light my-4 text-center">Number of likes for this article : {uuid.length}</label>
-      {like === false ?  <div className="text-center">
-        <label className="text-sm font-light my-4 text-center">Click here to like this article <buton className="text-sm font-light my-4 text-center" onClick={() => InsertLike(idUser)}><Like/></buton></label>
-        
-      </div> : ""}
+      {/* <div className="text-lg font-light text-center">{uuid.length}{like === false ?
+        <buton className="text-sm font-light pb-1 mx-2" onClick={() => InsertLike()}><NotLike /></buton>
+        : <buton className="text-sm font-light mx-2" onClick={() => DeleteLike()}><Like /></buton>}</div> */}
 
-
-                  
-     
-      
       <div className="mt-8 mb-10 prose m-auto">
-        {parse(article.content)}
+        {article && parse(article.content)}
       </div>
       {
         comments.map(comment => (<div key={comment.id_comment} class="flex justify-center relative top-1/3">
@@ -263,9 +289,9 @@ export default function Post({ article }) {
                 <p class="text-gray-400 text-sm">{getDate(comment.created_at)}</p>
               </div>
             </div>
-            <p class="-mt-4 text-gray-500">{parse(comment.content)}</p>
+            <p class="-mt-4 text-gray-500">{comment && parse(comment.content)}</p>
           </div>
-          {(update && comment.id_comment === nouveauID) ? <div className="ml-10">
+          {(update && comment && comment.id_comment === nouveauID) ? <div className="ml-10">
             <Tiptap setDescription={setnouveauCom} setContent={comment.content} />
             <buton onClick={() => updateComment()} className=' mt-2 inline-flex justify-center py-3 px-6 border border-transparent shadow text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'>
               Modify

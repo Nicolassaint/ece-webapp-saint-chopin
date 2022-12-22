@@ -58,7 +58,7 @@ export default function Post({ article }) {
         </div>
         <div className=" prose m-auto App">
           <label>Content</label>
-          <Tiptap setDescription={setDescription} setContent={article.content} />
+          {article ? <Tiptap setDescription={setDescription} setContent={article.content} /> : ""}
         </div>
 
       </div>

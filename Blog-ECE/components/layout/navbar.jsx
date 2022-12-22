@@ -95,7 +95,7 @@ export default function DrawerAppBar(props) {
       setLoading(false);
     }
   }
-  
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -142,7 +142,7 @@ export default function DrawerAppBar(props) {
         </div>
         {renderThemeChanger()}
 
-        <div className="flex items-center mt-4 mr-4 dark:bg-white">
+        {/* <div className="flex items-center mt-4 mr-4 dark:bg-white">
         <button
           className="border-solid border-2 border-black w-60 rounded-md text-black"
           onClick={() => document.documentElement.style.setProperty('--primary-color', color)}
@@ -151,7 +151,7 @@ export default function DrawerAppBar(props) {
         </button>
         
         
-        </div>
+        </div> */}
 
         <div className="flex items-center mt-4 mr-4">
           <div className="bg-greenJeece shadow-lg rounded-full mr-3">

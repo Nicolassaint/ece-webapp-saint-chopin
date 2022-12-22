@@ -12,7 +12,7 @@ export default function Avatar({ uid, url, size, onUpload }) {
   const [uploading, setUploading] = useState(false)
 
   const session = useSession();
-  const user = useUser();
+  // const user = useUser();
 
 
   useEffect(() => {
@@ -73,7 +73,7 @@ export default function Avatar({ uid, url, size, onUpload }) {
         />
       ) : (
         <div className='ml-6'>
-          <Gravatar email={session.user.email} size={100} />
+          {session && session.user ? <Gravatar email={session.user.email} size={100} /> : ""}
         </div>
       )}
       <div style={{ width: size }}>
