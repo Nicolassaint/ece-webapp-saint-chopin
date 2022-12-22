@@ -2145,7 +2145,7 @@
   "resolved" "https://registry.npmjs.org/i18next-fs-backend/-/i18next-fs-backend-2.1.0.tgz"
   "version" "2.1.0"
 
-"i18next@^22.0.6", "i18next@>= 19.0.0":
+"i18next@^22.0.6", "i18next@^22.4.5", "i18next@>= 19.0.0":
   "integrity" "sha512-Kc+Ow0guRetUq+kv02tj0Yof9zveROPBAmJ8UxxNODLVBRSwsM4iD0Gw3BEieOmkWemF6clU3K1fbnCuTqiN2Q=="
   "resolved" "https://registry.npmjs.org/i18next/-/i18next-22.4.5.tgz"
   "version" "22.4.5"

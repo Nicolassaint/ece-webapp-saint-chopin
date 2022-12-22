@@ -2,20 +2,27 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from "react";
 import parse from "html-react-parser";
 import { supabase } from '../api/api'
-import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
+import { useUser, useSupabaseClient, useSession } from '@supabase/auth-helpers-react'
 import { Tiptap } from '../../components/editor/Tiptap';
 import { v4 as uuidv4 } from 'uuid';
 import Loading from '../../components/Loading';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Like from '@mui/icons-material/ThumbUpAlt';
 
 export default function Post({ article }) {
 
+
+  const session = useSession()
+
   useEffect(() => {
-    if (article) {
+    if (article && user) {
       getComment(article);
-      getUser(article)
-      if (user) { getCommentator(); }
+      getUser(article);
+      if (user) { 
+        getCommentator();
+        AlreadyLike();
+      }
     }
   }, [article])
 
@@ -30,6 +37,13 @@ export default function Post({ article }) {
   const [update, setUpdate] = useState(false)
   const [nouveauCom, setnouveauCom] = useState("")
   const [nouveauID, setnouveauID] = useState("")
+  const [idUser, setIdUser] = useState("")
+  const [like, setLike] = useState(false)
+  const [uuid, setUuid] = useState([
+    "0ce62ac9-1504-4310-b165-9f73c90b2306",
+    "c1a805c0-1abf-48b1-b633-af35553c4cf8",
+    "d6d2a9da-8e9c-478e-843f-c8d9d468a31d",
+  ])
   const supabase = useSupabaseClient()
   const user = useUser()
   const [loading, setLoading] = useState(true)
@@ -46,7 +60,7 @@ export default function Post({ article }) {
     return (
       <Loading />
     )
-  }
+  } 
 
   function getDate(timestamp) {
     var dateFormat = new Date(timestamp);
@@ -98,12 +112,11 @@ export default function Post({ article }) {
 
     const { data } = await supabase
       .from('profiles')
-      .select('username')
+      .select('id,username')
       .filter('id', 'eq', article.id_user)
       .single()
-    console.log(article)
-    console.log("aa")
     setUsername(data.username)
+    setIdUser(data.id)
     setidArticle(article.id_article)
 
   }
@@ -167,11 +180,68 @@ export default function Post({ article }) {
     }
   }
 
+  async function InsertLike(user) {
+    try {
+      let tab_liker = []
+      tab_liker = uuid
+      tab_liker.push(user)
+      setUuid(tab_liker)
+
+      const updates = {
+        like: uuid
+      }
+
+      let { error } = await supabase.from('articles').update(updates).eq('id_article',idArticle)
+      alert('Like insert!')
+      window.location.reload();
+    } catch (error) {
+      alert('Error update article!')
+      console.log(error)
+    } 
+  }
+
+  async function Likers(user) {
+    try {
+      console.log("Salut "+ user)
+      let { data } = await supabase.from('articles').select('like').eq('id_user',user)
+      console.log(data[0].like)
+      setUuid(uuid => [...uuid, data[0].like])
+      console.log(uuid)
+      alert('There is likers!')
+      window.location.reload();
+    } catch (error) {
+      alert('Error update article!')
+      console.log(error)
+    } 
+  }
+
+  async function AlreadyLike() {
+    console.log("Salut " + idUser)
+    var i;
+    for(i=0; i < uuid.length; i++){
+      console.log("Salut " + idUser + " et "+ uuid[i])
+      if(idUser===uuid[i])
+        setLike(true)
+      else
+      setLike(false)
+    }
+  }
+
 
   return (
     <div className='bg-primary'>
       <h1 className="text-5xl mt-4 font-semibold tracking-wide text-center">{titre}</h1>
       <p className="text-sm font-light my-4 text-center">written by {username}</p>
+      <label className="text-lg font-light my-4 text-center">Number of likes for this article : {uuid.length}</label>
+      {like === false ?  <div className="text-center">
+        <label className="text-sm font-light my-4 text-center">Click here to like this article <buton className="text-sm font-light my-4 text-center" onClick={() => InsertLike(idUser)}><Like/></buton></label>
+        
+      </div> : ""}
+
+
+                  
+     
+      
       <div className="mt-8 mb-10 prose m-auto">
         {parse(article.content)}
       </div>

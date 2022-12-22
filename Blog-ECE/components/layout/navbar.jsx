@@ -100,6 +100,8 @@ export default function DrawerAppBar(props) {
     setMobileOpen(!mobileOpen);
   };
 
+
+
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
@@ -139,6 +141,7 @@ export default function DrawerAppBar(props) {
           </Link>
         </div>
         {renderThemeChanger()}
+
         <div className="flex items-center mt-4 mr-4 dark:bg-white">
         <button
           className="border-solid border-2 border-black w-60 rounded-md text-black"

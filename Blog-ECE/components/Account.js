@@ -143,14 +143,14 @@ export default function Account({ session }) {
 
       </div>
 
-      <div classname='dark:text-white '>
+      <div className='dark:text-white'>
       <input
         type="radio"
         name="group"
         value="red"
         checked={selectedValue === 'red'}
         onChange={handleChange}
-        className="text-red-500"
+        className="text-red-500 border-gray-300"
       />
       Red
       <br />
