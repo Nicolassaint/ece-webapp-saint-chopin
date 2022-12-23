@@ -16,7 +16,6 @@ export default function Account({ session }) {
 
   async function getArticle() {
     try {
-      console.log(user.id)
       setLoading(true)
 
       let { data, error, status } = await supabase

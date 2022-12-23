@@ -17,7 +17,7 @@ export default function Post({ article }) {
   const [description, setDescription] = useState([])
   const router = useRouter()
   if (router.isFallback) {
-    return <Loading/>
+    return <Loading />
   }
 
 

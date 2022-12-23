@@ -14,7 +14,6 @@ export default function Theme({ session }) {
 
   async function getColor() {
     try {
-      console.log(user.id)
       let { data, error, status } = await supabase
         .from('profiles')
         .select(`color`)
@@ -45,7 +44,7 @@ export default function Theme({ session }) {
               <Link href={`${couleur.color}`}>{couleur.color}</Link>
             </div>
           ))}
-        </div>          
+        </div>
       </div>
 
     </>

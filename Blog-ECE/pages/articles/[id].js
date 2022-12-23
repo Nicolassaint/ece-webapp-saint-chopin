@@ -171,7 +171,6 @@ export default function Post({ article }) {
       const updates = {
         content: nouveauCom
       }
-      console.log(updates.content)
 
       let { error } = await supabase.from('comments').update(updates).eq('id_comment', nouveauID)
       alert('Comment updated!')
@@ -188,9 +187,7 @@ export default function Post({ article }) {
     try {
       let tab_liker = []
       tab_liker = uuid
-      console.log("avant : ", tab_liker)
       tab_liker.push(user.id)
-      console.log("après : ", tab_liker)
       setUuid(tab_liker)
 
       const updates = {
@@ -230,10 +227,10 @@ export default function Post({ article }) {
   async function Likers(article) {
     try {
       let { data } = await supabase
-      .from('articles')
-      .select('like')
-      .eq('id_article', article.id_article)
-      .single()
+        .from('articles')
+        .select('like')
+        .eq('id_article', article.id_article)
+        .single()
 
       console.log("nos likes : ", data)
       if (data) {

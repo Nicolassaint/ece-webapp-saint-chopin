@@ -36,21 +36,23 @@ export default function Account({ session }) {
     }
   }
 
-  async function deleteArticle({ titre}) {
+  async function deleteArticle({ titre }) {
     try {
       setLoading(true)
-      console.log(titre)
-      let { data,error3 } = await supabase.from('articles').select('id_article').eq('title', titre)
+      let { data, error3 } = await supabase.from('articles').select('id_article').eq('title', titre)
 
-      console.log(data[0].id_article)
-        let { error2 } = await supabase.from('comments').delete().eq('id_article', data[0].id_article)
-        let { error } = await supabase.from('articles').delete().eq('title', titre)
+      let { error2 } = await supabase.from('comments').delete().eq('id_article', data[0].id_article)
+      let { error } = await supabase.from('articles').delete().eq('title', titre)
 
       if (error || error2 || error3) throw error
       alert('Article deleted')
     } catch (error) {
       alert('Error delete article!')
       console.log(error)
+    }
+    finally {
+      getArticle()
+      setLoading(false)
     }
   }
 

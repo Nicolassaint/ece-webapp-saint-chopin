@@ -87,7 +87,7 @@ export default function DrawerAppBar(props) {
 
       if (data) {
         setUsername(data.username);
-        setColor(data.color)
+        setColor(data.color);
       }
     } catch (error) {
       setUsername("invité");
@@ -99,8 +99,6 @@ export default function DrawerAppBar(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
-
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
@@ -162,7 +160,7 @@ export default function DrawerAppBar(props) {
               </div>
             </div>
           </div>
-          
+
           <div className="bg-greenJeece shadow-lg rounded-full hidden md:block">
             <div className="container flex p-4  dark:text-gray-300">
               {Menu.map((l) => (

@@ -5,7 +5,7 @@ import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { SessionContextProvider } from '@supabase/auth-helpers-react'
 import { useState } from "react";
 import { ThemeProvider } from "next-themes";
-// import { appWithTranslation } from 'next-i18next'
+import Head from "next/head"
 
 
 function MyApp({ Component, pageProps }) {
@@ -13,18 +13,22 @@ function MyApp({ Component, pageProps }) {
   const [supabase] = useState(() => createBrowserSupabaseClient())
 
   return (
-    <SessionContextProvider
-      supabaseClient={supabase}
-      initialSession={pageProps.initialSession}
-    >
-      <ThemeProvider enableSystem={true} attribute="class">
-        <Layout>
-        {/* <div style={{ backgroundColor: '#FF0000' }}> */}
-        <Component {...pageProps} />
-        {/* </div> */}
-        </Layout>
-      </ThemeProvider>
-    </SessionContextProvider>
+    <>
+      <Head>
+        <link rel="icon" href="/tailwind_logo.png" />
+        <title>Blog-ECE</title>
+      </Head>
+      <SessionContextProvider
+        supabaseClient={supabase}
+        initialSession={pageProps.initialSession}
+      >
+        <ThemeProvider enableSystem={true} attribute="class">
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
+      </SessionContextProvider>
+    </>
 
   );
 }
