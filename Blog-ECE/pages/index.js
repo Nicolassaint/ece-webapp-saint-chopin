@@ -48,14 +48,11 @@ export default function Home() {
 
   async function downloadImage(path, i) {
     try {
-      console.log(path)
       const { data, error } = await supabase.storage.from('avatars').download(path)
-      console.log(data)
       if (error) {
         throw error
       }
       const url = URL.createObjectURL(data)
-      console.log("chemin : ", url)
       setAvatarUrl(avatarUrl => [...avatarUrl, url]);
 
     } catch (error) {
@@ -74,10 +71,9 @@ export default function Home() {
 
     for (var i = 0; i < data.length; i++) {
       downloadImage(data[i].image, i)
-      console.log("anciens posts: ", data)
     }
   }
-  if (loading) return <Loading/>
+  if (loading) return <Loading />
   // if (!posts.length) return <p className="text-2xl">No posts.</p>
 
 

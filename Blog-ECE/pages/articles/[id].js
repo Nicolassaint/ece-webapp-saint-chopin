@@ -171,7 +171,6 @@ export default function Post({ article }) {
       const updates = {
         content: nouveauCom
       }
-      console.log(updates.content)
 
       let { error } = await supabase.from('comments').update(updates).eq('id_comment', nouveauID)
       alert('Comment updated!')
@@ -223,6 +222,9 @@ export default function Post({ article }) {
       .from('articles')
       .select('like')
       .eq('id_article', article.id_article)
+      .single()
+
+      console.log("nos likes : ", data)
       if (data) {
         setUuid(data[0].like)
       }

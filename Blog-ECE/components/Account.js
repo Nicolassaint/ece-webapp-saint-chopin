@@ -60,16 +60,14 @@ export default function Account({ session }) {
   async function updateProfile({ username, website, avatar_url, selectedValue }) {
     try {
       setLoading(true)
-      console.log(selectedValue)
       const updates = {
         id: user.id,
         username,
         website,
         avatar_url,
         updated_at: new Date().toISOString(),
-        color : selectedValue,
+        color: selectedValue,
       }
-      console.log(updates)
       let { error } = await supabase.from('profiles').upsert(updates)
       if (error) throw error
       alert('Profile updated!')
@@ -136,7 +134,7 @@ export default function Account({ session }) {
           </button>
         </Link>
 
-          {/* <button onClick={() => changeLanguage('fr')}>Francais</button>
+        {/* <button onClick={() => changeLanguage('fr')}>Francais</button>
           <button onClick={() => changeLanguage('en')}>English</button>
           <p>{t('welcome')}</p> */}
 
@@ -144,63 +142,63 @@ export default function Account({ session }) {
       </div>
 
       <div className='dark:text-white'>
-      <input
-        type="radio"
-        name="group"
-        value="red"
-        checked={selectedValue === 'red'}
-        onChange={handleChange}
-        className="text-red-500 border-gray-300"
-      />
-      Red
-      <br />
-      <input
-        type="radio"
-        name="group"
-        value="blue"
-        checked={selectedValue === 'blue'}
-        onChange={handleChange}
-        className="text-blue-500"
-      />
-      Blue
-      <br />
-      <input
-        type="radio"
-        name="group"
-        value="pink"
-        checked={selectedValue === 'pink'}
-        onChange={handleChange}
-        className="text-pink-500"
-      />
-      Pink
-      <br />
-      <input
-        type="radio"
-        name="group"
-        value="purple"
-        checked={selectedValue === 'purple'}
-        onChange={handleChange}
-        className="text-purple-500"
-      />
-      Purple
-      <br />
-      <input
-        type="radio"
-        name="group"
-        value="green"
-        checked={selectedValue === 'green'}
-        onChange={handleChange}
-        className="text-green-500"
-      />
-      Green
-      <br />
-      <p>Selected value: {selectedValue}</p>
-    </div>
+        <input
+          type="radio"
+          name="group"
+          value="red"
+          checked={selectedValue === 'red'}
+          onChange={handleChange}
+          className="text-red-500 border-gray-300"
+        />
+        Red
+        <br />
+        <input
+          type="radio"
+          name="group"
+          value="blue"
+          checked={selectedValue === 'blue'}
+          onChange={handleChange}
+          className="text-blue-500"
+        />
+        Blue
+        <br />
+        <input
+          type="radio"
+          name="group"
+          value="pink"
+          checked={selectedValue === 'pink'}
+          onChange={handleChange}
+          className="text-pink-500"
+        />
+        Pink
+        <br />
+        <input
+          type="radio"
+          name="group"
+          value="purple"
+          checked={selectedValue === 'purple'}
+          onChange={handleChange}
+          className="text-purple-500"
+        />
+        Purple
+        <br />
+        <input
+          type="radio"
+          name="group"
+          value="green"
+          checked={selectedValue === 'green'}
+          onChange={handleChange}
+          className="text-green-500"
+        />
+        Green
+        <br />
+        <p>Selected value: {selectedValue}</p>
+      </div>
 
       <div className='pt-4'>
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded block"
-          onClick={() => updateProfile({ username, website, avatar_url,selectedValue })}
+          onClick={() => updateProfile({ username, website, avatar_url, selectedValue })}
           disabled={loading}
         >
           {loading ? 'Loading ...' : 'Update'}
