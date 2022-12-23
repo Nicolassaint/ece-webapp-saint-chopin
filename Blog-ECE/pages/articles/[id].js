@@ -209,7 +209,7 @@ export default function Post({ article }) {
       const updates = {
         like: uuid
       }
-      let { error } = await supabase.from('articles').update(updates).eq('id_article', idArticle)
+      let { error } = await supabase.from('articles').update(updates).eq('id_article', article.id_article)
       Likers();
     } catch (error) {
       console.log(error)
@@ -222,9 +222,7 @@ export default function Post({ article }) {
       .from('articles')
       .select('like')
       .eq('id_article', article.id_article)
-      .single()
-
-      console.log("nos likes : ", data)
+      
       if (data) {
         setUuid(data[0].like)
       }
