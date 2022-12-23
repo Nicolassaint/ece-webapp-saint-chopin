@@ -21,7 +21,7 @@ export default function Post({ article }) {
     if (article) {
       getComment(article);
       getUser(article);
-      // Likers(article)
+      Likers()
       if (user) {
         getCommentator();
       }
@@ -53,11 +53,11 @@ export default function Post({ article }) {
     }
   }, [supprimer])
 
-  // useEffect(() => {
-  //   if (uuid) {
-  //     AlreadyLike()
-  //   }
-  // }, [uuid])
+  useEffect(() => {
+    if (uuid) {
+      AlreadyLike()
+    }
+  }, [uuid])
 
   if (router.isFallback) {
     return (
@@ -187,75 +187,62 @@ export default function Post({ article }) {
   async function InsertLike() {
     try {
       let tab_liker = []
-      tab_liker = uuid
-      console.log("avant : ", tab_liker)
+      if(uuid)
+      {
+        tab_liker = uuid
+      }
       tab_liker.push(user.id)
-      console.log("après : ", tab_liker)
       setUuid(tab_liker)
 
       const updates = {
         like: uuid
       }
-
       let { error } = await supabase.from('articles').update(updates).eq('id_article', idArticle)
-      alert('Like insert!')
     } catch (error) {
-      alert('Error update article!')
       console.log(error)
     }
   }
 
   async function DeleteLike() {
     try {
-      let tab_liker = []
-      tab_liker = uuid
-      tab_liker = tab_liker.filter(function (element) {
-        return element !== user.id;
-      });
-      setUuid(tab_liker)
-
+      let pos = uuid.indexOf(user.id)
+      let removedItem = uuid.splice(pos, 1)
       const updates = {
         like: uuid
       }
-
       let { error } = await supabase.from('articles').update(updates).eq('id_article', idArticle)
-      alert('Like insert!')
-      window.location.reload();
+      Likers();
     } catch (error) {
-      alert('Error update article!')
       console.log(error)
     }
   }
 
-  async function Likers(article) {
+  async function Likers() {
     try {
       let { data } = await supabase
       .from('articles')
       .select('like')
       .eq('id_article', article.id_article)
-      .single()
-
-      console.log("nos likes : ", data)
       if (data) {
-        setUuid(data)
-        alert('There is likers!')
+        setUuid(data[0].like)
       }
     } catch (error) {
-      alert('Error getting data!')
-      console.log(error)
     }
   }
 
   async function AlreadyLike() {
+var count = 0
 
     for (var i = 0; i < uuid.length; i++) {
       if (user.id === uuid[i]) {
-        console.log("oui")
+        count= count + 1;
+      }
+      if(count>=1){
         setLike(true)
       }
-      else {
-        console.log("non")
-        setLike(false)
+      else
+      {
+        setLike(false) 
       }
     }
   }
@@ -264,9 +251,12 @@ export default function Post({ article }) {
     <div className='bg-primary'>
       <h1 className="text-5xl mt-4 font-semibold tracking-wide text-center">{titre}</h1>
       <p className="text-sm font-light my-4 text-center">written by {username}</p>
-      {/* <div className="text-lg font-light text-center">{uuid.length}{like === false ?
-        <buton className="text-sm font-light pb-1 mx-2" onClick={() => InsertLike()}><NotLike /></buton>
-        : <buton className="text-sm font-light mx-2" onClick={() => DeleteLike()}><Like /></buton>}</div> */}
+       
+       <div className="text-lg font-light text-center">{uuid ? uuid.length : "0"}
+       
+       {like === false ?
+        <buton className="text-sm font-light pb-1 mx-2" onClick={() => InsertLike() && setLike(true)}><NotLike /></buton>
+        : <buton className="text-sm font-light mx-2" onClick={() => DeleteLike() && setLike(false)}><Like /></buton>}</div>
 
       <div className="mt-8 mb-10 prose m-auto">
         {article && parse(article.content)}
