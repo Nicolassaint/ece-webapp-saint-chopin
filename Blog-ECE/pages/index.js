@@ -9,12 +9,20 @@ export default function Home() {
   const supabase = useSupabaseClient()
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
-  const [avatarUrl, setAvatarUrl] = useState([])
+  const [values, setValues] = useState({});
 
 
   useEffect(() => {
     fetchPosts()
   }, [])
+
+  useEffect(() => {
+    if (posts) {
+      for (var i = 0; i < posts.length; i++) {
+        downloadImage(posts[i].image)
+      }
+    }
+  }, [posts])
 
 
   function getYear(timestamp) {
@@ -53,7 +61,7 @@ export default function Home() {
         throw error
       }
       const url = URL.createObjectURL(data)
-      setAvatarUrl(avatarUrl => [...avatarUrl, url]);
+      setValues(prevValues => ({ ...prevValues, [path]: url }));
 
     } catch (error) {
       console.log('Error downloading image: ', error)
@@ -74,7 +82,7 @@ export default function Home() {
     }
   }
   if (loading) return <Loading />
-  // if (!posts.length) return <p className="text-2xl">No posts.</p>
+  if (!posts.length) return <p className="text-2xl">No posts.</p>
 
 
   return (
@@ -109,7 +117,7 @@ export default function Home() {
               <div className="hidden sm:block sm:basis-56">
                 <img
                   alt="image_article"
-                  src='/react.svg'
+                  src={values[post.image]}
                   className="aspect-square h-full w-full object-cover"
                 />
               </div>
