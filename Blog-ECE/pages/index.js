@@ -78,7 +78,7 @@ export default function Home() {
 
 
   return (
-    <div className='grid-cols-2 bg-primary'>
+    <div className='grid-cols-2'>
       <div class="relative z-20 flex items-center dark:bg-black-800">
         <div class="container relative flex flex-col items-center justify-between px-6 py-8 mx-auto">
           <div class="flex flex-col">

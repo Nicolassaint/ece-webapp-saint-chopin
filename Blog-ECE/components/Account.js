@@ -81,7 +81,7 @@ export default function Account({ session }) {
 
   return (
 
-    <div className="bg-primary">
+    <div>
       <div className="flex items-center justify-center">
         <Avatar
           uid={user.id}
@@ -134,71 +134,66 @@ export default function Account({ session }) {
           </button>
         </Link>
 
-        {/* <button onClick={() => changeLanguage('fr')}>Francais</button>
-          <button onClick={() => changeLanguage('en')}>English</button>
-          <p>{t('welcome')}</p> */}
-
-
       </div>
+      <div className='dark:text-white flex mt-4 mb-2'>
 
-      <div className='dark:text-white'>
-        <input
-          type="radio"
+        <button
+          value="null"
           name="group"
+          onClick={handleChange}
+          className="text-black border-black border-solid bg-white-500 mr-2 dark:text-black dark:bg-white dark:border-white"
+        >RESET </button>
+
+        <button
+          value="white"
+          name="group"
+          onClick={handleChange}
+          className="text-black border-black border-solid bg-white-500 mr-2 dark:text-black dark:bg-white dark:border-white"
+        >White </button>
+
+        <button
           value="red"
-          checked={selectedValue === 'red'}
-          onChange={handleChange}
-          className="text-red-500 border-gray-300"
-        />
-        Red
-        <br />
-        <input
-          type="radio"
           name="group"
+          onClick={handleChange}
+          className="text-white bg-red-500 mr-2"
+        >Red </button>
+
+        <button
           value="blue"
-          checked={selectedValue === 'blue'}
-          onChange={handleChange}
-          className="text-blue-500"
-        />
-        Blue
-        <br />
-        <input
-          type="radio"
           name="group"
+          onClick={handleChange}
+          className="text-white bg-blue-500 mr-2"
+        >Blue </button>
+
+        <button
           value="pink"
-          checked={selectedValue === 'pink'}
-          onChange={handleChange}
-          className="text-pink-500"
-        />
-        Pink
-        <br />
-        <input
-          type="radio"
           name="group"
+          onClick={handleChange}
+          className="text-white bg-pink-500 mr-2"
+        >Pink </button>
+
+        <button
           value="purple"
-          checked={selectedValue === 'purple'}
-          onChange={handleChange}
-          className="text-purple-500"
-        />
-        Purple
-        <br />
-        <input
-          type="radio"
           name="group"
+          onClick={handleChange}
+          className="text-white bg-purple-500 mr-2"
+        >purple </button>
+
+        <button
           value="green"
-          checked={selectedValue === 'green'}
-          onChange={handleChange}
-          className="text-green-500"
-        />
-        Green
-        <br />
-        <p>Selected value: {selectedValue}</p>
+          name="group"
+          onClick={handleChange}
+          className="text-white bg-green-500"
+        >Green </button>
+
       </div>
+      <p className='font-bold'>Selected theme : {selectedValue}</p>
 
       <div className='pt-4'>
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded block"
-          onClick={() => updateProfile({ username, website, avatar_url, selectedValue })}
+          onClick={() => updateProfile({ username, website, avatar_url, selectedValue }) && document.documentElement.style.setProperty('--primary-color', selectedValue)
+        }
           disabled={loading}
         >
           {loading ? 'Loading ...' : 'Update'}

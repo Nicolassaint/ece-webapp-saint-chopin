@@ -88,6 +88,7 @@ export default function DrawerAppBar(props) {
       if (data) {
         setUsername(data.username);
         setColor(data.color);
+        document.documentElement.style.setProperty('--primary-color', color)
       }
     } catch (error) {
       setUsername("invité");
@@ -147,8 +148,7 @@ export default function DrawerAppBar(props) {
         >
           Click here if you want to have your webiste in {color}
         </button>
-        
-        
+
         </div> */}
 
         <div className="flex items-center mt-4 mr-4">

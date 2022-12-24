@@ -89,17 +89,6 @@ export default function Post({ article }) {
   }
 
 
-  async function getIDcomment() {
-
-    const { data } = await supabase
-      .from('comments')
-      .select('id_comment')
-      .filter('id', 'eq', user.id)
-      .single()
-
-    if (data) { setnouveauID(data.username) }
-  }
-
   async function getCommentator() {
 
     const { data } = await supabase
@@ -185,18 +174,19 @@ export default function Post({ article }) {
 
   async function InsertLike() {
     try {
-      let tab_liker = []
-      if(uuid)
-      {
-        tab_liker = uuid
-      }
-      tab_liker.push(user.id)
-      setUuid(tab_liker)
+      if (user) {
+        let tab_liker = []
+        if (uuid) {
+          tab_liker = uuid
+        }
+        tab_liker.push(user.id)
+        setUuid(tab_liker)
 
-      const updates = {
-        like: uuid
-      }
-      let { error } = await supabase.from('articles').update(updates).eq('id_article', idArticle)
+        const updates = {
+          like: uuid
+        }
+        let { error } = await supabase.from('articles').update(updates).eq('id_article', idArticle)
+      } else { alert("You have to be logged in to like the article !") }
     } catch (error) {
       console.log(error)
     }
@@ -219,10 +209,10 @@ export default function Post({ article }) {
   async function Likers() {
     try {
       let { data } = await supabase
-      .from('articles')
-      .select('like')
-      .eq('id_article', article.id_article)
-      
+        .from('articles')
+        .select('like')
+        .eq('id_article', article.id_article)
+
       if (data) {
         setUuid(data[0].like)
       }
@@ -231,32 +221,31 @@ export default function Post({ article }) {
   }
 
   async function AlreadyLike() {
-var count = 0
+    var count = 0
 
     for (var i = 0; i < uuid.length; i++) {
-      if (user.id === uuid[i]) {
-        count= count + 1;
+      if (user && user.id === uuid[i]) {
+        count = count + 1;
       }
-      if(count>=1){
+      if (count >= 1) {
         setLike(true)
       }
-      else
-      {
-        setLike(false) 
+      else {
+        setLike(false)
       }
     }
   }
 
   return (
-    <div className='bg-primary'>
+    <div>
       <h1 className="text-5xl mt-4 font-semibold tracking-wide text-center">{titre}</h1>
       <p className="text-sm font-light my-4 text-center">written by {username}</p>
-       
-       <div className="text-lg font-light text-center">{uuid ? uuid.length : "0"}
-       
-       {like === false ?
-        <buton className="text-sm font-light pb-1 mx-2" onClick={() => InsertLike() && setLike(true)}><NotLike /></buton>
-        : <buton className="text-sm font-light mx-2" onClick={() => DeleteLike() && setLike(false)}><Like /></buton>}</div>
+
+      <div className="text-lg font-light text-center">{uuid ? uuid.length : "0"}
+
+        {like === false ?
+          <buton className="text-sm font-light pb-1 mx-2" onClick={() => InsertLike() && user && setLike(true)}><NotLike /></buton>
+          : <buton className="text-sm font-light mx-2" onClick={() => DeleteLike() && user && setLike(false)}><Like /></buton>}</div>
 
       <div className="mt-8 mb-10 prose m-auto">
         {article && parse(article.content)}

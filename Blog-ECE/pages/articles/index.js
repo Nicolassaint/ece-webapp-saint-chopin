@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import parse from "html-react-parser";
 import Loading from '../../components/Loading';
+import { data } from 'autoprefixer';
 
 
 export default function Home() {
@@ -10,12 +11,20 @@ export default function Home() {
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
   const [avatarUrl, setAvatarUrl] = useState([])
+  const [values, setValues] = useState({});
 
 
   useEffect(() => {
     fetchPosts()
   }, [])
 
+  useEffect(() => {
+    if (posts) {
+      for (var i = 0; i < posts.length; i++) {
+        downloadImage(posts[i].image)
+      }
+    }
+  }, [posts])
 
   function getYear(timestamp) {
     var date = new Date(timestamp);
@@ -46,14 +55,14 @@ export default function Home() {
     return date.getDate()
   }
 
-  async function downloadImage(path, i) {
+  async function downloadImage(path) {
     try {
       const { data, error } = await supabase.storage.from('avatars').download(path)
       if (error) {
         throw error
       }
       const url = URL.createObjectURL(data)
-      setAvatarUrl(avatarUrl => [...avatarUrl, url]);
+      setValues(prevValues => ({ ...prevValues, [path]: url }));
 
     } catch (error) {
       console.log('Error downloading image: ', error)
@@ -67,16 +76,13 @@ export default function Home() {
     setPosts(data)
     setLoading(false)
 
-    for (var i = 0; i < data.length; i++) {
-      downloadImage(data[i].image, i)
-    }
   }
   if (loading) return <Loading />
   if (!posts.length) return <p className="text-2xl">No posts.</p>
 
 
   return (
-    <div className='grid-cols-2 bg-primary'>
+    <div className='grid-cols-2'>
       <h1 className="text-3xl font-semibold tracking-wide mt-6 mb-2 text-center">All our articles</h1>
       {
         posts.map(post => (
@@ -95,8 +101,7 @@ export default function Home() {
               <div className="hidden sm:block sm:basis-56">
                 <img
                   alt="image_article"
-                  // src={downloadImage(post.image) ? avatarUrl[0] : ""}
-                  src='/react.svg'
+                  src={values[post.image]}
                   className="aspect-square h-full w-full object-cover"
                 />
               </div>
@@ -124,7 +129,6 @@ export default function Home() {
                 </div>
               </div>
             </article>
-            {/* <Article_cards article={post}/> */}
           </div>
         )
         )
