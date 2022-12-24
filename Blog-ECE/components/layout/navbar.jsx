@@ -40,7 +40,6 @@ export default function DrawerAppBar(props) {
   const session = useSession();
   const user = useUser();
   const [username, setUsername] = useState("invité");
-  const [color, setColor] = useState("white");
   const [loading, setLoading] = useState(true);
 
   const { systemTheme, theme, setTheme } = useTheme();
@@ -88,7 +87,10 @@ export default function DrawerAppBar(props) {
       if (data) {
         setUsername(data.username);
         setColor(data.color);
-        document.documentElement.style.setProperty('--primary-color', color)
+        document.documentElement.style.setProperty(
+          "--primary-color",
+          data.color
+        );
       }
     } catch (error) {
       setUsername("invité");
@@ -140,16 +142,6 @@ export default function DrawerAppBar(props) {
           </Link>
         </div>
         {renderThemeChanger()}
-
-        {/* <div className="flex items-center mt-4 mr-4 dark:bg-white">
-        <button
-          className="border-solid border-2 border-black w-60 rounded-md text-black"
-          onClick={() => document.documentElement.style.setProperty('--primary-color', color)}
-        >
-          Click here if you want to have your webiste in {color}
-        </button>
-
-        </div> */}
 
         <div className="flex items-center mt-4 mr-4">
           <div className="bg-greenJeece shadow-lg rounded-full mr-3">

@@ -201,7 +201,7 @@ export default function Account({ session }) {
       </div>
 
       <div className='pt-4'>
-        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded block" onClick={() => supabase.auth.signOut()}>
+        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded block" onClick={() => supabase.auth.signOut() && document.documentElement.style.setProperty('--primary-color', null)}>
           Sign Out
         </button>
       </div>
