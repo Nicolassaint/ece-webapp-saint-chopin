@@ -86,14 +86,15 @@ export default function DrawerAppBar(props) {
 
       if (data) {
         setUsername(data.username);
-        setColor(data.color);
-        document.documentElement.style.setProperty(
-          "--primary-color",
-          data.color
-        );
+        if (data.color) {
+          document.documentElement.style.setProperty(
+            "--primary-color",
+            data.color
+          );
+        }
       }
     } catch (error) {
-      setUsername("invité");
+      setUsername("invité")
     } finally {
       setLoading(false);
     }

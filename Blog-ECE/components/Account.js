@@ -3,6 +3,7 @@ import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Avatar from './Avatar'
 import Link from "next/link"
 import { useTranslation } from 'next-i18next';
+import FormatColorResetIcon from '@mui/icons-material/FormatColorReset';
 
 
 
@@ -142,7 +143,7 @@ export default function Account({ session }) {
           name="group"
           onClick={handleChange}
           className="text-black border-black border-solid bg-white-500 mr-2 dark:text-black dark:bg-white dark:border-white"
-        >RESET </button>
+        >RESET <FormatColorResetIcon/></button>
 
         <button
           value="white"
@@ -201,7 +202,7 @@ export default function Account({ session }) {
       </div>
 
       <div className='pt-4'>
-        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded block" onClick={() => supabase.auth.signOut() && document.documentElement.style.setProperty('--primary-color', null)}>
+        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded block" onClick={() => {supabase.auth.signOut(); document.documentElement.style.setProperty('--primary-color', null);}}>
           Sign Out
         </button>
       </div>
