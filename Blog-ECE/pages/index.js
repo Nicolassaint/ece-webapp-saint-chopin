@@ -106,7 +106,7 @@ export default function Home() {
             <article className="flex bg-white transition hover:shadow-xl w-2/5">
               <div className="rotate-180 p-2 [writing-mode:_vertical-lr]">
                 <time
-                  datetime="2022-10-10"
+                  dateTime="2022-10-10"
                   className="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900"
                 >
                   <span>{getYear(post.created_at)}</span>

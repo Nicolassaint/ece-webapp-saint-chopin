@@ -128,7 +128,6 @@ export default function Post({ article }) {
 
       let { error } = await supabase.from('comments').insert(insert)
       if (error) throw error
-      alert('Comment created!')
       getComment(article);
     } catch (error) {
       alert('Error inserting the data!')
@@ -143,7 +142,6 @@ export default function Post({ article }) {
       setLoading(true)
       let { error } = await supabase.from('comments').delete().eq('id_comment', supprimer)
       if (error) throw error
-      alert('Comment deleted!')
       getComment(article);
     } catch (error) {
       alert('Error delete article!')
@@ -162,8 +160,8 @@ export default function Post({ article }) {
       }
 
       let { error } = await supabase.from('comments').update(updates).eq('id_comment', nouveauID)
-      alert('Comment updated!')
       getComment(article);
+      setUpdate(!update)
     } catch (error) {
       alert('Error update article!')
       console.log(error)
@@ -244,8 +242,8 @@ export default function Post({ article }) {
       <div className="text-lg font-light text-center">{uuid ? uuid.length : "0"}
 
         {like === false ?
-          <buton className="text-sm font-light pb-1 mx-2" onClick={() => InsertLike() && user && setLike(true)}><NotLike /></buton>
-          : <buton className="text-sm font-light mx-2" onClick={() => DeleteLike() && user && setLike(false)}><Like /></buton>}</div>
+          <buton className="text-sm font-light pb-1 mx-2" onClick={() => InsertLike() && user && setLike(true)}><NotLike sx={{ marginBottom: "6px",transition: 'transform 0.2s','&:hover': {transform: 'scale(1.2)'}}} /></buton>
+          : <buton className="text-sm font-light mx-2" onClick={() => DeleteLike() && user && setLike(false)}><Like sx={{ marginBottom: "6px", transition: 'transform 0.2s','&:hover': {transform: 'scale(1.2)'}}} /></buton>}</div>
 
       <div className="mt-8 mb-10 prose m-auto">
         {article && parse(article.content)}
@@ -257,11 +255,11 @@ export default function Post({ article }) {
             <div class="relative flex gap-4">
               <img src="https://icons.iconarchive.com/icons/diversity-avatars/avatars/256/charlie-chaplin-icon.png" class="relative rounded-lg -top-8 -mb-4 bg-white border h-20 w-20" alt="" loading="lazy" />
               <div class="flex flex-col w-full">
-                <div class="flex flex-row justify-between">
+                <div class="flex flex-row">
                   <p class="relative text-xl whitespace-nowrap truncate overflow-hidden dark:text-black">{comment.name}</p>
                   {commentator === comment.name ? <div>
-                    <buton className="ml-2 dark:text-black" onClick={() => { setUpdate(!update); setnouveauID(comment.id_comment); }}><EditIcon /></buton>
-                    <buton onClick={() => setDelete(comment.id_comment)}><DeleteIcon sx={{ color: "red" }} /></buton>
+                    <buton className="ml-2 dark:text-black" onClick={() => { setUpdate(!update); setnouveauID(comment.id_comment); }}><EditIcon sx={{ transition: 'transform 0.2s','&:hover': {transform: 'scale(1.2)'}}}/></buton>
+                    <buton onClick={() => setDelete(comment.id_comment)}><DeleteIcon sx={{ color: "red", transition: 'transform 0.2s','&:hover': {transform: 'scale(1.2)'}}} /></buton>
                   </div> : ""}
                   <a class="text-gray-500 text-xl" href="#"><i class="fa-solid fa-trash"></i></a>
                 </div>

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Avatar from './Avatar'
 import Link from "next/link"
-import { useTranslation } from 'next-i18next';
 import FormatColorResetIcon from '@mui/icons-material/FormatColorReset';
 
 
@@ -20,11 +19,6 @@ export default function Account({ session }) {
   function handleChange(event) {
     setSelectedValue(event.target.value);
   }
-  const { t, i18n } = useTranslation();
-
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
 
   useEffect(() => {
     getProfile()
@@ -136,7 +130,7 @@ export default function Account({ session }) {
         </Link>
 
       </div>
-      <div className='dark:text-white flex mt-4 mb-2'>
+      <div className='dark:text-white lg:flex mt-4 mb-2'>
 
         <button
           value="null"
@@ -193,7 +187,7 @@ export default function Account({ session }) {
       <div className='pt-4'>
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded block"
-          onClick={() => updateProfile({ username, website, avatar_url, selectedValue }) && document.documentElement.style.setProperty('--primary-color', selectedValue)
+          onClick={() => {updateProfile({ username, website, avatar_url, selectedValue }); document.documentElement.style.setProperty('--primary-color', selectedValue); window.location.reload();}
         }
           disabled={loading}
         >

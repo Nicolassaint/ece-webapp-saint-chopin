@@ -68,6 +68,7 @@ export default function DrawerAppBar(props) {
 
   useEffect(() => {
     getProfile();
+    console.log(username);
   }, [session]);
 
   async function getProfile() {
@@ -85,7 +86,9 @@ export default function DrawerAppBar(props) {
       }
 
       if (data) {
-        setUsername(data.username);
+        if (data.username) {
+          setUsername(data.username);
+        }
         if (data.color) {
           document.documentElement.style.setProperty(
             "--primary-color",
@@ -94,7 +97,7 @@ export default function DrawerAppBar(props) {
         }
       }
     } catch (error) {
-      setUsername("invité")
+      setUsername("invité");
     } finally {
       setLoading(false);
     }
@@ -107,7 +110,7 @@ export default function DrawerAppBar(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        APP WEB
+        Blog-ECE
       </Typography>
       <Divider />
       <List>
