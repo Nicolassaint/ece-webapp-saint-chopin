@@ -21,7 +21,9 @@ export default function Home() {
   useEffect(() => {
     if (posts) {
       for (var i = 0; i < posts.length; i++) {
+        if(posts[i].image){
         downloadImage(posts[i].image)
+        }
       }
     }
   }, [posts])
@@ -58,6 +60,7 @@ export default function Home() {
   async function downloadImage(path) {
     try {
       const { data, error } = await supabase.storage.from('avatars').download(path)
+
       if (error) {
         throw error
       }
@@ -101,7 +104,7 @@ export default function Home() {
               <div className="hidden sm:block sm:basis-56">
                 <img
                   alt="image_article"
-                  src={values[post.image]}
+                  src={values[post.image] ? values[post.image] : "/noimage.jpg"}
                   className="aspect-square h-full w-full object-cover"
                 />
               </div>

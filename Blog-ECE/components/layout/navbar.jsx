@@ -68,7 +68,6 @@ export default function DrawerAppBar(props) {
 
   useEffect(() => {
     getProfile();
-    console.log(username);
   }, [session]);
 
   async function getProfile() {
