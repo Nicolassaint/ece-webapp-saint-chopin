@@ -10,7 +10,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Like from '@mui/icons-material/ThumbUpAlt';
 import NotLike from '@mui/icons-material/ThumbUpOffAlt';
-import { UserRemoveIcon } from '@heroicons/react/solid';
 
 export default function Post({ article }) {
 
@@ -91,13 +90,28 @@ export default function Post({ article }) {
 
   async function getCommentator() {
 
-    const { data } = await supabase
-      .from('profiles')
-      .select('username')
-      .filter('id', 'eq', user.id)
-      .single()
+    try {
+      setLoading(true);
 
-    if (data) { setCommentator(data.username) }
+      let { data, error, status } = await supabase
+        .from('profiles')
+        .select('username')
+        .eq('id', user.id)
+        .single();
+
+      if (error && status !== 406) {
+        throw error;
+      }
+
+      if (data) {
+        setCommentator(data.username);
+      }
+
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false);
+    }
   }
 
   async function getUser(article) {
@@ -242,8 +256,8 @@ export default function Post({ article }) {
       <div className="text-lg font-light text-center">{uuid ? uuid.length : "0"}
 
         {like === false ?
-          <buton className="text-sm font-light pb-1 mx-2" onClick={() => InsertLike() && user && setLike(true)}><NotLike sx={{ marginBottom: "6px",transition: 'transform 0.2s','&:hover': {transform: 'scale(1.2)'}}} /></buton>
-          : <buton className="text-sm font-light mx-2" onClick={() => DeleteLike() && user && setLike(false)}><Like sx={{ marginBottom: "6px", transition: 'transform 0.2s','&:hover': {transform: 'scale(1.2)'}}} /></buton>}</div>
+          <buton className="text-sm font-light pb-1 mx-2" onClick={() => InsertLike() && user && setLike(true)}><NotLike sx={{ marginBottom: "6px", transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.2)' } }} /></buton>
+          : <buton className="text-sm font-light mx-2" onClick={() => DeleteLike() && user && setLike(false)}><Like sx={{ marginBottom: "6px", transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.2)' } }} /></buton>}</div>
 
       <div className="mt-8 mb-10 prose m-auto">
         {article && parse(article.content)}
@@ -258,8 +272,8 @@ export default function Post({ article }) {
                 <div class="flex flex-row">
                   <p class="relative text-xl whitespace-nowrap truncate overflow-hidden dark:text-black">{comment.name}</p>
                   {commentator === comment.name ? <div>
-                    <buton className="ml-2 dark:text-black" onClick={() => { setUpdate(!update); setnouveauID(comment.id_comment); }}><EditIcon sx={{ transition: 'transform 0.2s','&:hover': {transform: 'scale(1.2)'}}}/></buton>
-                    <buton onClick={() => setDelete(comment.id_comment)}><DeleteIcon sx={{ color: "red", transition: 'transform 0.2s','&:hover': {transform: 'scale(1.2)'}}} /></buton>
+                    <buton className="ml-2 dark:text-black" onClick={() => { setUpdate(!update); setnouveauID(comment.id_comment); }}><EditIcon sx={{ transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.2)' } }} /></buton>
+                    <buton onClick={() => setDelete(comment.id_comment)}><DeleteIcon sx={{ color: "red", transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.2)' } }} /></buton>
                   </div> : ""}
                   <a class="text-gray-500 text-xl" href="#"><i class="fa-solid fa-trash"></i></a>
                 </div>
