@@ -15,15 +15,13 @@ export default function Post({ article }) {
 
   const session = useSession()
   const [uuid, setUuid] = useState([])
+  const [commentator, setCommentator] = useState("Anonyme")
 
   useEffect(() => {
     if (article) {
       getComment(article);
       getUser(article);
       Likers()
-      if (user) {
-        getCommentator();
-      }
     }
   }, [article])
 
@@ -33,7 +31,6 @@ export default function Post({ article }) {
   const [username, setUsername] = useState("Anonyme")
   const [titre, setTitre] = useState(null)
   const [comments, setComments] = useState([])
-  const [commentator, setCommentator] = useState("Anonyme")
   const [supprimer, setDelete] = useState(null)
   const [update, setUpdate] = useState(false)
   const [nouveauCom, setnouveauCom] = useState("")
@@ -58,6 +55,10 @@ export default function Post({ article }) {
     }
   }, [uuid])
 
+  useEffect(() => {
+    console.log(commentator);
+  }, [commentator]);
+
   if (router.isFallback) {
     return (
       <Loading />
@@ -76,6 +77,10 @@ export default function Post({ article }) {
   }
 
   async function getComment(article) {
+
+    if (user) {
+      getCommentator();
+    }
 
     const { data } = await supabase
       .from('comments')
@@ -102,9 +107,8 @@ export default function Post({ article }) {
       if (error && status !== 406) {
         throw error;
       }
-
       if (data) {
-        setCommentator(data.username);
+        setCommentator(data.username)
       }
 
     } catch (error) {
@@ -130,7 +134,6 @@ export default function Post({ article }) {
 
   async function createComment({ description }) {
     try {
-
       setLoading(true)
       const insert = {
         id_comment: uuidv4(),
