@@ -55,6 +55,10 @@ export default function Post({ article }) {
     }
   }, [uuid])
 
+  useEffect(() => {
+    console.log("mon state !!!! : ", commentator);
+  }, [commentator]);
+
   if (router.isFallback) {
     return (
       <Loading />
@@ -107,8 +111,9 @@ export default function Post({ article }) {
       console.log("je recois cette info :", data)
       if (data) {
         console.log("je veux chenger le state en : ", data.username)
-        setCommentator(data.username);
-        console.log("mon state en théorie : ", commentator)
+        setCommentator(data.username, () => {
+          console.log("mon state en théorie : ", commentator);
+        });
       }
       console.log("mon state : ", commentator)
 
