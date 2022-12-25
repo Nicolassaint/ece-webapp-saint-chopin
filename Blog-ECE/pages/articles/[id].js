@@ -23,6 +23,7 @@ export default function Post({ article }) {
       Likers()
       if (user) {
         getCommentator();
+        console.log("le user est bien co")
       }
     }
   }, [article])
@@ -102,9 +103,11 @@ export default function Post({ article }) {
       if (error && status !== 406) {
         throw error;
       }
-
+      console.log("je recois cette info :", data)
       if (data) {
+        console.log("je veux chenger le state en : ", data.username)
         setCommentator(data.username);
+        console.log("mon state en théorie : ", commentator)
       }
 
     } catch (error) {
@@ -140,6 +143,7 @@ export default function Post({ article }) {
         id_article: idArticle,
       }
 
+      console.log("mon insert", insert)
       let { error } = await supabase.from('comments').insert(insert)
       if (error) throw error
       getComment(article);
