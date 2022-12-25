@@ -26,7 +26,7 @@ export default function Post({ article }) {
         console.log("le user est bien co")
       }
     }
-  }, [article])
+  }, [])
 
 
   const [description, setDescription] = useState("")
