@@ -67,7 +67,6 @@ export default function Account({ session }) {
       if (error) throw error
       alert('Profile updated!')
     } catch (error) {
-      alert('Error updating the data!')
       console.log(error)
     } finally {
       setLoading(false)
