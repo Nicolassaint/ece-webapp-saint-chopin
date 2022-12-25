@@ -56,7 +56,7 @@ export default function Post({ article }) {
   }, [uuid])
 
   useEffect(() => {
-    console.log("mon state !!!! : ", commentator);
+    console.log(commentator);
   }, [commentator]);
 
   if (router.isFallback) {
@@ -80,7 +80,6 @@ export default function Post({ article }) {
 
     if (user) {
       getCommentator();
-      console.log("le user est bien co 2")
     }
 
     const { data } = await supabase
@@ -108,14 +107,9 @@ export default function Post({ article }) {
       if (error && status !== 406) {
         throw error;
       }
-      console.log("je recois cette info :", data)
       if (data) {
-        console.log("je veux chenger le state en : ", data.username)
-        setCommentator(data.username, () => {
-          console.log("mon state en théorie : ", commentator);
-        });
+        setCommentator(data.username)
       }
-      console.log("mon state : ", commentator)
 
     } catch (error) {
       console.log(error)
@@ -140,7 +134,6 @@ export default function Post({ article }) {
 
   async function createComment({ description }) {
     try {
-     console.log(commentator)
       setLoading(true)
       const insert = {
         id_comment: uuidv4(),
@@ -150,7 +143,6 @@ export default function Post({ article }) {
         id_article: idArticle,
       }
 
-      console.log("mon insert", insert)
       let { error } = await supabase.from('comments').insert(insert)
       if (error) throw error
       getComment(article);
