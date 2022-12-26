@@ -48,6 +48,7 @@ export default function Post({ article }) {
     }
   }, [user])
 
+
   useEffect(() => {
     if (supprimer) {
       deleteComment()
@@ -83,9 +84,6 @@ export default function Post({ article }) {
 
   async function getComment(article) {
 
-    if (user) {
-      getCommentator();
-    }
 
     const { data } = await supabase
       .from('comments')
