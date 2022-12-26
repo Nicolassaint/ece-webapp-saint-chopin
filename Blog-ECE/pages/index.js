@@ -9,12 +9,22 @@ export default function Home() {
   const supabase = useSupabaseClient()
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
-  const [avatarUrl, setAvatarUrl] = useState([])
+  const [values, setValues] = useState({});
 
 
   useEffect(() => {
     fetchPosts()
   }, [])
+
+  useEffect(() => {
+    if (posts) {
+      for (var i = 0; i < posts.length; i++) {
+        if(posts[i].image){
+        downloadImage(posts[i].image)
+        }
+      }
+    }
+  }, [posts])
 
 
   function getYear(timestamp) {
@@ -53,7 +63,7 @@ export default function Home() {
         throw error
       }
       const url = URL.createObjectURL(data)
-      setAvatarUrl(avatarUrl => [...avatarUrl, url]);
+      setValues(prevValues => ({ ...prevValues, [path]: url }));
 
     } catch (error) {
       console.log('Error downloading image: ', error)
@@ -74,7 +84,7 @@ export default function Home() {
     }
   }
   if (loading) return <Loading />
-  // if (!posts.length) return <p className="text-2xl">No posts.</p>
+  if (!posts.length) return <p className="text-2xl">No posts.</p>
 
 
   return (
@@ -98,7 +108,7 @@ export default function Home() {
             <article className="flex bg-white transition hover:shadow-xl w-2/5">
               <div className="rotate-180 p-2 [writing-mode:_vertical-lr]">
                 <time
-                  datetime="2022-10-10"
+                  dateTime="2022-10-10"
                   className="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900"
                 >
                   <span>{getYear(post.created_at)}</span>
@@ -109,7 +119,7 @@ export default function Home() {
               <div className="hidden sm:block sm:basis-56">
                 <img
                   alt="image_article"
-                  src='/react.svg'
+                  src={values[post.image] ? values[post.image] : "/noimage.jpg"}
                   className="aspect-square h-full w-full object-cover"
                 />
               </div>
