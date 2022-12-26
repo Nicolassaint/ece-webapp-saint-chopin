@@ -1,10 +1,9 @@
 # Blogging application - ECE Webtech project
 
-
 ## Production
 
-- Vercel URL: https://ece-webapp-saint-chopin-nicolassaint.vercel.app
-- Supabase project URL: 
+- Vercel deployment [here](https://ece-webapp-saint-chopin-nicolassaint.vercel.app)
+- Supabase project URL:
 
 ## Usage
 
@@ -28,10 +27,11 @@
 
   ```bash
   cd Blog-ECE/supabase
-  docker compose up
+  #Start the containers
+  docker-compose -f docker-compose.yml -f ./dev/docker-compose.dev.yml up
   ```
 
-## Author
+## Authors
 
 - Nicolas Saint (nicolas.saint@edu.ece.fr)
 - Thomas Chopin (thomas.chopin@edu.ece.fr)
@@ -44,10 +44,11 @@ Project management :
 
   Graduation : 2/2
 
-  For the naming convention, our variables have explicit names and also for our files.
+  For the naming convention, our variables, files and folders have explicit names.
 
-  - Functions begin with a capital letter
-  - The code is indented
+  - Functions & components begin with a capital letter
+  - Pages begin with small letters
+  - The code is indented & well spaced
 
 - Project structure
 
@@ -59,6 +60,8 @@ Project management :
   - `component` where we keep all the component
   - `supabase` where we have our database
 
+  - There's also a folder `Assets` for the README's picture
+
 - Git
 
   Graduation: 2/2
@@ -68,7 +71,7 @@ Project management :
   ![Commit](./Assets/commit.png)
 
   Conventionnal commit and proper commit history
-  
+
 - Code quality
 
   Graduation: 4/4
@@ -79,13 +82,15 @@ Project management :
 
   Graduation: 3.5/4
 
-  We did a simple and clean design with a lot of mui components, especially material icons. We also added css styling on the different components.
+  We did a simple and clean design with a lot of mui & native tailwind components. We also added css styling on the different components.
 
-  As for the UX, we find it enough easy to use and intuitive. Our project is responsive and you can use it on your phone.
+  As for the UX, we find it enough easy to use and intuitive. Our project is responsive and you can use it on your phone with a drawer that helps the user to use
+  well our application on mobile.
 
   What we could improve:
 
-  - An even better css styling
+  - An even better css styling and with animations using
+  framer motion
 
 Application development
 
@@ -101,6 +106,8 @@ Application development
   - On the top middle of the page, you can use the moon button for dark theme.
   - On the top right , you have our navbar with all functionnalities.
   - On the center of the page you can see the 3 most recent articles.
+  - At the bottom you can find our footer that is present
+   on each page with our social networks.
 
   The source code of the welcome page is in [index.js](/Blog-ECE/pages/index.js)
 
@@ -112,11 +119,16 @@ Application development
 
   You can login/logout with this page. This page use Auth component of supabase. You can also signup and create a new account when you receive your verification email.
 
-  You can also sign in with github.
+  You can also sign in with github provider.
 
   The profile is saved in the database.
 
   The source code of the login page is in [your_account.js](/Blog-ECE/pages/your_account.js)
+
+  What we could improve : 
+  - You have to refresh the page
+  to see your username in the header after updating your profile, we have this problem only in production, we
+  could fix it with more time
 
 - New articles creation
 
@@ -124,7 +136,7 @@ Application development
 
  ![artcile_creation](./Assets/article_creation.png)
 
-  When you are login, a new buton appears in the navbar. you can only create an article if you have an account. To post an article you have to upload an image, a tittle and a content. If there is no image there is an automatic image that is filled in the database.
+  When you are logged in, a new buton appears in the navbar. you can only create an article if you have an account. To post an article you can upload an image, a tittle and a content. If there is no image there a default image that will appear.
 
   The source code of this feature is in [write.js](/Blog-ECE/pages/write.js)
 
@@ -134,7 +146,8 @@ Application development
 
   ![comment_creation](./Assets/comment_creation.png)
 
-  When you click on the buton `read article` you can see at the bottom of this page a WYSIWYG component. You can write your comment and post it on this article. If you are not log this component not appears.
+  When you click on the buton `read article`, if you're logged in, you can see at the bottom of the page a WYSIWYG component. You can write your comment and post it on this article. You don't have to refresh the page to
+  see it.
 
   The source code of this feature is in [id.js](/Blog-ECE/pages/articles/[id].js)
 
@@ -144,8 +157,8 @@ Application development
 
   When a user is not logged, he can see all the articles and comments but can't write any. He can't also like or comment any article.
 
-  When a user is logged, he can access only his articles in his account for deleting or updating them.
-  He can also see an edit / delete button on the comments he wrote on an article. Those buttons won't appear on comments he didn't write.
+  When a user is logged, he can access only his articles in his account page for deleting or updating them.
+  He can also see an edit & delete button on the comments he wrote on his articles. Those buttons won't appear on comments he didn't write.
 
 - Article modification
 
@@ -153,7 +166,8 @@ Application development
 
   ![article_modification](./Assets/article_modification.png)
 
-  We can edit an article that we have written. We can change tittle and content of this article.
+  We can edit an article that we have written. We can change tittle and content of this article using our
+  same WYSIWYG component.
 
   The source code of this feature is in [id.js](/Blog-ECE/pages/updatearticles/[id].js)
 
@@ -164,6 +178,7 @@ Application development
   ![article_delete](./Assets/article_delete.png)
 
   We can remove an article by clicking on the name.
+  You don't have to refresh anything to remove many.
 
   The source code of this feature is in [deletearticle.js](/Blog-ECE/pages/deletearticle.js)
 
@@ -173,7 +188,7 @@ Application development
 
   ![comment_modification](./Assets/comment_modification.png)
 
-  You can only change the content of your comment. When you click on the icon `Edit` you can change the content of your comment.
+   When you click on the icon `Edit` you can change the content of your comment with our WYSIWYG component.
 
   The source code of this feature is in [id.js](/Blog-ECE/pages/articles/[id].js)
 
@@ -181,7 +196,7 @@ Application development
 
   Graduation : 2/2
 
-  You can only delete your comment. When you click on the icon `delete`.
+  When you click on the icon `delete`, you delete your comment without any refresh needed.
 
   The source code of this feature is in [id.js](/Blog-ECE/pages/articles/[id].js)
 
@@ -192,6 +207,9 @@ Application development
  ![account_settings](./Assets/account_settings.png)
 
   When you sign in on this application. You can update your profile picture, your username, your website and you can choose your favorite color.
+  Choosing a username is needed to write any article or comments.
+
+  Bonus : By default your gravatar is shown as your profile picture, if you want to have a better quality image or another one you can uploead it directly, your gravatar will no longer be shown.
 
   The source code of this feature is in [your_account.js](/blog-ECE/pages/your_account.js)
 
@@ -199,30 +217,42 @@ Application development
 
   Graduation : 2/2
 
-  We use a component  input to create a comment, modify comment or create article. It's better to use this component to create an article with a real content.
+  We use a TipTap fully customed WYSIWYG component to create & modify, articles and comments.
 
-  The source code of this feature is in [tiptap.js](/Blog-ECE/components/editor/Tiptap.jsx)
+  The source code of this feature is in [Tiptap.jsx](/Blog-ECE/components/editor/Tiptap.jsx)
 
 - Gravatar integration
 
   Graduation : 2/2
 
-- Light/dar theme
+  We use a gravatar component to implement this functionality in our pages as explained for instance in our account settings evaluation.
+
+- Light/Dark theme
 
   Graduation : 2/2
 
-  On each page there is a moon or a sun if you click and it it will change the theme. You can choose between dark theme or light theme.
+  On each page, in our header there is a moon that change the theme if you click on it. You can choose between dark theme or light theme.
 
 - Accent color selection
 
   Graduation : 4/4
 
-  In account you can select you favorite color. You click on update, the footer and navbar will change it's color with your favorite color.
-  
+  In account settings page, you can select your favorite color theme. If click on update after picking one, the footer and navbar will change it's color with your favorite picked color. It's our choice to change only the footer and header to keep the UX soul of our website.
+
   This color is saved in our database.
 
 ## Bonus
 
-- Like :
+- Likes :
 
-  We implemented like on articles. When you like the counter of like up and after you can dislike. You can't like two times the same articles with the same account.
+  We implemented likes on articles. This is not just a counter but a well coded like functionality. You can't like two times the same article with the same account.
+  If you like an article the thumbUp button will be different showing that you arleady liked the article, if you click again it will withdraw your like and change again the thumbUp button as it is not liked anymore.
+  Only logged users can like articles.
+
+  In our database, likes are implemented with an array of users id (uuid) in our article table.
+
+- Profile's picture :
+
+  Gravatar by default and possibilty of choosing a picture from your files to have a better quality image or just another one.
+
+- Responsivness with a custom drawer for mobile users.
