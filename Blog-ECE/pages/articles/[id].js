@@ -15,7 +15,7 @@ export default function Post({ article }) {
 
   const session = useSession()
   const [uuid, setUuid] = useState([])
-  const [commentator, setCommentator] = useState("Anonyme")
+  const [commentator, setCommentator] = useState(null)
 
   useEffect(() => {
     if (article) {
@@ -25,11 +25,6 @@ export default function Post({ article }) {
     }
   }, [article])
 
-  useEffect(() => {
-    if (article && user) {
-      getCommentator();
-    }
-  }, [article])
 
   const [description, setDescription] = useState("")
   const [idArticle, setidArticle] = useState(null)
@@ -47,12 +42,12 @@ export default function Post({ article }) {
   const [loading, setLoading] = useState(true)
   const router = useRouter()
 
-
   useEffect(() => {
-    if (article && user) {
+    if (user) {
       getCommentator();
     }
-  }, [article])
+  }, [user])
+
 
   useEffect(() => {
     if (supprimer) {
@@ -89,9 +84,6 @@ export default function Post({ article }) {
 
   async function getComment(article) {
 
-    // if (user) {
-    //   getCommentator();
-    // }
 
     const { data } = await supabase
       .from('comments')
