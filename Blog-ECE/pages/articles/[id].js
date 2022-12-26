@@ -15,7 +15,7 @@ export default function Post({ article }) {
 
   const session = useSession()
   const [uuid, setUuid] = useState([])
-  const [commentator, setCommentator] = useState("Anonyme")
+  const [commentator, setCommentator] = useState(null)
 
   useEffect(() => {
     if (article) {
@@ -42,6 +42,11 @@ export default function Post({ article }) {
   const [loading, setLoading] = useState(true)
   const router = useRouter()
 
+  useEffect(() => {
+    if (user) {
+      getCommentator();
+    }
+  }, [user])
 
   useEffect(() => {
     if (supprimer) {
