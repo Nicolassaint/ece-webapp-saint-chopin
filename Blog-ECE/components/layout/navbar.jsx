@@ -70,6 +70,12 @@ export default function DrawerAppBar(props) {
     getProfile();
   }, [session]);
 
+  useEffect(() => {
+    if(user){
+    getProfile();
+    }
+  }, [user]);
+
   async function getProfile() {
     try {
       setLoading(true);
