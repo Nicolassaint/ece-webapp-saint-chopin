@@ -25,6 +25,11 @@ export default function Post({ article }) {
     }
   }, [article])
 
+  useEffect(() => {
+    if (article && user) {
+      getCommentator();
+    }
+  }, [article])
 
   const [description, setDescription] = useState("")
   const [idArticle, setidArticle] = useState(null)
@@ -42,6 +47,12 @@ export default function Post({ article }) {
   const [loading, setLoading] = useState(true)
   const router = useRouter()
 
+
+  useEffect(() => {
+    if (article && user) {
+      getCommentator();
+    }
+  }, [article])
 
   useEffect(() => {
     if (supprimer) {
@@ -78,9 +89,9 @@ export default function Post({ article }) {
 
   async function getComment(article) {
 
-    if (user) {
-      getCommentator();
-    }
+    // if (user) {
+    //   getCommentator();
+    // }
 
     const { data } = await supabase
       .from('comments')
