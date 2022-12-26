@@ -186,7 +186,7 @@ export default function Account({ session }) {
       <div className='pt-4'>
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded block"
-          onClick={() => {updateProfile({ username, website, avatar_url, selectedValue }); document.documentElement.style.setProperty('--primary-color', selectedValue);}
+          onClick={() => {updateProfile({ username, website, avatar_url, selectedValue }); document.documentElement.style.setProperty('--primary-color', selectedValue); window.location.reload();}
         }
           disabled={loading}
         >
