@@ -12,7 +12,6 @@ const Article_cards = (article) => {
 
   useEffect(() => {
     setPost(article)
-    console.log("post :", post)
   }, [article])
 
   function getYear(timestamp) {

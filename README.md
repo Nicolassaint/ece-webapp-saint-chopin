@@ -1,9 +1,12 @@
 # Blogging application - ECE Webtech project
 
+Our application is a blog developped using Next.js as a React framework, tailwind CSS and Supabase as our database.
+The Blog displays articles about overall web and AI content. As a non user, you can read all our articles. As a user you can write your own articles, and access to a lot of functionalities such as adding comments, likes, modifying your account setting, updating and deleting the articles you have written.
+
 ## Production
 
 - Vercel deployment [here](https://ece-webapp-saint-chopin-nicolassaint.vercel.app)
-- Supabase project URL:
+- Supabase project URL : <https://gbycccvvwwhzngmrnpwi.supabase.co>
 
 ## Usage
 
@@ -125,7 +128,7 @@ Application development
 
   The source code of the login page is in [your_account.js](/Blog-ECE/pages/your_account.js)
 
-  What we could improve : 
+  What we could improve :
   - You have to refresh the page
   to see your username in the header after updating your profile, we have this problem only in production, we
   could fix it with more time
@@ -252,7 +255,7 @@ Application development
 ## Bonus
 
 - Likes :
-  
+
   ![dislike](./Assets/notlike.png)
 
   ![like](./Assets/like.png)
@@ -268,5 +271,5 @@ Application development
   Gravatar by default and possibilty of choosing a picture from your files to have a better quality image or just another one.
 
 - Responsivness with a custom drawer for mobile users.
-  
+
   ![responsive](./Assets/responsive.png)

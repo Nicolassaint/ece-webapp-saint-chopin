@@ -4,7 +4,6 @@ import { Tiptap } from "../components/editor/Tiptap";
 import {
   useUser,
   useSupabaseClient,
-  useSession,
 } from "@supabase/auth-helpers-react";
 import { v4 as uuidv4 } from "uuid";
 

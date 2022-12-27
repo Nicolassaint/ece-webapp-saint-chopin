@@ -12,8 +12,6 @@ export default function Avatar({ uid, url, size, onUpload }) {
   const [uploading, setUploading] = useState(false)
 
   const session = useSession();
-  // const user = useUser();
-
 
   useEffect(() => {
     if (url) downloadImage(url)
