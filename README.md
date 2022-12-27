@@ -134,7 +134,7 @@ Application development
 
   Graduation : 6/6
 
- ![artcile_creation](./Assets/article_creation.png)
+  ![artcile_creation](./Assets/article_creation.png)
 
   When you are logged in, a new buton appears in the navbar. you can only create an article if you have an account. To post an article you can upload an image, a tittle and a content. If there is no image there a default image that will appear.
 
@@ -204,7 +204,7 @@ Application development
 
   Graduation : 4/4
 
- ![account_settings](./Assets/account_settings.png)
+  ![account_settings](./Assets/account_settings.png)
 
   When you sign in on this application. You can update your profile picture, your username, your website and you can choose your favorite color.
   Choosing a username is needed to write any article or comments.
@@ -217,6 +217,8 @@ Application development
 
   Graduation : 2/2
 
+  ![tiptap](./Assets/tiptap.png)
+
   We use a TipTap fully customed WYSIWYG component to create & modify, articles and comments.
 
   The source code of this feature is in [Tiptap.jsx](/Blog-ECE/components/editor/Tiptap.jsx)
@@ -225,17 +227,23 @@ Application development
 
   Graduation : 2/2
 
+  ![gravatar](./Assets/gravatar.png)
+
   We use a gravatar component to implement this functionality in our pages as explained for instance in our account settings evaluation.
 
 - Light/Dark theme
 
   Graduation : 2/2
 
+  ![dark_theme](./Assets/dark_theme.png)
+
   On each page, in our header there is a moon that change the theme if you click on it. You can choose between dark theme or light theme.
 
 - Accent color selection
 
   Graduation : 4/4
+
+  ![color_theme](./Assets/color_theme.png)
 
   In account settings page, you can select your favorite color theme. If click on update after picking one, the footer and navbar will change it's color with your favorite picked color. It's our choice to change only the footer and header to keep the UX soul of our website.
 
@@ -244,6 +252,10 @@ Application development
 ## Bonus
 
 - Likes :
+  
+  ![dislike](./Assets/notlike.png)
+
+  ![like](./Assets/like.png)
 
   We implemented likes on articles. This is not just a counter but a well coded like functionality. You can't like two times the same article with the same account.
   If you like an article the thumbUp button will be different showing that you arleady liked the article, if you click again it will withdraw your like and change again the thumbUp button as it is not liked anymore.
@@ -256,3 +268,5 @@ Application development
   Gravatar by default and possibilty of choosing a picture from your files to have a better quality image or just another one.
 
 - Responsivness with a custom drawer for mobile users.
+  
+  ![responsive](./Assets/responsive.png)
