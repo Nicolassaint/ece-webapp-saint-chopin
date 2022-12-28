@@ -128,10 +128,11 @@ Application development
 
   The source code of the login page is in [your_account.js](/Blog-ECE/pages/your_account.js)
 
+  Don't forget to put a username to write articles after the sign up! You can't post as an anonyme user.
+
   What we could improve :
-  - You have to refresh the page
-  to see your username in the header after updating your profile, we have this problem only in production, we
-  could fix it with more time
+
+  - Have a more personalized UI for the sign in / sign up page
 
 - New articles creation
 
@@ -210,7 +211,7 @@ Application development
   ![account_settings](./Assets/account_settings.png)
 
   When you sign in on this application. You can update your profile picture, your username, your website and you can choose your favorite color.
-  Choosing a username is needed to write any article or comments.
+  Choosing a username is needed to write any article or comments !
 
   Bonus : By default your gravatar is shown as your profile picture, if you want to have a better quality image or another one you can uploead it directly, your gravatar will no longer be shown.
 
@@ -269,6 +270,8 @@ Application development
 - Profile's picture :
 
   Gravatar by default and possibilty of choosing a picture from your files to have a better quality image or just another one.
+
+  ![ns](./Assets/ns.png)
 
 - Responsivness with a custom drawer for mobile users.
 
